@@ -6,40 +6,36 @@
   <title>Nơi lưu trữ kỷ niệm - THCS Nguyễn Thị Minh Khai</title>
   <link rel="stylesheet" href="style.css">
 
-<!-- ========== KẾT NỐI FIREBASE ========== -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-  import { getDatabase, ref, push, onChildAdded } 
-    from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+  <!-- ========== KẾT NỐI FIREBASE ========== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, push, onChildAdded } 
+      from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 
-  // 🔧 Cấu hình Firebase của bạn (lấy trong Project Settings > General)
-  const firebaseConfig = {
-    apiKey: "AIzaSyBzAGsqCusrg_2L0Lw2YiOgcmdBJa0ZGCM",
-  authDomain: "lop-8-1-chat.firebaseapp.com",
-  databaseURL: "https://lop-8-1-chat-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "lop-8-1-chat",
-  storageBucket: "lop-8-1-chat.firebasestorage.app",
-  messagingSenderId: "512094801159",
-  appId: "1:512094801159:web:d775b5e653d9f2db53c9a2",
-  measurementId: "G-R7PV1C79JT"
-  };
+    const firebaseConfig = {
+      apiKey: "AIzaSyBzAGsqCusrg_2L0Lw2YiOgcmdBJa0ZGCM",
+      authDomain: "lop-8-1-chat.firebaseapp.com",
+      databaseURL: "https://lop-8-1-chat-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "lop-8-1-chat",
+      storageBucket: "lop-8-1-chat.firebasestorage.app",
+      messagingSenderId: "512094801159",
+      appId: "1:512094801159:web:d775b5e653d9f2db53c9a2",
+      measurementId: "G-R7PV1C79JT"
+    };
 
-  // 🚀 Khởi tạo Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-
-  // Gắn vào window để script.js dùng được
-  window.db = db;
-  window.ref = ref;
-  window.push = push;
-  window.onChildAdded = onChildAdded;
-</script>
-
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    window.db = db;
+    window.ref = ref;
+    window.push = push;
+    window.onChildAdded = onChildAdded;
+  </script>
 
   <script src="script.js" defer></script>
 </head>
+
 <body>
-  <!-- ===== HEADER ===== -->
+  <!-- HEADER -->
   <header>
     <div class="header-container">
       <img src="images/style/logo.jpg" alt="Logo Trường" class="logo">
@@ -47,7 +43,7 @@
     </div>
   </header>
 
-  <!-- ===== MENU HÀNG NGANG ===== -->
+  <!-- MENU -->
   <nav class="navbar">
     <ul>
       <li><a href="memories.html">Kỷ niệm đáng nhớ</a></li>
@@ -56,11 +52,11 @@
     </ul>
   </nav>
 
-  <!-- ===== NỘI DUNG CHÍNH ===== -->
+  <!-- MAIN -->
   <main>
     <section class="intro">
       <h2>🌸 Nơi lưu giữ kỷ niệm 🌸</h2>
-      <p>Chào mừng bạn đến với không gian lưu giữ những kỷ niệm tuyệt vời của học sinh Trường THCS Nguyễn Thị Minh Khai-X.Hóc Môn💗</p>
+      <p>Chào mừng bạn đến với không gian lưu giữ những kỷ niệm tuyệt vời của học sinh Trường THCS Nguyễn Thị Minh Khai - X.Hóc Môn 💗</p>
     </section>
 
     <section class="grid-gallery">
@@ -70,94 +66,39 @@
     </section>
   </main>
 
-  <!-- ===== NÚT ZALO ===== -->
-  <a href="https://zalo.me/0388932725" class="zalo-button" target="_blank" title="Liên hệ qua Zalo">
+  <!-- ZALO -->
+  <a href="https://zalo.me/0388932725" class="zalo-button" target="_blank">
     <img src="images/style/iconzalo.png" alt="Zalo">
   </a>
 
-  
- <!-- CHAT BOX -->
-<div id="chatBox" class="chatbox">
-  <div id="chatHeader" class="chatbox-header" onclick="toggleChat()">
-    💬 <b>Chat cùng nhau</b>
-  </div>
+  <!-- CHAT BOX -->
+  <div id="chatBox" class="chatbox">
+    <div id="chatHeader" class="chatbox-header">💬 <b>Chat cùng nhau</b></div>
 
-  <div id="chatBody" class="chatbox-body">
-    <div id="chatMessages" class="messages"></div>
-    <div class="chat-input">
-      <input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
-      <button type="button" id="emojiBtn">😄</button>
-      <button type="button" onclick="sendMessage()">Gửi</button>
-      <div id="emojiPanel" class="emoji-panel"></div>
+    <div id="chatBody" class="chatbox-body">
+      <div id="chatMessages" class="messages"></div>
+      <div class="chat-input">
+        <input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
+        <button type="button" id="emojiBtn">😄</button>
+        <button type="button" onclick="sendMessage()">Gửi</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Bảng emoji ẩn/hiện -->
-<div id="emojiPanel" class="emoji-panel">
-  <span onclick="addEmoji('😀')">😀</span>
-  <span onclick="addEmoji('😁')">😁</span>
-  <span onclick="addEmoji('😂')">😂</span>
-  <span onclick="addEmoji('🤣')">🤣</span>
-  <span onclick="addEmoji('😊')">😊</span>
-  <span onclick="addEmoji('😍')">😍</span>
-  <span onclick="addEmoji('😘')">😘</span>
-  <span onclick="addEmoji('😎')">😎</span>
-  <span onclick="addEmoji('😢')">😢</span>
-  <span onclick="addEmoji('😭')">😭</span>
-  <span onclick="addEmoji('😡')">😡</span>
-  <span onclick="addEmoji('😱')">😱</span>
-  <span onclick="addEmoji('🤩')">🤩</span>
-  <span onclick="addEmoji('🥳')">🥳</span>
-  <span onclick="addEmoji('👍')">👍</span>
-  <span onclick="addEmoji('👎')">👎</span>
-  <span onclick="addEmoji('🙏')">🙏</span>
-  <span onclick="addEmoji('🎉')">🎉</span>
-  <span onclick="addEmoji('💗')">💗</span>
-  <span onclick="addEmoji('🔥')">🔥</span>
-</div>
-
+  <!-- EMOJI PANEL -->
+<!-- Bảng emoji ẩn/hiện --> <div id="emojiPanel" class="emoji-panel"> <span onclick="addEmoji('😀')">😀</span> <span onclick="addEmoji('😁')">😁</span> <span onclick="addEmoji('😂')">😂</span> <span onclick="addEmoji('🤣')">🤣</span> <span onclick="addEmoji('😊')">😊</span> <span onclick="addEmoji('😍')">😍</span> <span onclick="addEmoji('😘')">😘</span> <span onclick="addEmoji('😎')">😎</span> <span onclick="addEmoji('😢')">😢</span> <span onclick="addEmoji('😭')">😭</span> <span onclick="addEmoji('😡')">😡</span> <span onclick="addEmoji('😱')">😱</span> <span onclick="addEmoji('🤩')">🤩</span> <span onclick="addEmoji('🥳')">🥳</span> <span onclick="addEmoji('👍')">👍</span> <span onclick="addEmoji('👎')">👎</span> <span onclick="addEmoji('🙏')">🙏</span> <span onclick="addEmoji('🎉')">🎉</span> <span onclick="addEmoji('💗')">💗</span> <span onclick="addEmoji('🔥')">🔥</span> </div>
+  <!-- NHẬP TÊN -->
+  <div id="namePrompt" class="name-prompt">
+    <div class="name-box">
+      <h3>Nhập tên của bạn</h3>
+      <input type="text" id="usernameInput" placeholder="VD: Hieu, Lan...">
+      <button onclick="saveUsername()">Lưu tên</button>
+    </div>
   </div>
-</div>
 
-<!-- ===== Ô NHẬP TÊN NGƯỜI DÙNG (chỉ hiện khi cần) ===== -->
-<div id="namePrompt" style="
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.6);
-  z-index: 3000;
-">
-  <div style="
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    text-align: center;
-    max-width: 300px;
-  ">
-    <h3>Nhập tên của bạn</h3>
-    <input type="text" id="usernameInput" placeholder="VD: Hieu, Lan..." style="width: 100%; padding: 8px; margin-top: 10px;">
-    <button onclick="saveUsername()" style="margin-top: 10px; padding: 8px 15px; background:#1e3d7b; color:white; border:none; border-radius:5px; cursor:pointer;">Lưu tên</button>
-  </div>
-</div>
-
-
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2025 Lớp 8/1 - GV chủ nhiệm cô Phạm Nguyễn Thanh Phương</p>
   </footer>
-
-  
 </body>
 </html>
-
-
-
-
-
-
-
-
