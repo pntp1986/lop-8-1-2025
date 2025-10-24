@@ -77,20 +77,19 @@
 
   
  <!-- CHAT BOX -->
+<!-- CHAT BOX -->
 <div id="chatBox" class="chatbox">
-  <!-- 🔵 Thanh header — bấm để mở/thu nhỏ -->
   <div id="chatHeader" class="chatbox-header" onclick="toggleChat()">
     💬 <b>Chat cùng nhau</b>
   </div>
 
-  <!-- ⚪ Nội dung chat -->
-  <div id="chatBody" class="chatbox-body">
+  <div id="chatBody" class="chatbox-body" style="display: none; flex-direction: column;">
     <div id="chatMessages" class="messages"></div>
 
     <div class="chat-input">
       <input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
       <button type="button" id="emojiBtn">😄</button>
-      <button onclick="sendMessage()">Gửi</button>
+      <button type="button" onclick="sendMessage()">Gửi</button>
       <div id="emojiPanel" class="emoji-panel"></div>
     </div>
   </div>
@@ -155,6 +154,7 @@
 
 </body>
 </html>
+
 
 
 
