@@ -1,0 +1,229 @@
+/* ========== Tổng thể ========== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f8f8ff;
+  color: #333;
+}
+
+/* ========== Header ========== */
+header {
+  background: #1e3d7b;
+  color: white;
+  padding: 10px 20px;
+}
+.header-container {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-right: 15px;
+}
+.header-container h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+/* ========== Menu ========== */
+.navbar {
+  background: #2c58c0;
+}
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+.navbar li {
+  position: relative;
+}
+.navbar a {
+  display: block;
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.navbar a:hover {
+  background: #1a3b8b;
+}
+
+/* ========== MENU KHỐI LỚP DROPDOWN ========== */
+.dropdown {
+  position: relative;
+}
+.dropdown-content {
+  display: none !important;       /* ẨN HOÀN TOÀN LÚC ĐẦU */
+  visibility: hidden;             /* KHÔNG CHIẾM KHÔNG GIAN */
+  opacity: 0;                     /* KHÔNG HIỂN THỊ GÌ HẾT */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 160px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  padding: 0;
+  margin: 0;
+  z-index: 999;
+  transition: opacity 0.2s ease;  /* hiệu ứng mượt */
+}
+.dropdown-content li {
+  list-style: none;
+}
+.dropdown-content li a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+}
+.dropdown-content li a:hover {
+  background: #f0f0f0;
+}
+/* Khi rê chuột mới hiện */
+.dropdown:hover .dropdown-content {
+  display: block !important;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ========== Nội dung chính ========== */
+main {
+  padding: 20px;
+  text-align: center;
+}
+.grid-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+.card p {
+  padding: 10px;
+}
+
+/* ========== Nút Zalo ========== */
+.zalo-button {
+  position: fixed;
+  bottom: 80px; /* cao hơn footer 1 chút */
+  left: 20px;
+  z-index: 2000; /* cao hơn footer */
+}
+
+.zalo-button img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.zalo-button img:hover {
+  transform: scale(1.1);
+}
+
+/* ========== CHAT BOX ========== */
+.chatbox {
+  position: fixed;
+  bottom: 90px; /* nằm trên footer */
+  right: 20px;
+  width: 300px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+  z-index: 2000;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.chatbox-header {
+  background: #1e3d7b;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+}
+
+.chatbox-body {
+  display: none;
+  flex-direction: column;
+  max-height: 300px;
+}
+
+.messages {
+  flex: 1;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.chat-message {
+  background: #eef;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.chat-input {
+  display: flex;
+  gap: 5px;
+  padding: 8px;
+  border-top: 1px solid #ccc;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.chat-input button {
+  background: #1e3d7b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background: #163063;
+}
+
+
+
+/* ========== Footer ========== */
+footer {
+  background: #c0392b;        /* màu đỏ đồng bộ header */
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  position: fixed;            /* cố định vị trí */
+  bottom: 0;                  /* dính sát đáy màn hình */
+  left: 0;
+  width: 100%;                /* trải ngang toàn màn hình */
+  border-top: 2px solid #a93226;
+  z-index: 1000;              /* nằm trên cùng, không bị che */
+}
+
