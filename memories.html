@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kỷ niệm đáng nhớ - Lớp 8/1</title>
+  <link rel="stylesheet" href="css/memories.css">
+</head>
+<body>
+
+  <header>
+    <h1>🌸 Kỷ niệm đáng nhớ 🌸</h1>
+    <a href="index.html" class="back-btn">← Quay lại trang chính</a>
+  </header>
+
+  <main class="memory-gallery">
+    <div class="gallery-grid" id="gallery">
+      <div class="gallery-item" data-caption="Kỷ niệm 1 - ...">
+        <img src="images/memories/kn1.jpg" alt="Kỷ niệm 1">
+      </div>
+      <div class="gallery-item" data-caption="Kỷ niệm 2 - ...">
+        <img src="images/memories/kn2.jpg" alt="Kỷ niệm 2">
+      </div>
+      <div class="gallery-item" data-caption="Kỷ niệm 3 - ...">
+        <img src="images/memories/kn3.jpg" alt="Kỷ niệm 3">
+      </div>
+      <div class="gallery-item" data-caption="Kỷ niệm 4 - ...">
+        <img src="images/memories/kn4.jpg" alt="Kỷ niệm 4">
+      </div>
+      <div class="gallery-item" data-caption="Kỷ niệm 5 - ...">
+        <img src="images/memories/kn5.jpg" alt="Kỷ niệm 5">
+      </div>
+      <div class="gallery-item" data-caption="Kỷ niệm 6 - ...">
+        <img src="images/memories/kn6.jpg" alt="Kỷ niệm 6">
+      </div>
+      <div class="gallery-item" data-caption="Kỷ niệm 7 - ...">
+        <img src="images/memories/kn7.jpg" alt="Kỷ niệm 7">
+      </div>
+    </div>
+  </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="prev" onclick="prevImage()">&#10094;</span>
+    <span class="next" onclick="nextImage()">&#10095;</span>
+    <img id="lightboxImg" src="" alt="">
+    <div id="lightboxCaption" class="caption"></div>
+
+    <!-- Nút chức năng -->
+    <div class="controls">
+      <button id="musicToggle" onclick="toggleMusic()">🔊 Phát nhạc</button>
+      <button id="nextMusic" onclick="nextMusic()">⏭️ Bài tiếp</button>
+      <button id="slideshowToggle" onclick="toggleSlideshow()">▶️ Tự động</button>
+    </div>
+
+    <!-- Tên bài hát -->
+    <div id="musicTitle" class="music-title"></div>
+  </div>
+
+  <!-- Danh sách nhạc -->
+  <audio id="bgMusic" loop></audio>
+
+  <script src="js/memories.js"></script>
+</body>
+</html>
