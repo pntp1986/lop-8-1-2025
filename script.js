@@ -109,6 +109,19 @@ function addEmoji(emoji) {
   // emojiPanel.classList.remove("show");
 }
 
+// ===== THU NHỎ / MỞ RỘNG CHATBOX =====
+const chatHeader = document.getElementById('chatHeader');
+const chatBox = document.querySelector('.chatbox');
+
+chatHeader.addEventListener('click', () => {
+  // Trên mobile thì toggle thu nhỏ
+  if (window.innerWidth <= 600) {
+    chatBox.classList.toggle('collapsed');
+  } else {
+    // Trên PC: bật / tắt nội dung chat
+    chatBody.style.display = (chatBody.style.display === 'flex') ? 'none' : 'flex';
+  }
+});
 
 
 
