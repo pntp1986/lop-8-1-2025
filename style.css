@@ -345,6 +345,20 @@ footer {
 .chatbox-body[style*="flex"] {
   animation: fadeInUp 0.3s ease;
 }
+/* ===== THU NHỎ CHATBOX TRÊN MOBILE ===== */
+@media (max-width: 600px) {
+  .chatbox.collapsed {
+    height: auto;
+  }
+
+  .chatbox.collapsed .chatbox-body {
+    display: none !important;
+  }
+
+  .chatbox.collapsed .chat-input {
+    display: none !important;
+  }
+}
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -391,3 +405,4 @@ footer {
     display: none; /* ẩn footer khi chat mở full màn hình */
   }
 }
+
