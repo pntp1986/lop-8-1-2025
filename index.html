@@ -150,8 +150,33 @@
     <p>&copy; 2025 Lớp 8/1 - GV chủ nhiệm cô Phạm Nguyễn Thanh Phương</p>
   </footer>
 
+<script>
+function toggleChat() {
+  const chatBox = document.getElementById('chatBox');
+  const chatBody = document.getElementById('chatBody');
+
+  if (!chatBody) {
+    console.error('❌ Không tìm thấy phần tử chatBody');
+    return;
+  }
+
+  console.log('✅ toggleChat() được gọi');
+
+  if (window.innerWidth <= 600) {
+    chatBox.classList.toggle('collapsed');
+  } else {
+    chatBody.style.display =
+      chatBody.style.display === 'none' || chatBody.style.display === ''
+        ? 'flex'
+        : 'none';
+  }
+}
+</script>
+
+  
 </body>
 </html>
+
 
 
 
