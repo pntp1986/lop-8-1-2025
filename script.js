@@ -13,10 +13,24 @@ window.addEventListener('load', () => {
   console.log("✅ Chat box hoạt động & kết nối Firebase!");
 });
 
-// ===== Mở/đóng khung chat =====
+// ===== MỞ / THU NHỎ CHAT BOX =====
 function toggleChat() {
-  chatBody.style.display = (chatBody.style.display === 'flex') ? 'none' : 'flex';
+  const chatBox = document.getElementById('chatBox');
+  const chatBody = document.getElementById('chatBody');
+
+  if (window.innerWidth <= 600) {
+    // 📱 Mobile: toggle class collapsed
+    chatBox.classList.toggle('collapsed');
+  } else {
+    // 💻 Desktop: ẩn/hiện phần nội dung
+    if (chatBody.style.display === 'none' || chatBody.style.display === '') {
+      chatBody.style.display = 'flex';
+    } else {
+      chatBody.style.display = 'none';
+    }
+  }
 }
+
 
 // ===== Gửi tin nhắn =====
 function sendMessage() {
@@ -122,6 +136,7 @@ chatHeader.addEventListener('click', () => {
     chatBody.style.display = (chatBody.style.display === 'flex') ? 'none' : 'flex';
   }
 });
+
 
 
 
