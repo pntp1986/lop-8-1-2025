@@ -85,9 +85,35 @@
   <div id="chatBody" class="chatbox-body">
     <div id="chatMessages" class="messages"></div>
     <div class="chat-input">
-      <input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
-      <button onclick="sendMessage()">Gửi</button>
-    </div>
+  <input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
+  <button type="button" id="emojiBtn">😄</button>
+  <button onclick="sendMessage()">Gửi</button>
+</div>
+
+<!-- Bảng emoji ẩn/hiện -->
+<div id="emojiPanel" class="emoji-panel">
+  <span onclick="addEmoji('😀')">😀</span>
+  <span onclick="addEmoji('😁')">😁</span>
+  <span onclick="addEmoji('😂')">😂</span>
+  <span onclick="addEmoji('🤣')">🤣</span>
+  <span onclick="addEmoji('😊')">😊</span>
+  <span onclick="addEmoji('😍')">😍</span>
+  <span onclick="addEmoji('😘')">😘</span>
+  <span onclick="addEmoji('😎')">😎</span>
+  <span onclick="addEmoji('😢')">😢</span>
+  <span onclick="addEmoji('😭')">😭</span>
+  <span onclick="addEmoji('😡')">😡</span>
+  <span onclick="addEmoji('😱')">😱</span>
+  <span onclick="addEmoji('🤩')">🤩</span>
+  <span onclick="addEmoji('🥳')">🥳</span>
+  <span onclick="addEmoji('👍')">👍</span>
+  <span onclick="addEmoji('👎')">👎</span>
+  <span onclick="addEmoji('🙏')">🙏</span>
+  <span onclick="addEmoji('🎉')">🎉</span>
+  <span onclick="addEmoji('💗')">💗</span>
+  <span onclick="addEmoji('🔥')">🔥</span>
+</div>
+
   </div>
 </div>
 

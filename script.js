@@ -84,3 +84,31 @@ function addMessage(name, msg, time) {
 chatInput.addEventListener('keydown', e => {
   if (e.key === 'Enter') sendMessage();
 });
+
+// ====== EMOJI PANEL ======
+const emojiBtn = document.getElementById("emojiBtn");
+const emojiPanel = document.getElementById("emojiPanel");
+const chatInputBox = document.getElementById("chatMessage");
+
+// Ẩn/hiện bảng emoji
+emojiBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  emojiPanel.classList.toggle("show");
+});
+
+// Ẩn khi click ra ngoài
+document.addEventListener("click", () => {
+  emojiPanel.classList.remove("show");
+});
+
+// Thêm emoji vào ô nhập
+function addEmoji(emoji) {
+  chatInputBox.value += emoji + " ";
+  chatInputBox.focus();
+  // ❌ Xóa dòng này để không ẩn bảng sau mỗi lần chọn
+  // emojiPanel.classList.remove("show");
+}
+
+
+
+
