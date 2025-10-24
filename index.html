@@ -1,1 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nơi lưu trữ kỷ niệm - THCS Nguyễn Thị Minh Khai</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/style.js" defer></script>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="header-container">
+      <img src="images/style/logo.jpg" alt="Logo Trường" class="logo">
+      <h1>Trường THCS Nguyễn Thị Minh Khai</h1>
+    </div>
+  </header>
+
+  <!-- ===== MENU HÀNG NGANG ===== -->
+  <nav class="navbar">
+    <ul>
+      <li class="dropdown">
+        <a href="#">Khối lớp ▾</a>
+        <ul class="dropdown-content">
+          <li><a href="kyniem/khoi6.html">Khối 6</a></li>
+          <li><a href="kyniem/khoi7.html">Khối 7</a></li>
+          <li><a href="kyniem/khoi8.html">Khối 8</a></li>
+          <li><a href="kyniem/khoi9.html">Khối 9</a></li>
+        </ul>
+      </li>
+      <li><a href="kyniem-2011.html">Kỷ niệm 20/11</a></li>
+      <li><a href="ngay-tuu-truong.html">Ngày tựu trường</a></li>
+      <li><a href="ngay-tot-nghiep.html">Ngày tốt nghiệp</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== NỘI DUNG CHÍNH ===== -->
+  <main>
+    <section class="intro">
+      <h2>🌸 Nơi lưu trữ kỷ niệm 🌸</h2>
+      <p>Chào mừng bạn đến với không gian lưu giữ những kỷ niệm tuyệt vời của học sinh Trường THCS Nguyễn Thị Minh Khai.</p>
+    </section>
+
+    <section class="grid-gallery">
+      <div class="card"><img src="images/style/sample1.jpg" alt=""><p>Kỷ niệm đáng nhớ</p></div>
+      <div class="card"><img src="images/style/sample2.jpg" alt=""><p>Ngày tựu trường</p></div>
+      <div class="card"><img src="images/style/sample3.jpg" alt=""><p>Kỷ niệm 20/11</p></div>
+      <div class="card"><img src="images/style/sample4.jpg" alt=""><p>Ngày tốt nghiệp</p></div>
+    </section>
+  </main>
+
+  <!-- ===== NÚT ZALO ===== -->
+  <a href="https://zalo.me/0388932725" class="zalo-button" target="_blank" title="Liên hệ qua Zalo">
+    <img src="images/style/iconzalo.png" alt="Zalo">
+  </a>
+
+  <!-- CHAT BOX -->
+<div id="chatBox" class="chatbox">
+  <div id="chatHeader" class="chatbox-header" onclick="toggleChat()">
+    💬 <b>Chat cùng nhau</b>
+  </div>
+
+  <div id="chatBody" class="chatbox-body">
+    <div id="chatMessages" class="messages"></div>
+    <div class="chat-input">
+      <input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
+      <button onclick="sendMessage()">Gửi</button>
+    </div>
+  </div>
+</div>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; @ 2025 Trường THCS Nguyễn Thị Minh Khai - Bản quyền thuộc về cô Phạm Nguyễn Thanh Phương</p>
+  </footer>
+
+  <script>
+function toggleChat() {
+  const body = document.getElementById("chatBody");
+  body.style.display = (body.style.display === "flex") ? "none" : "flex";
+}
+</script>
+
+</body>
+</html>
+
+
 
