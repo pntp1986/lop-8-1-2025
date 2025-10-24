@@ -378,6 +378,14 @@ footer {
   .chatbox-header {
     font-size: 18px;
     padding: 12px;
+     background: #1e3d7b;
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid #ccc;
   }
 
   .chatbox-body {
@@ -400,9 +408,11 @@ footer {
     border-top: 1px solid #ccc;
     padding: 8px;
   }
+  
 
   footer {
     display: none; /* ẩn footer khi chat mở full màn hình */
   }
 }
+
 
