@@ -1,4 +1,4 @@
-/* ========== Tổng thể ========== */
+/* ====================== TỔNG THỂ ====================== */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,7 +6,7 @@ body {
   color: #333;
 }
 
-/* ========== Header ========== */
+/* ====================== HEADER ====================== */
 header {
   background: #1e3d7b;
   color: white;
@@ -27,7 +27,7 @@ header {
   margin: 0;
 }
 
-/* ========== Menu ========== */
+/* ====================== MENU ====================== */
 .navbar {
   background: #2c58c0;
 }
@@ -52,7 +52,7 @@ header {
   background: #1a3b8b;
 }
 
-/* ========== Dropdown ========== */
+/* ====================== DROPDOWN ====================== */
 .dropdown {
   position: relative;
 }
@@ -80,14 +80,14 @@ header {
   background: #f0f0f0;
 }
 
-/* ========== Nội dung chính ========== */
+/* ====================== NỘI DUNG CHÍNH ====================== */
 main {
   padding: 20px;
   text-align: center;
 }
 .grid-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* tự co giãn vừa khung */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
   margin-top: 30px;
   padding: 0 10px;
@@ -99,12 +99,12 @@ main {
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
-  max-width: 280px;     /* Giới hạn chiều rộng */
-  margin: 0 auto;       /* Căn giữa khung */
+  max-width: 280px;
+  margin: 0 auto;
 }
 .card img {
   width: 100%;
-  height: 300px;        /* Chiều cao đồng nhất */
+  height: 300px;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
@@ -114,17 +114,15 @@ main {
   color: #1e3d7b;
   font-size: 1rem;
 }
-
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
-
 .card:hover img {
   transform: scale(1.08);
 }
 
-/* ========== Nút Zalo ========== */
+/* ====================== NÚT ZALO ====================== */
 .zalo-button {
   position: fixed;
   bottom: 100px;
@@ -142,14 +140,13 @@ main {
   transform: scale(1.1);
 }
 
-/* ========== Chat Box ========== */
+/* ====================== CHAT BOX ====================== */
 .chatbox {
   position: fixed;
-  bottom: 110px; /* tăng nhẹ để tránh footer */
+  bottom: 110px;
   right: 20px;
   width: 300px;
-  max-height: calc(100vh - 300px); /* không cho vượt màn hình */
-  background: white;
+  background: #fff;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 2px 15px rgba(0,0,0,0.3);
@@ -157,6 +154,8 @@ main {
   overflow: hidden;
   font-family: Arial, sans-serif;
 }
+
+/* ---- Header chat ---- */
 .chatbox-header {
   background: #1e3d7b;
   color: white;
@@ -164,14 +163,18 @@ main {
   cursor: pointer;
   font-weight: bold;
   text-align: center;
+  user-select: none;
+  border-bottom: 1px solid #ccc;
 }
+
+/* ---- Thân chat ---- */
 .chatbox-body {
-  display: none; /* mặc định ẩn */
+  display: none; /* ẩn mặc định */
   flex-direction: column;
   height: 100%;
-  max-height: calc(100vh - 250px); /* tự co nếu màn hình thấp */
+  max-height: calc(100vh - 250px);
   overflow-y: auto;
-  padding-bottom: 10px;
+  transition: all 0.3s ease;
 }
 .messages {
   flex: 1;
@@ -187,40 +190,35 @@ main {
   text-align: left;
   word-wrap: break-word;
 }
+
+/* ---- Input chat ---- */
 .chat-input {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 6px;
   padding: 8px;
   border-top: 1px solid #ccc;
-  position: relative;
   background: #fff;
-  box-sizing: border-box;
+  position: relative;
 }
-
 .chat-input input {
   flex: 1;
-  min-width: 0; /* 🔥 quan trọng để input không bị emoji đẩy tràn */
   padding: 8px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 15px;
-  box-sizing: border-box;
-  overflow: hidden;
 }
-
 .chat-input #emojiBtn {
-  flex-shrink: 0; /* giữ kích thước cố định, không đẩy input */
   background: none;
   border: none;
   font-size: 24px;
   cursor: pointer;
   transition: transform 0.2s;
 }
-
+.chat-input #emojiBtn:hover {
+  transform: scale(1.2);
+}
 .chat-input button:last-child {
-  flex-shrink: 0; /* giữ cố định nút Gửi */
   background: #4caf50;
   color: white;
   border: none;
@@ -228,35 +226,11 @@ main {
   border-radius: 8px;
   cursor: pointer;
 }
-
-.chat-input button {
-  background: #1e3d7b;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 12px;
-  cursor: pointer;
-}
-.chat-input button:hover {
-  background: #163063;
+.chat-input button:last-child:hover {
+  background: #43a047;
 }
 
-/* ========== Footer ========== */
-footer {
-  background: #c0392b;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-  font-size: 14px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  border-top: 2px solid #a93226;
-  z-index: 1000;
-}
-
-/* ===== EMOJI PANEL ===== */
+/* ---- Emoji panel ---- */
 .emoji-panel {
   position: absolute;
   bottom: 60px;
@@ -274,145 +248,46 @@ footer {
   overflow-y: auto;
   z-index: 9999;
 }
+.emoji-panel.show { display: flex; }
 
-.emoji-panel.show {
-  display: flex;
-}
-
-.emoji-panel span {
-  font-size: 24px;
-  cursor: pointer;
-  user-select: none;
-  transition: transform 0.15s ease;
-}
-
-.emoji-panel span:hover {
-  transform: scale(1.3);
-}
-
-.chat-input {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px;
-  border-top: 1px solid #ccc;
-  position: relative;
-  background: #fff;
-}
-
-.chat-input input {
-  flex: 1;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-}
-
-.chat-input #emojiBtn {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.chat-input #emojiBtn:hover {
-  transform: scale(1.2);
-}
-
-.chat-input button:last-child {
-  background: #4caf50;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.chat-input button:last-child:hover {
-  background: #43a047;
-}
-
-
-.chat-input {
-  position: relative; /* thêm dòng này */
-}
-
-.chatbox-body {
-  transition: all 0.3s ease;
-  transform-origin: bottom right;
-}
+/* ---- Hiệu ứng hiện chat ---- */
 .chatbox-body[style*="flex"] {
   animation: fadeInUp 0.3s ease;
 }
-/* ===== THU NHỎ CHATBOX TRÊN MOBILE ===== */
-@media (max-width: 600px) {
-  .chatbox.collapsed {
-    height: auto;
-  }
-
-  .chatbox.collapsed .chatbox-body {
-    display: none !important;
-  }
-
-  .chatbox.collapsed .chat-input {
-    display: none !important;
-  }
-}
-
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ====================== FOOTER ====================== */
+footer {
+  background: #c0392b;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 2px solid #a93226;
+  z-index: 1000;
+}
+
+/* ====================== MOBILE ====================== */
 @media (max-width: 600px) {
   .chatbox {
     bottom: 0;
     right: 0;
     width: 100%;
-    height: 100vh;
-    max-height: 100vh;
+    height: auto;
     border-radius: 0;
   }
-
-  .chatbox-header {
-    font-size: 18px;
-    padding: 12px;
-     background: #1e3d7b;
-  color: #fff;
-  padding: 10px;
-  font-weight: bold;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  border-bottom: 1px solid #ccc;
+  .chatbox.collapsed .chatbox-body,
+  .chatbox.collapsed .chat-input {
+    display: none !important;
   }
-
-  .chatbox-body {
-    flex: 1;
-    display: none;
-    max-height: calc(100vh - 120px);
-  }
-
-  .messages {
-    flex: 1;
-    max-height: calc(100vh - 180px);
-  }
-
-  .chat-input {
-    position: fixed;
-    bottom: 60px;
-    left: 0;
-    width: 100%;
-    background: #fff;
-    border-top: 1px solid #ccc;
-    padding: 8px;
-  }
-  
-
   footer {
     display: none; /* ẩn footer khi chat mở full màn hình */
   }
 }
-
-
