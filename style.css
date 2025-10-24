@@ -52,14 +52,12 @@ header {
   background: #1a3b8b;
 }
 
-/* ========== MENU KHỐI LỚP DROPDOWN ========== */
+/* ========== Dropdown ========== */
 .dropdown {
   position: relative;
 }
 .dropdown-content {
-  display: none !important;       /* ẨN HOÀN TOÀN LÚC ĐẦU */
-  visibility: hidden;             /* KHÔNG CHIẾM KHÔNG GIAN */
-  opacity: 0;                     /* KHÔNG HIỂN THỊ GÌ HẾT */
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
@@ -67,28 +65,19 @@ header {
   min-width: 160px;
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  padding: 0;
-  margin: 0;
   z-index: 999;
-  transition: opacity 0.2s ease;  /* hiệu ứng mượt */
 }
-.dropdown-content li {
-  list-style: none;
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 .dropdown-content li a {
-  color: #333;
-  text-decoration: none;
   display: block;
   padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
 }
 .dropdown-content li a:hover {
   background: #f0f0f0;
-}
-/* Khi rê chuột mới hiện */
-.dropdown:hover .dropdown-content {
-  display: block !important;
-  visibility: visible;
-  opacity: 1;
 }
 
 /* ========== Nội dung chính ========== */
@@ -120,27 +109,25 @@ main {
 /* ========== Nút Zalo ========== */
 .zalo-button {
   position: fixed;
-  bottom: 80px; /* cao hơn footer 1 chút */
+  bottom: 100px;
   left: 20px;
-  z-index: 2000; /* cao hơn footer */
+  z-index: 2000;
 }
-
 .zalo-button img {
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
   transition: transform 0.2s;
 }
-
 .zalo-button img:hover {
   transform: scale(1.1);
 }
 
-/* ========== CHAT BOX ========== */
+/* ========== Chat Box ========== */
 .chatbox {
   position: fixed;
-  bottom: 90px; /* nằm trên footer */
+  bottom: 90px;
   right: 20px;
   width: 300px;
   background: white;
@@ -151,7 +138,6 @@ main {
   overflow: hidden;
   font-family: Arial, sans-serif;
 }
-
 .chatbox-header {
   background: #1e3d7b;
   color: white;
@@ -160,20 +146,17 @@ main {
   font-weight: bold;
   text-align: center;
 }
-
 .chatbox-body {
-  display: none;
+  display: none; /* mặc định ẩn */
   flex-direction: column;
   max-height: 300px;
 }
-
 .messages {
   flex: 1;
   max-height: 200px;
   overflow-y: auto;
   padding: 10px;
 }
-
 .chat-message {
   background: #eef;
   padding: 6px 10px;
@@ -182,21 +165,18 @@ main {
   text-align: left;
   word-wrap: break-word;
 }
-
 .chat-input {
   display: flex;
   gap: 5px;
   padding: 8px;
   border-top: 1px solid #ccc;
 }
-
 .chat-input input {
   flex: 1;
   padding: 6px;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
-
 .chat-input button {
   background: #1e3d7b;
   color: white;
@@ -205,25 +185,21 @@ main {
   padding: 6px 12px;
   cursor: pointer;
 }
-
 .chat-input button:hover {
   background: #163063;
 }
 
-
-
 /* ========== Footer ========== */
 footer {
-  background: #c0392b;        /* màu đỏ đồng bộ header */
+  background: #c0392b;
   color: white;
   text-align: center;
   padding: 10px 0;
   font-size: 14px;
-  position: fixed;            /* cố định vị trí */
-  bottom: 0;                  /* dính sát đáy màn hình */
+  position: fixed;
+  bottom: 0;
   left: 0;
-  width: 100%;                /* trải ngang toàn màn hình */
+  width: 100%;
   border-top: 2px solid #a93226;
-  z-index: 1000;              /* nằm trên cùng, không bị che */
+  z-index: 1000;
 }
-

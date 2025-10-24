@@ -5,6 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nơi lưu trữ kỷ niệm - THCS Nguyễn Thị Minh Khai</title>
   <link rel="stylesheet" href="style.css">
+
+<!-- ========== KẾT NỐI FIREBASE ========== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { getDatabase, ref, push, onChildAdded } 
+    from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+  // 🔧 Cấu hình Firebase của bạn (lấy trong Project Settings > General)
+  const firebaseConfig = {
+    apiKey: "AIzaSyDxxxxxx",
+    authDomain: "lop8-1-chat.firebaseapp.com",
+    databaseURL: "https://lop-8-1-chat-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "lop8-1-chat",
+    storageBucket: "lop8-1-chat.appspot.com",
+    messagingSenderId: "1234567890",
+    appId: "1:1234567890:web:abcdef123456"
+  };
+
+  // 🚀 Khởi tạo Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // Gắn vào window để script.js dùng được
+  window.db = db;
+  window.ref = ref;
+  window.push = push;
+  window.onChildAdded = onChildAdded;
+</script>
+
+
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -12,24 +42,15 @@
   <header>
     <div class="header-container">
       <img src="images/style/logo.jpg" alt="Logo Trường" class="logo">
-      <h1>Trường THCS Nguyễn Thị Minh Khai</h1>
+      <h1>Tập thể Lớp 8/1</h1>
     </div>
   </header>
 
   <!-- ===== MENU HÀNG NGANG ===== -->
   <nav class="navbar">
     <ul>
-      <li class="dropdown">
-        <a href="#">Khối lớp ▾</a>
-        <ul class="dropdown-content">
-          <li><a href="kyniem/khoi6.html">Khối 6</a></li>
-          <li><a href="kyniem/khoi7.html">Khối 7</a></li>
-          <li><a href="kyniem/khoi8.html">Khối 8</a></li>
-          <li><a href="kyniem/khoi9.html">Khối 9</a></li>
-        </ul>
-      </li>
+      <li><a href="ngay-tuu-truong.html">Kỷ niệm đáng nhớ</a></li>
       <li><a href="kyniem-2011.html">Kỷ niệm 20/11</a></li>
-      <li><a href="ngay-tuu-truong.html">Ngày tựu trường</a></li>
       <li><a href="ngay-tot-nghiep.html">Ngày tốt nghiệp</a></li>
     </ul>
   </nav>
@@ -37,13 +58,12 @@
   <!-- ===== NỘI DUNG CHÍNH ===== -->
   <main>
     <section class="intro">
-      <h2>🌸 Nơi lưu trữ kỷ niệm 🌸</h2>
+      <h2>🌸 Nơi lưu giữ kỷ niệm 🌸</h2>
       <p>Chào mừng bạn đến với không gian lưu giữ những kỷ niệm tuyệt vời của học sinh Trường THCS Nguyễn Thị Minh Khai-X.Hóc Môn💗</p>
     </section>
 
     <section class="grid-gallery">
       <div class="card"><img src="images/style/tho-demo.jpg" alt=""><p>Kỷ niệm đáng nhớ</p></div>
-      <div class="card"><img src="images/style/tho-demo.jpg" alt=""><p>Ngày tựu trường</p></div>
       <div class="card"><img src="images/style/tho-demo.jpg" alt=""><p>Kỷ niệm 20/11</p></div>
       <div class="card"><img src="images/style/tho-demo.jpg" alt=""><p>Ngày tốt nghiệp</p></div>
     </section>
@@ -54,6 +74,7 @@
     <img src="images/style/iconzalo.png" alt="Zalo">
   </a>
 
+  
   <!-- CHAT BOX -->
 <div id="chatBox" class="chatbox">
   <div id="chatHeader" class="chatbox-header" onclick="toggleChat()">
@@ -72,15 +93,8 @@
 
   <!-- ===== FOOTER ===== -->
   <footer>
-    <p>&copy; 2025 Trường THCS Nguyễn Thị Minh Khai - Bản quyền thuộc về cô Phạm Nguyễn Thanh Phương</p>
+    <p>&copy; 2025 Lớp 8/1 - GV chủ nhiệm cô Phạm Nguyễn Thanh Phương</p>
   </footer>
-
-  <script>
-function toggleChat() {
-  const body = document.getElementById("chatBody");
-  body.style.display = (body.style.display === "flex") ? "none" : "flex";
-}
-</script>
 
 </body>
 </html>
