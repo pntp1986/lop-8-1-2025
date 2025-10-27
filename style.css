@@ -137,7 +137,7 @@ main {
   padding: 10px;
   font-weight: bold;
   color: #1e3d7b;
-  font-size: 1rem;
+  font-size: 0.85rem;
 }
 
 .card:hover {
@@ -197,9 +197,9 @@ main {
   100% { background-position: 100% 50%; }
 }
 
-/* 💌 hiệu ứng nổi nhẹ cho Lưu bút */
+/* 🦋 hiệu ứng nổi nhẹ cho Lưu bút */
 .luubut::before {
-  content: "💌";
+  content: "🦋";
   margin-right: 6px;
   display: inline-block;
   animation: floatMail 2.5s ease-in-out infinite;
@@ -458,19 +458,27 @@ footer {
     min-width: 0; /* Cho phép co chữ */
   }
 
-  .navbar a {
+   .navbar a {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px 4px;
-    font-size: 0.85rem; /* Chữ nhỏ hơn một chút */
-    white-space: nowrap; /* Không xuống dòng */
+    font-size: 0.85rem;
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* Nếu dài quá, thêm "..." */
+    text-overflow: ellipsis;
+  }
+
+  /* 🎵 Điều chỉnh riêng cho Lưu bút 🦋 */
+  .navbar a.luubut {
+    justify-content: center; /* canh giữa chữ và icon */
+    gap: 3px; /* tạo khoảng nhỏ giữa chữ và 🦋 */
   }
 
   .navbar a.luubut .butterfly {
-    transform: translateX(-3px);
+    display: inline-block;
+    transform: translateX(0); /* bỏ dịch sang trái */
+    font-size: 0.9rem; /* nhỏ hơn 1 chút để không tràn */
   }
 }
 
