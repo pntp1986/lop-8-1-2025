@@ -154,6 +154,35 @@
     <p>&copy; 2025 Lớp 8/1 - GV chủ nhiệm cô Phạm Nguyễn Thanh Phương</p>
   </footer>
 
+  <!-- 🎵 Nhạc nền tự động phát (ẩn trình phát + fade-in nhẹ) -->
+<audio id="bgMusic" src="music/kynyemxua.mp3" autoplay loop></audio>
+<script>
+  const bgMusic = document.getElementById("bgMusic");
+  bgMusic.volume = 0; // Bắt đầu ở mức âm lượng 0 (im lặng)
+
+  // Hàm tăng âm lượng dần trong 2 giây
+  function fadeInMusic() {
+    let vol = 0;
+    const fadeInterval = setInterval(() => {
+      if (vol < 1) {
+        vol += 0.05;
+        bgMusic.volume = Math.min(vol, 1);
+      } else {
+        clearInterval(fadeInterval);
+      }
+    }, 100); // tăng mỗi 100ms → 20 lần ≈ 2 giây
+  }
+  // Một số trình duyệt di động chặn autoplay
+  // → Khi người dùng chạm vào trang, phát và fade-in
+  function tryPlay() {
+    bgMusic.play().then(fadeInMusic).catch(() => {});
+  }
+  // Tự chạy khi có thể
+  bgMusic.addEventListener("canplay", fadeInMusic);
+  document.addEventListener("click", tryPlay, { once: true });
+  document.addEventListener("touchstart", tryPlay, { once: true });
+</script>
+
 </body>
 </html>
 
