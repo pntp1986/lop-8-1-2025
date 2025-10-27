@@ -1,3 +1,4 @@
+/* ================= BODY & HEADER ================= */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -13,6 +14,10 @@ header {
   position: relative;
 }
 
+header h1 {
+  margin: 0;
+}
+
 .back-btn {
   position: absolute;
   left: 15px;
@@ -25,81 +30,96 @@ header {
   text-decoration: underline;
 }
 
-/* ===== Gallery ===== */
+/* ================= GALLERY ================= */
 .memory-gallery {
-  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 35px; /* khoảng cách lớn hơn */
+  padding: 30px;
 }
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
-}
-.gallery-item img {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  display: block;
-  border-radius: 12px;
+
+.event {
+  width: 270px; /* lớn hơn trước */
+  text-align: center;
   cursor: pointer;
   transition: transform 0.3s;
 }
-.gallery-item img:hover {
+
+.event img {
+  width: 100%;
+  height: 400px; /* cao hơn */
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.25);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event:hover {
   transform: scale(1.05);
 }
 
-/* ===== Lightbox ===== */
+.event:hover img {
+  box-shadow: 0 0 18px rgba(0,0,0,0.35);
+}
+
+.event h2 {
+  margin-top: 12px;
+  font-size: 1.2rem; /* lớn hơn */
+  color: #1e3d7b;
+}
+
+/* ================= LIGHTBOX ================= */
 .lightbox {
-  display: none;
+  display: none; /* mặc định ẩn */
   position: fixed;
   z-index: 3000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.95);
-  text-align: center;
-  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
 .lightbox img {
   max-width: 90%;
-  max-height: 70vh;
+  max-height: 85vh;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.3);
-  transition: transform 0.3s ease;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
 }
-.lightbox .caption {
-  color: #fff;
-  margin-top: 15px;
+
+/* Caption */
+#lightboxCaption {
+  color: #1e3d7b;
+  margin-top: 12px;
   font-size: 1.1rem;
-  max-width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center;
 }
+
+/* Nút chỉ xuất hiện khi JS bật lightbox */
 .lightbox .close,
 .lightbox .prev,
 .lightbox .next {
+  display: none; /* mặc định ẩn */
   position: absolute;
-  color: white;
+  color: #1e3d7b;
   font-size: 36px;
   font-weight: bold;
   cursor: pointer;
   user-select: none;
+  text-shadow: 0 0 5px rgba(255,255,255,0.7);
   transition: 0.3s;
 }
-.lightbox .close {
-  top: 20px;
-  right: 40px;
-}
-.lightbox .prev {
-  top: 50%;
-  left: 40px;
-  transform: translateY(-50%);
-}
-.lightbox .next {
-  top: 50%;
-  right: 40px;
-  transform: translateY(-50%);
-}
+
+.lightbox .close { top: 20px; right: 40px; }
+.lightbox .prev { top: 50%; left: 20px; transform: translateY(-50%); font-size: 40px; }
+.lightbox .next { top: 50%; right: 20px; transform: translateY(-50%); font-size: 40px; }
+
 .lightbox .prev:hover,
 .lightbox .next:hover,
 .lightbox .close:hover {
@@ -107,10 +127,14 @@ header {
   transform: scale(1.1);
 }
 
-/* ===== Nút điều khiển ===== */
+
+
+/* ================= CONTROLS (SLIDESHOW & MUSIC) ================= */
 .controls {
   margin-top: 15px;
+  text-align: center;
 }
+
 .controls button {
   background: #1e3d7b;
   color: white;
@@ -122,50 +146,38 @@ header {
   font-size: 15px;
   transition: background 0.3s;
 }
+
 .controls button:hover {
   background: #f39c12;
   color: black;
 }
 
-/* ===== Mobile ===== */
-@media (max-width: 600px) {
-  .lightbox img {
-    max-width: 95%;
-    max-height: 60vh;
-  }
-  .lightbox .prev {
-    font-size: 28px;
-    left: 10px;  /* giữ trái */
-  }
-  .lightbox .next {
-    font-size: 28px;
-    right: 10px; /* giữ phải */
-  }
-  .controls {
-    margin-top: 10px;
-  }
-}
-
-.music-title {
+#musicTitle {
   color: #ffd700;
   font-size: 1rem;
   margin-top: 8px;
   font-style: italic;
 }
 
-/* Nút điều khiển */
-.controls button {
-  background: #1e3d7b;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin: 0 6px;
-  font-size: 15px;
-  transition: background 0.3s;
-}
-.controls button:hover {
-  background: #f39c12;
-  color: black;
+/* ================= MOBILE ================= */
+@media (max-width: 600px) {
+  .memory-gallery {
+    gap: 15px;
+  }
+  .event {
+    width: 45%;
+  }
+  .lightbox img {
+    max-width: 95%;
+    max-height: 60vh;
+  }
+  .lightbox .prev, .lightbox .next {
+    font-size: 28px;
+    left: 10px;
+    right: 10px;
+  }
+  .controls button {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
 }
