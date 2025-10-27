@@ -546,6 +546,13 @@ footer {
   animation: flicker 1.5s infinite alternate;
   display: inline-block;
 }
+/* CSS cho mobile */
+@media (max-width: 600px) {
+  .fire-text {
+    font-size: 1.2rem; /* giảm cỡ chữ trên mobile */
+    letter-spacing: 2px; /* nếu muốn giảm khoảng cách chữ */
+  }
+}
 
 /* 🔥 Hiệu ứng "cháy" lập lòe từng ký tự */
 .fire-text span {
