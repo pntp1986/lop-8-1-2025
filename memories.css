@@ -1,0 +1,153 @@
+/* ================= BODY & HEADER ================= */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f8f8ff;
+  color: #333;
+}
+
+header {
+  background: #1e3d7b;
+  color: white;
+  padding: 20px 15px 10px;
+  text-align: center;
+  position: relative;
+}
+
+header h1 {
+  margin-top: 10px;
+  font-size: 1.5rem;
+}
+
+.back-btn {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+/* ================= GALLERY ================= */
+.memory-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 35px;
+  padding: 30px;
+}
+
+.event {
+  width: 280px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.event img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.25);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event:hover {
+  transform: scale(1.05);
+}
+
+.event:hover img {
+  box-shadow: 0 0 18px rgba(0,0,0,0.35);
+}
+
+.event h2 {
+  margin-top: 12px;
+  font-size: 1.2rem;
+  color: #1e3d7b;
+}
+
+/* ================= LIGHTBOX ================= */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 3000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  transition: opacity 0.3s ease;
+}
+
+#lightboxCaption {
+  color: #1e3d7b;
+  margin-top: 12px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+/* Nút chỉ hiện khi lightbox mở */
+.lightbox .close,
+.lightbox .prev,
+.lightbox .next {
+  display: none; 
+  position: absolute;
+  color: #1e3d7b;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  text-shadow: 0 0 5px rgba(255,255,255,0.7);
+}
+
+.lightbox .close { top: 20px; right: 30px; }
+.lightbox .prev { top: 50%; left: 5px; transform: translateY(-50%); font-size: 30px; }
+.lightbox .next { top: 50%; right: 5px; transform: translateY(-50%); font-size: 30px; }
+
+.lightbox .prev:hover,
+.lightbox .next:hover,
+.lightbox .close:hover {
+  color: #f39c12;
+  transform: scale(1.1);
+}
+
+/* ================= NHẠC ================= */
+.music-btn {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background: #1e3d7b;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 4000;
+}
+
+.music-btn:hover {
+  background: #f39c12;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 600px) {
+  header h1.header-title { font-size: 1rem; margin-top: 10px; }
+  .event { width: 45%; }
+  .lightbox img { max-width: 95%; max-height: 60vh; }
+  .lightbox .prev, .lightbox .next { font-size: 28px; left: 3px; right: 3px; }
+}
