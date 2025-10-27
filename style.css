@@ -549,14 +549,17 @@ footer {
 /* CSS cho mobile */
 @media (max-width: 600px) {
   .fire-text {
-    font-size: 1rem !important; /* giảm cỡ chữ trên mobile */
-    letter-spacing: 1px; /* nếu muốn giảm khoảng cách chữ */
+    font-size: 1rem !important;  /* giảm cỡ chữ */
+    letter-spacing: 1px;
+    white-space: nowrap;         /* giữ nguyên 1 dòng */
+    overflow: hidden;            /* tránh tràn */
+    text-overflow: ellipsis;     /* nếu quá dài hiển thị ... */
   }
 }
 
 /* 🔥 Hiệu ứng "cháy" lập lòe từng ký tự */
 .fire-text span {
-  display: inline-block;
+  display: inline;
   animation: flame 1.5s infinite alternate;
   margin-right: 2px; /* 👈 chỉnh khoảng cách tùy ý */
 }
