@@ -462,11 +462,14 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 4px;
+    padding: 8px 2px; /* giảm padding chút để đủ chỗ */
     font-size: 0.85rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal; /* ✅ cho phép xuống dòng nếu cần */
+    word-break: break-word; /* ✅ tự ngắt từ */
+    overflow: visible; /* ✅ không ẩn chữ */
+    text-overflow: unset; /* ✅ không thêm dấu ... */
+    line-height: 1.2;
+    text-align: center;
   }
 
   /* 🎵 Điều chỉnh riêng cho Lưu bút 🦋 */
