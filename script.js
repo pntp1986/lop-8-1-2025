@@ -1,32 +1,26 @@
-// ====== KHỞI TẠO ======
-const chatBox = document.getElementById('chatBox');
+// ===== CHAT BOX =====
 const chatBody = document.getElementById('chatBody');
 const chatMessages = document.getElementById('chatMessages');
 const chatInput = document.getElementById('chatMessage');
-const chatHeader = document.getElementById('chatHeader');
-const emojiBtn = document.getElementById('emojiBtn');
-const emojiPanel = document.getElementById('emojiPanel');
-let username = localStorage.getItem('chatUsername') || null;
 let lastChatTime = 0;
 
-// ====== KHI LOAD TRANG ======
+// Lấy tên người dùng đã lưu (nếu có)
+let username = localStorage.getItem('chatUsername') || null;
+
+// ===== Khi tải trang =====
 window.addEventListener('load', () => {
   chatBody.style.display = 'none';
-  console.log("✅ Chat box sẵn sàng!");
+  console.log("✅ Chat box hoạt động & kết nối Firebase!");
 });
 
-// ====== MỞ / THU NHỎ CHAT ======
-chatHeader.addEventListener('click', () => {
-  if (window.innerWidth <= 600) {
-    chatBox.classList.toggle('collapsed');
-  } else {
-    chatBody.style.display =
-      chatBody.style.display === 'flex' ? 'none' : 'flex';
-  }
-});
+// ===== Mở/đóng khung chat =====
+function toggleChat() {
+  chatBody.style.display = (chatBody.style.display === 'flex') ? 'none' : 'flex';
+}
 
-// ====== GỬI TIN NHẮN ======
+// ===== Gửi tin nhắn =====
 function sendMessage() {
+  // Nếu chưa có tên thì yêu cầu nhập
   if (!username) {
     document.getElementById('namePrompt').style.display = 'flex';
     return;
@@ -36,11 +30,12 @@ function sendMessage() {
   if (!msg) return;
 
   const now = Date.now();
-  if (now - lastChatTime < 10000) {
-    alert("⏳ Vui lòng chờ 10 giây trước khi gửi tiếp!");
+  if (now - lastChatTime < 10000) { // Giới hạn 10s
+    alert("⏳ Vui lòng chờ 10 giây trước khi gửi tin tiếp theo!");
     return;
   }
 
+  // Gửi tin nhắn lên Firebase
   window.push(window.ref(window.db, 'messages'), {
     name: username,
     text: msg,
@@ -51,48 +46,69 @@ function sendMessage() {
   lastChatTime = now;
 }
 
-// ====== LƯU TÊN NGƯỜI DÙNG ======
+// ===== Lưu tên người dùng khi nhập xong =====
 function saveUsername() {
   const name = document.getElementById('usernameInput').value.trim();
-  if (!name) return alert("Vui lòng nhập tên!");
+  if (!name) {
+    alert("Vui lòng nhập tên!");
+    return;
+  }
   localStorage.setItem('chatUsername', name);
   username = name;
   document.getElementById('namePrompt').style.display = 'none';
-  alert("✅ Xin chào " + name + "!");
+  alert("✅ Xin chào " + name + "! Bây giờ bạn có thể chat.");
 }
 
-// ====== NHẬN TIN NHẮN REALTIME ======
-window.onChildAdded(window.ref(window.db, 'messages'), (snap) => {
-  const d = snap.val();
+// ===== Nhận tin nhắn realtime =====
+window.onChildAdded(window.ref(window.db, 'messages'), (snapshot) => {
+  const data = snapshot.val();
+  addMessage(data.name, data.text, data.time);
+});
+
+// ===== Hiển thị tin nhắn =====
+function addMessage(name, msg, time) {
   const div = document.createElement('div');
   div.className = 'chat-message';
-  const t = new Date(d.time);
-  const timeStr = `${t.getHours().toString().padStart(2,'0')}:${t.getMinutes().toString().padStart(2,'0')}`;
-  div.innerHTML = `<b>${d.name}</b> <small style="color:#777;">(${timeStr})</small><br>${d.text}`;
+
+  const date = new Date(time);
+  const hh = date.getHours().toString().padStart(2, '0');
+  const mm = date.getMinutes().toString().padStart(2, '0');
+  const timeStr = `${hh}:${mm}`;
+
+  div.innerHTML = `<b>${name}</b> <small style="color:#777;">(${timeStr})</small><br>${msg}`;
   chatMessages.appendChild(div);
   chatMessages.scrollTop = chatMessages.scrollHeight;
-});
-
-// ====== EMOJI ======
-const emojis = ['😀','😁','😂','🤣','😊','😍','😘','😎','😢','😭','😡','😱','🤩','🥳','👍','👎','🙏','🎉','💗','🔥'];
-emojis.forEach(e => {
-  const s = document.createElement('span');
-  s.textContent = e;
-  s.onclick = () => addEmoji(e);
-  emojiPanel.appendChild(s);
-});
-
-emojiBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  emojiPanel.classList.toggle('show');
-});
-document.addEventListener('click', () => emojiPanel.classList.remove('show'));
-
-function addEmoji(e) {
-  chatInput.value += e + " ";
-  chatInput.focus();
 }
 
-chatInput.addEventListener('keydown', ev => {
-  if (ev.key === 'Enter') sendMessage();
+// ===== Gửi bằng phím Enter =====
+chatInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') sendMessage();
 });
+
+// ====== EMOJI PANEL ======
+const emojiBtn = document.getElementById("emojiBtn");
+const emojiPanel = document.getElementById("emojiPanel");
+const chatInputBox = document.getElementById("chatMessage");
+
+// Ẩn/hiện bảng emoji
+emojiBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  emojiPanel.classList.toggle("show");
+});
+
+// Ẩn khi click ra ngoài
+document.addEventListener("click", () => {
+  emojiPanel.classList.remove("show");
+});
+
+// Thêm emoji vào ô nhập
+function addEmoji(emoji) {
+  chatInputBox.value += emoji + " ";
+  chatInputBox.focus();
+  // ❌ Xóa dòng này để không ẩn bảng sau mỗi lần chọn
+  // emojiPanel.classList.remove("show");
+}
+
+
+
+
