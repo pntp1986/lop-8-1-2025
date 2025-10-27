@@ -440,3 +440,16 @@ footer {
     white-space: nowrap;            /* Không xuống hàng trong nút */
   }
 }
+/* Căn lại riêng cho nút 'Lưu bút🦋' trên mobile */
+@media (max-width: 768px) {
+  .navbar a.luubut {
+    display: flex;
+    justify-content: center;   /* Canh giữa nội dung */
+    align-items: center;
+    gap: 4px;                  /* Tạo khoảng giữa chữ và 🦋 */
+  }
+
+  .navbar a.luubut .butterfly {
+    transform: translateX(-4px); /* Đẩy 🦋 vào gần chữ hơn một chút */
+  }
+}
