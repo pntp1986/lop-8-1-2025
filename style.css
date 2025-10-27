@@ -540,7 +540,7 @@ footer {
 .fire-text span {
   display: inline-block;
   animation: flame 1.5s infinite alternate;
-  margin-right: 2px; /* 👈 chỉnh khoảng cách tùy ý */
+  margin-right: 3px; /* 👈 chỉnh khoảng cách tùy ý */
 }
 
 /* Chữ lập lòe không đều nhau */
