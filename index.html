@@ -155,11 +155,19 @@
   </footer>
 
  <!-- 🎵 Nhạc nền ẩn, phát khi người dùng bấm nút -->
-<audio id="bgMusic" src="music/tbdk.mp3" loop></audio>
+<audio id="bgMusic" loop></audio>
 
 <script>
 const btn = document.getElementById("playMusicBtn");
 const music = document.getElementById("bgMusic");
+
+// 🔹 Danh sách nhạc
+const playlist = [
+  "music/tbdk.mp3",
+  "music/song2.mp3",
+  "music/song3.mp3"
+];
+let currentTrack = 0;
 
 function fadeInMusic() {
   let vol = 0;
@@ -168,20 +176,27 @@ function fadeInMusic() {
     if (vol < 1) {
       vol += 0.05;
       music.volume = Math.min(vol, 1);
-    } else {
-      clearInterval(fade);
-    }
-  }, 100); // ~2s fade-in
+    } else clearInterval(fade);
+  }, 100);
 }
 
+function playTrack(index) {
+  music.src = playlist[index];
+  music.play().then(() => fadeInMusic())
+  .catch(err => console.log("Autoplay bị chặn:", err));
+}
+
+// 🔹 Khi nhạc kết thúc → tự qua bài kế
+music.addEventListener("ended", () => {
+  currentTrack = (currentTrack + 1) % playlist.length; // lặp lại từ đầu
+  playTrack(currentTrack);
+});
+
+// 🔹 Khi người dùng bấm nút
 btn.addEventListener("click", () => {
-  music.play().then(() => {
-    fadeInMusic();
-    btn.disabled = true; // tránh bấm nhiều lần
-    btn.style.opacity = 0.7;
-  }).catch(err => {
-    console.log("Autoplay bị chặn:", err);
-  });
+  playTrack(currentTrack);
+  btn.disabled = true;
+  btn.style.opacity = 0.7;
 });
 </script>
 
