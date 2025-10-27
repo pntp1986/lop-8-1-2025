@@ -81,10 +81,9 @@ function stopSlideshow() {
 // ===== Nhạc =====
 function loadMusic(index) {
   music.src = playlist[index].src;
-  music.load();  // thêm dòng này để chắc chắn load bài mới
+  music.load(); // load bài mới
   musicTitle.textContent = "🎵 " + playlist[index].title;
 }
-
 function toggleMusic() {
   const btn = document.getElementById("musicToggle");
   if (isMusicOn) {
@@ -92,17 +91,28 @@ function toggleMusic() {
     isMusicOn = false;
     btn.textContent = "🔊 Phát nhạc";
   } else {
-    music.play().catch(e => console.log(e)); // tránh lỗi play tự động bị chặn
-    isMusicOn = true;
-    btn.textContent = "🔇 Dừng nhạc";
+    music.play().then(() => {
+      isMusicOn = true;
+      btn.textContent = "🔇 Dừng nhạc";
+    }).catch(err => {
+      alert("Nhấn vào nút để bật nhạc do trình duyệt chặn autoplay.");
+    });
   }
 }
-
 function nextMusic() {
   currentSong = (currentSong + 1) % playlist.length;
   loadMusic(currentSong);
-  if (isMusicOn) music.play().catch(e => console.log(e));
+  if (isMusicOn) {
+    music.play().catch(err => {
+      alert("Nhấn nút Phát nhạc để tiếp tục.");
+    });
+  }
 }
+// Load bài đầu tiên sau khi DOM sẵn sàng nhưng không tự play
+window.addEventListener("DOMContentLoaded", () => {
+  loadMusic(currentSong);
+  music.addEventListener("ended", nextMusic);
+});
 
 
 // Vuốt trái/phải trên mobile
