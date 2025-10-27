@@ -27,6 +27,31 @@ header {
   margin: 0;
 }
 
+/* ========== Nút Phát nhạc bên phải tiêu đề ========== */
+#playMusicBtn {
+  margin-left: 10px;
+  background: #2c58c0;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+#playMusicBtn:hover {
+  background: #1a3b8b;
+  transform: scale(1.1);
+}
+@media (max-width: 768px) {
+  #playMusicBtn {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+}
+
 /* ========== Menu ========== */
 .navbar {
   background: #2c58c0;
@@ -421,34 +446,32 @@ footer {
 }
 
 /* ========== Menu 4 cột đều nhau trên mobile ========== */
+/* Căn chỉnh riêng cho menu trên mobile */
 @media (max-width: 768px) {
   .navbar ul {
-    display: flex;
-    justify-content: space-between; /* Chia đều khoảng cách */
-    flex-wrap: nowrap;              /* Không cho xuống hàng */
+    justify-content: space-between;
   }
 
   .navbar li {
-    flex: 1;                        /* Mỗi mục chiếm phần bằng nhau */
-    text-align: center;             /* Canh chữ giữa */
+    flex: 1;
+    text-align: center;
+    min-width: 0; /* Cho phép co chữ */
   }
 
   .navbar a {
-    display: block;
-    padding: 10px 5px;              /* Giảm padding cho vừa màn nhỏ */
-    font-size: 0.9rem;              /* Chữ vừa đẹp trên mobile */
-    white-space: nowrap;            /* Không xuống hàng trong nút */
-  }
-}
-/* Căn lại riêng cho nút 'Lưu bút🦋' trên mobile */
-@media (max-width: 768px) {
-  .navbar a.luubut {
     display: flex;
-    justify-content: center;   /* Canh giữa nội dung */
+    justify-content: center;
     align-items: center;
-    gap: 4px;                  /* Tạo khoảng giữa chữ và 🦋 */
+    padding: 10px 4px;
+    font-size: 0.85rem; /* Chữ nhỏ hơn một chút */
+    white-space: nowrap; /* Không xuống dòng */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Nếu dài quá, thêm "..." */
   }
+
   .navbar a.luubut .butterfly {
-    transform: translateX(-4px); /* Đẩy 🦋 vào gần chữ hơn một chút */
+    transform: translateX(-3px);
   }
 }
+
+

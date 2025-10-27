@@ -40,12 +40,12 @@
 </head>
 <body>
   <!-- ===== HEADER ===== -->
-  <header>
-    <div class="header-container">
-      <img src="images/style/logo.jpg" alt="Logo Trường" class="logo">
-      <h1>Tập thể Lớp 8/1</h1>
-    </div>
-  </header>
+ <header>
+  <div class="header-container">
+    <h1>Tập thể Lớp 8/1</h1>
+    <button id="playMusicBtn" title="Phát nhạc 🎵">🎵</button>
+  </div>
+</header>
 
   <!-- ===== MENU HÀNG NGANG ===== -->
   <nav class="navbar">
@@ -154,34 +154,37 @@
     <p>&copy; 2025 Lớp 8/1 - GV chủ nhiệm cô Phạm Nguyễn Thanh Phương</p>
   </footer>
 
-  <!-- 🎵 Nhạc nền tự động phát (ẩn trình phát + fade-in nhẹ) -->
-<audio id="bgMusic" src="music/kynyemxua.mp3" autoplay loop></audio>
-<script>
-  const bgMusic = document.getElementById("bgMusic");
-  bgMusic.volume = 0; // Bắt đầu ở mức âm lượng 0 (im lặng)
+ <!-- 🎵 Nhạc nền ẩn, phát khi người dùng bấm nút -->
+<audio id="bgMusic" src="music/tbdk.mp3" loop></audio>
 
-  // Hàm tăng âm lượng dần trong 2 giây
-  function fadeInMusic() {
-    let vol = 0;
-    const fadeInterval = setInterval(() => {
-      if (vol < 1) {
-        vol += 0.05;
-        bgMusic.volume = Math.min(vol, 1);
-      } else {
-        clearInterval(fadeInterval);
-      }
-    }, 100); // tăng mỗi 100ms → 20 lần ≈ 2 giây
-  }
-  // Một số trình duyệt di động chặn autoplay
-  // → Khi người dùng chạm vào trang, phát và fade-in
-  function tryPlay() {
-    bgMusic.play().then(fadeInMusic).catch(() => {});
-  }
-  // Tự chạy khi có thể
-  bgMusic.addEventListener("canplay", fadeInMusic);
-  document.addEventListener("click", tryPlay, { once: true });
-  document.addEventListener("touchstart", tryPlay, { once: true });
+<script>
+const btn = document.getElementById("playMusicBtn");
+const music = document.getElementById("bgMusic");
+
+function fadeInMusic() {
+  let vol = 0;
+  music.volume = 0;
+  const fade = setInterval(() => {
+    if (vol < 1) {
+      vol += 0.05;
+      music.volume = Math.min(vol, 1);
+    } else {
+      clearInterval(fade);
+    }
+  }, 100); // ~2s fade-in
+}
+
+btn.addEventListener("click", () => {
+  music.play().then(() => {
+    fadeInMusic();
+    btn.disabled = true; // tránh bấm nhiều lần
+    btn.style.opacity = 0.7;
+  }).catch(err => {
+    console.log("Autoplay bị chặn:", err);
+  });
+});
 </script>
+
 
 </body>
 </html>
