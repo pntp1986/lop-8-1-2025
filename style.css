@@ -477,7 +477,6 @@ footer {
     justify-content: center; /* canh giữa chữ và icon */
     gap: 3px; /* tạo khoảng nhỏ giữa chữ và 🦋 */
   }
-
   .navbar a.luubut .butterfly {
     display: inline-block;
     transform: translateX(0); /* bỏ dịch sang trái */
@@ -485,4 +484,31 @@ footer {
   }
 }
 
+/* 🎵 👈 */
+#playMusicBtn {
+  display: inline-flex;
+  align-items: center; /* 👈 canh icon theo trục giữa */
+  justify-content: center;
+  gap: 4px; /* khoảng cách giữa 🎵 và 👈 */
+  font-size: 26px;
+  background: linear-gradient(45deg, #ff00cc, #3333ff, #00ffcc);
+  background-size: 200% 200%;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+  animation: glow 2s linear infinite, gradientMove 4s ease infinite;
+  transition: transform 0.2s;
+}
+.finger {
+  animation: fingerMove 1s ease-in-out infinite;
+  transform-origin: left center;
+}
+@keyframes fingerMove {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-20deg); }
+}
 
