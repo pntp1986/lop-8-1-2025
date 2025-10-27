@@ -44,7 +44,7 @@
   <div class="header-container">
     <img src="images/style/logo.jpg" alt="Logo lớp 8/1" class="logo">Tập thể Lớp 8/1</h1>
     <button id="playMusicBtn" title="Bấm để nghe nhạc 🎵">
-       <span class="music-icon">🎵</span>
+       <span class="music-icon">🎶</span>
   <span class="finger">👈</span>
 </button>
   </div>
@@ -191,10 +191,15 @@ function playTrack(index) {
 
 // 🔹 Khi nhạc kết thúc → tự qua bài kế
 music.addEventListener("ended", () => {
-  currentTrack = (currentTrack + 1) % playlist.length; // lặp lại từ đầu
-  playTrack(currentTrack);
+  currentTrack = (currentTrack + 1) % playlist.length; // qua bài kế
+  music.src = playlist[currentTrack];
+  music.load();
+  music.addEventListener("canplay", function playNext() {
+    music.removeEventListener("canplay", playNext);
+    music.play().then(() => fadeInMusic())
+    .catch(err => console.log("Không thể tự phát:", err));
+  });
 });
-
 // 🔹 Khi người dùng bấm nút
 btn.addEventListener("click", () => {
   playTrack(currentTrack);
