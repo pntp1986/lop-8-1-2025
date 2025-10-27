@@ -536,7 +536,7 @@ footer {
 .fire-text {
   font-size: 2rem;
   font-weight: bold;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   color: #ffcc70;
   text-shadow:
     0 0 10px #ff6600,
@@ -549,8 +549,8 @@ footer {
 /* CSS cho mobile */
 @media (max-width: 600px) {
   .fire-text {
-    font-size: 1.2rem !important; /* giảm cỡ chữ trên mobile */
-    letter-spacing: 2px; /* nếu muốn giảm khoảng cách chữ */
+    font-size: 1.1rem !important; /* giảm cỡ chữ trên mobile */
+    letter-spacing: 1px; /* nếu muốn giảm khoảng cách chữ */
   }
 }
 
