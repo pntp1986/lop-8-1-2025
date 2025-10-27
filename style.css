@@ -549,7 +549,7 @@ footer {
 /* CSS cho mobile */
 @media (max-width: 600px) {
   .fire-text {
-    font-size: 1.2rem; /* giảm cỡ chữ trên mobile */
+    font-size: 1.2rem !important; /* giảm cỡ chữ trên mobile */
     letter-spacing: 2px; /* nếu muốn giảm khoảng cách chữ */
   }
 }
