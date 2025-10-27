@@ -42,7 +42,8 @@
   <!-- ===== HEADER ===== -->
  <header>
   <div class="header-container">
-    <img src="images/style/logo.jpg" alt="Logo lớp 8/1" class="logo">Tập thể Lớp 8/1</h1>
+    <img src="images/style/logo.jpg" alt="Logo lớp 8/1" class="logo">
+     <h1 class="fire-text">Tập thể Lớp 8/1</h1>
     <button id="playMusicBtn" title="Bấm để nghe nhạc 🎵">
        <span class="music-icon">🎶</span>
   <span class="finger">👈</span>
@@ -208,6 +209,18 @@ btn.addEventListener("click", () => {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const fireText = document.querySelector(".fire-text");
+  const letters = fireText.textContent.split("");
+  fireText.textContent = "";
+  letters.forEach(ch => {
+    const span = document.createElement("span");
+    span.textContent = ch;
+    fireText.appendChild(span);
+  });
+});
+</script>
 
 </body>
 </html>

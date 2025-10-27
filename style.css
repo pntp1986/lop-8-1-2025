@@ -512,3 +512,45 @@ footer {
   50% { transform: rotate(-20deg); }
 }
 
+/* ========== Hiệu ứng chữ bốc lửa ========== */
+.fire-text {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #ffcc70;
+  text-shadow:
+    0 0 10px #ff6600,
+    0 0 20px #ff3300,
+    0 0 30px #ff0000,
+    0 0 40px #ff6600;
+  animation: flicker 1.5s infinite alternate;
+  display: inline-block;
+}
+
+/* 🔥 Hiệu ứng "cháy" lập lòe từng ký tự */
+.fire-text span {
+  display: inline-block;
+  animation: flame 1.5s infinite alternate;
+}
+
+/* Chữ lập lòe không đều nhau */
+.fire-text span:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+.fire-text span:nth-child(even) {
+  animation-delay: 0.3s;
+}
+
+/* Tạo nhấp nháy ánh lửa */
+@keyframes flicker {
+  0%, 100% { text-shadow: 0 0 8px #ff6600, 0 0 20px #ff3300; }
+  50% { text-shadow: 0 0 20px #ffaa33, 0 0 40px #ff6600; }
+}
+
+/* "Lửa" rung lắc và sáng tối nhẹ */
+@keyframes flame {
+  0% { transform: translateY(0px) rotate(0deg); opacity: 0.9; }
+  50% { transform: translateY(-2px) rotate(1deg); opacity: 1; }
+  100% { transform: translateY(1px) rotate(-1deg); opacity: 0.8; }
+}
+
