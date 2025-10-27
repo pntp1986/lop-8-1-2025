@@ -118,14 +118,17 @@ main {
   padding: 0 10px;
 }
 .card {
+ display: block; /* Thêm để thẻ <a> nhận full block */
+  text-decoration: none; /* Bỏ gạch chân nếu có */
+  color: inherit; /* Giữ màu chữ */
   background: white;
   border-radius: 12px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
-  max-width: 3000px;     /* Giới hạn chiều rộng */
-  margin: 0 auto;       /* Căn giữa khung */
+  max-width: 3000px;
+  margin: 0 auto;
 }
 .card img {
   width: 100%;
@@ -537,6 +540,7 @@ footer {
 .fire-text span {
   display: inline-block;
   animation: flame 1.5s infinite alternate;
+  margin-right: 2px; /* 👈 chỉnh khoảng cách tùy ý */
 }
 
 /* Chữ lập lòe không đều nhau */
