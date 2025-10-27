@@ -419,3 +419,24 @@ footer {
     display: none;
   }
 }
+
+/* ========== Menu 4 cột đều nhau trên mobile ========== */
+@media (max-width: 768px) {
+  .navbar ul {
+    display: flex;
+    justify-content: space-between; /* Chia đều khoảng cách */
+    flex-wrap: nowrap;              /* Không cho xuống hàng */
+  }
+
+  .navbar li {
+    flex: 1;                        /* Mỗi mục chiếm phần bằng nhau */
+    text-align: center;             /* Canh chữ giữa */
+  }
+
+  .navbar a {
+    display: block;
+    padding: 10px 5px;              /* Giảm padding cho vừa màn nhỏ */
+    font-size: 0.9rem;              /* Chữ vừa đẹp trên mobile */
+    white-space: nowrap;            /* Không xuống hàng trong nút */
+  }
+}
