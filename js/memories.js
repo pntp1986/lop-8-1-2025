@@ -20,10 +20,10 @@ const galleryImages = [
 
 // Danh sách nhạc
 const playlist = [
-//  { title: "Kỷ Niệm Xưa", src: "https://zingmp3.vn/bai-hat/Mong-Uoc-Ky-Niem-Xua-Tam-Ca-3A/ZWZCOEZB.html" },
-  // { title: "Nhớ Mãi Tuổi Học Trò", src: "https://zingmp3.vn/bai-hat/Mai-Mai-Tuoi-Hoc-Tro-Nguyen-Duyen-Quynh/ZW7U7UCA.html" },
-  // { title: "Tình Bạn Diệu Kỳ", src: "https://zingmp3.vn/bai-hat/Tinh-Ban-Dieu-Ky-Vote-For-5ive-NAKAMA/Z60D6BZD.html" }
-  { title: "demo", src: "https://cdn.pixabay.com/download/audio/2023/02/01/audio_6fa1f3b7.mp3" }
+ { title: "Kỷ Niệm Xưa", src: "music/kynyemxua.mp3" },
+  { title: "Nhớ Mãi Tuổi Học Trò", src: "music/nmtht.mp3" },
+  { title: "Tình Bạn Diệu Kỳ", src: "music/tbdk.mp3" }
+  // { title: "demo", src: "https://cdn.pixabay.com/download/audio/2023/02/01/audio_6fa1f3b7.mp3" }
 ];
 let currentSong = 0;
 
@@ -81,25 +81,29 @@ function stopSlideshow() {
 // ===== Nhạc =====
 function loadMusic(index) {
   music.src = playlist[index].src;
+  music.load();  // thêm dòng này để chắc chắn load bài mới
   musicTitle.textContent = "🎵 " + playlist[index].title;
 }
+
 function toggleMusic() {
   const btn = document.getElementById("musicToggle");
   if (isMusicOn) {
     music.pause();
     isMusicOn = false;
-    btn.textContent = "🔇 Phát nhạc";
+    btn.textContent = "🔊 Phát nhạc";
   } else {
-    music.play();
+    music.play().catch(e => console.log(e)); // tránh lỗi play tự động bị chặn
     isMusicOn = true;
-    btn.textContent = "🔊 Dừng nhạc";
+    btn.textContent = "🔇 Dừng nhạc";
   }
 }
+
 function nextMusic() {
   currentSong = (currentSong + 1) % playlist.length;
   loadMusic(currentSong);
-  if (isMusicOn) music.play();
+  if (isMusicOn) music.play().catch(e => console.log(e));
 }
+
 
 // Vuốt trái/phải trên mobile
 let touchStartX = 0;
