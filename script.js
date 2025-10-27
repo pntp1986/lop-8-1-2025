@@ -30,7 +30,7 @@ function sendMessage() {
   if (!msg) return;
 
   const now = Date.now();
-  if (now - lastChatTime < 10000) { // Giới hạn 10s
+  if (now - lastChatTime < 5000) { // Giới hạn 5s
     alert("⏳ Vui lòng chờ 10 giây trước khi gửi tin tiếp theo!");
     return;
   }
