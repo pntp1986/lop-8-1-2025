@@ -185,22 +185,19 @@ function fadeInMusic() {
 }
 
 function playTrack(index) {
-  music.src = playlist[index];
-  music.play().then(() => fadeInMusic())
-  .catch(err => console.log("Autoplay bị chặn:", err));
+  currentTrack = index;
+  music.src = playlist[currentTrack];
+  music.play()
+    .then(() => fadeInMusic())
+    .catch(err => console.log("Autoplay bị chặn:", err));
 }
 
-// 🔹 Khi nhạc kết thúc → tự qua bài kế
+// 🔹 Khi nhạc kết thúc → qua bài kế (vòng lại nếu hết)
 music.addEventListener("ended", () => {
-  currentTrack = (currentTrack + 1) % playlist.length; // qua bài kế
-  music.src = playlist[currentTrack];
-  music.load();
-  music.addEventListener("canplay", function playNext() {
-    music.removeEventListener("canplay", playNext);
-    music.play().then(() => fadeInMusic())
-    .catch(err => console.log("Không thể tự phát:", err));
-  });
+  currentTrack = (currentTrack + 1) % playlist.length;
+  playTrack(currentTrack);
 });
+
 // 🔹 Khi người dùng bấm nút
 btn.addEventListener("click", () => {
   playTrack(currentTrack);
