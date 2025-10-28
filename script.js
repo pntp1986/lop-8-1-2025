@@ -17,28 +17,34 @@ window.addEventListener('load', () => {
   console.log("✅ Chat box hoạt động & kết nối Firebase!");
 });
 
-// ===== NÚT TRÒN 💬 MỞ / ẨN TOÀN BỘ CHAT =====
-const chatToggleBtn = document.getElementById('chatToggleBtn') || document.querySelector('.chat-floating-btn');
+
+const chatToggleBtn = document.getElementById("chatToggleBtn");
 if (chatToggleBtn) {
-  chatToggleBtn.addEventListener('click', () => {
-    if (chatBox.classList.contains('open')) {
-      chatBox.classList.remove('open');
-      chatBody.style.display = 'none';
+  chatToggleBtn.addEventListener("click", () => {
+    const box = document.getElementById("chatBox");
+    if (box.classList.contains("show")) {
+      box.classList.remove("show");
+      chatBody.style.display = "none";
     } else {
-      chatBox.classList.add('open');
-      chatBody.style.display = 'flex';
+      box.classList.add("show");
+      chatBody.style.display = "flex";
     }
   });
 }
 
 // ===== BẤM HEADER — THU GỌN / MỞ NỘI DUNG CHAT =====
 function toggleChat() {
-  if (chatBody.style.display === 'none' || chatBody.style.display === '') {
-    chatBody.style.display = 'flex';
-    chatBox.classList.add('open');
-  } else {
+  const box = document.getElementById('chatBox');
+  const isOpen = chatBody.style.display === 'flex';
+
+  if (isOpen) {
+    // Ẩn toàn bộ khung chat
     chatBody.style.display = 'none';
-    chatBox.classList.remove('open');
+    box.classList.remove('show');
+  } else {
+    // Hiện khung chat đầy đủ
+    chatBody.style.display = 'flex';
+    box.classList.add('show');
   }
 }
 
