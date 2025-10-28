@@ -79,18 +79,17 @@ header h1 {
   top: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  background: rgba(255,255,255,0.95);
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .lightbox img {
-  max-width: 90%;
+  max-width: 80%;
   max-height: 85vh;
   border-radius: 12px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-  transition: opacity 0.3s ease;
 }
 
 #lightboxCaption {
@@ -100,82 +99,47 @@ header h1 {
   text-align: center;
 }
 
-/* ===== NAV BUTTONS (thay thế hoàn toàn phần cũ) ===== */
+/* ================= NÚT CLOSE / NEXT / PREV ================= */
 .lightbox .close,
 .lightbox .prev,
 .lightbox .next {
-  /* cho hiển thị mặc định (sẽ ẩn cùng lightbox khi .lightbox {display:none}) */
-  display: block;
+  display: none; /* ẩn hoàn toàn lúc đầu */
   position: absolute;
   color: #1e3d7b;
+  font-size: 36px;
   font-weight: bold;
   cursor: pointer;
   user-select: none;
-  text-shadow: 0 0 5px rgba(255,255,255,0.8);
-  transition: transform 0.15s ease, color 0.15s ease;
-  z-index: 3100;
+  text-shadow: 0 0 5px rgba(255,255,255,0.7);
 }
 
-/* Close */
-.lightbox .close {
-  top: 18px;
-  right: 24px;
-  font-size: 34px;
-  background: rgba(255,255,255,0.85);
-  border-radius: 6px;
-  padding: 4px 8px;
+/* Khi lightbox mở thì bật nút lên */
+.lightbox.active .close,
+.lightbox.active .prev,
+.lightbox.active .next {
+  display: block;
 }
 
-/* Vị trí chung cho Prev/Next (căn dọc giữa) */
-.lightbox .prev,
-.lightbox .next {
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 40px;
-  width: 54px;
-  height: 54px;
-  line-height: 54px;
-  text-align: center;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.75);
-}
+.lightbox .close { top: 20px; right: 30px; }
+.lightbox .prev { top: 50%; left: 5%; transform: translateY(-50%); font-size: 30px; }
+.lightbox .next { top: 50%; right: 5%; transform: translateY(-50%); font-size: 30px; }
 
-/* Trên màn hình lớn: đặt sát ảnh (ảnh dùng max-width:80%) */
-@media (min-width: 601px) {
-  .lightbox img { max-width: 80%; }
-
-  .lightbox .prev { left: calc(10% - 36px); } /* hơi ngoài mép ảnh, sát ảnh */
-  .lightbox .next { right: calc(10% - 36px); } /* tương tự bên phải */
-}
-
-/* Trên mobile: đặt sát 2 mép của ảnh (5% từ mép) */
-@media (max-width: 600px) {
-  .lightbox img { max-width: 95%; max-height: 65vh; }
-
-  .lightbox .prev {
-    left: 5%;
-    font-size: 32px;
-    width: 48px;
-    height: 48px;
-    line-height: 48px;
-  }
-
-  .lightbox .next {
-    right: 5%;
-    font-size: 32px;
-    width: 48px;
-    height: 48px;
-    line-height: 48px;
-  }
-}
-
-/* Hover effect */
 .lightbox .prev:hover,
 .lightbox .next:hover,
 .lightbox .close:hover {
   color: #f39c12;
-  transform: translateY(-50%) scale(1.12);
+  transform: scale(1.1);
 }
+
+/* ================= MOBILE ================= */
+@media (max-width: 600px) {
+  /* Ẩn nút next/prev trên điện thoại */
+  .lightbox .prev,
+  .lightbox .next {
+    display: none !important;
+  }
+}
+
 
 /* ================= NHẠC ================= */
 .music-btn {
