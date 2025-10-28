@@ -109,46 +109,6 @@ function addEmoji(emoji) {
   // emojiPanel.classList.remove("show");
 }
 
-// ===== MỞ CHAT BOX (chỉ dùng trên mobile) =====
-function openChatBox() {
-  const chat = document.getElementById("chatBox");
-  const btn = document.getElementById("openChatBtn");
-
-  chat.classList.add("open");
-  chat.style.display = "block";
-  btn.style.display = "none";
-}
-
-// ===== ĐÓNG / MỞ CHAT BOX =====
-function toggleChat() {
-  const chat = document.getElementById("chatBox");
-  const btn = document.getElementById("openChatBtn");
-
-  // Nếu đang ở mobile (màn hình nhỏ)
-  if (window.innerWidth <= 768) {
-    if (chat.classList.contains("open")) {
-      chat.classList.remove("open");
-      setTimeout(() => {
-        chat.style.display = "none";
-        btn.style.display = "flex";
-      }, 200);
-    } else {
-      chat.classList.add("open");
-      chat.style.display = "block";
-      btn.style.display = "none";
-    }
-  } else {
-    // Trên PC → chỉ ẩn/hiện phần thân chat, không ẩn toàn khung
-    const body = document.getElementById("chatBody");
-    if (body.style.display === "none") {
-      body.style.display = "block";
-    } else {
-      body.style.display = "none";
-    }
-  }
-}
-
-
 
 
 
