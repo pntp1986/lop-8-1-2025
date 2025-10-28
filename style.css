@@ -66,8 +66,8 @@ header {
     padding-right: 5px; /* giữ phải hoặc giảm tùy ý */
   }
   .logo {
-    width: 60px;  /* nếu muốn logo nhỏ hơn trên mobile */
-    height: 60px;
+    width: 80px;  /* nếu muốn logo nhỏ hơn trên mobile */
+    height: 80px;
      margin-left: 0px;
   }
 }
