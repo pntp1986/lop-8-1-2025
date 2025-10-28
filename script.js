@@ -109,6 +109,24 @@ function addEmoji(emoji) {
   // emojiPanel.classList.remove("show");
 }
 
+// ===== MỞ CHATBOX KHI BẤM NÚT TRÒN (mobile) =====
+function openChatBox() {
+  const chat = document.getElementById('chatBox');
+  chat.classList.add('open');
+  chat.style.display = 'block';
+}
+
+// ===== Đóng chat khi click vào tiêu đề =====
+function toggleChat() {
+  const chat = document.getElementById('chatBox');
+  if (chat.classList.contains('open')) {
+    chat.classList.remove('open');
+    setTimeout(() => { chat.style.display = 'none'; }, 300);
+  } else {
+    chat.classList.add('open');
+    chat.style.display = 'block';
+  }
+}
 
 
 
