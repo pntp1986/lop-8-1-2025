@@ -451,8 +451,10 @@ footer {
   outline: none;
 }
 
-  footer {
-    display: block;
+   footer {
+    font-size: 13px;
+    margin-top: 60px;
+    position: static;
   }
 
   /* Khi chat mở lớn -> ẩn footer để không đè */
