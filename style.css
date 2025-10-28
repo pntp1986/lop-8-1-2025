@@ -403,11 +403,12 @@ footer {
   text-align: center;
   padding: 10px 0;
   font-size: 14px;
-  position: fixed;
+ position: static;
   bottom: 0;
   left: 0;
   width: 100%;
   border-top: 2px solid #a93226;
+  margin-top: 50px;       /* ✅ tạo khoảng cách nhẹ với nội dung trên */
   z-index: 1000;
   transition: all 0.3s ease;
 }
@@ -441,13 +442,14 @@ footer {
     max-height: calc(80vh - 160px);
   }
 
-  .chat-input {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-top: 1px solid #ccc;
-    padding: 8px;
-  }
+  .chat-input input {
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 16px; /* ✅ Giữ >=16px để tránh zoom trên iPhone */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
 
   footer {
     display: block;
@@ -533,7 +535,6 @@ footer {
 }
 
 /* ========== Hiệu ứng chữ bốc lửa ========== */
-/* ================= FIRE TEXT SIÊU CẤP ================= */
 .fire-text {
   font-size: 2rem;
   font-weight: bold;
