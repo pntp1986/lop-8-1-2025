@@ -547,21 +547,21 @@ footer {
   display: inline-block;
 }
 /* CSS cho mobile */
+/* ========== FIRE TEXT MOBILE FIX ========== */
 @media (max-width: 600px) {
   .fire-text {
-    font-size: 1rem !important;  /* giảm cỡ chữ */
-    letter-spacing: 1px;
-    white-space: nowrap;         /* giữ nguyên 1 dòng */
-      text-overflow: ellipsis;     /* nếu quá dài hiển thị ... */
+    font-size: 1rem !important; /* giảm cỡ chữ */
+    white-space: nowrap;        /* giữ nguyên 1 dòng */
+    overflow: visible;          /* quan trọng: không cắt chữ khi nhấp nháy */
+    text-overflow: clip;        /* tránh ... */
   }
-}
 
-/* 🔥 Hiệu ứng "cháy" lập lòe từng ký tự */
-.fire-text span {
-  display: inline;
-  animation: flame 1.5s infinite alternate;
-  margin-right: 2px; /* 👈 chỉnh khoảng cách tùy ý */
-}
+  /* Giảm độ dịch chuyển của các ký tự để tránh bị cắt */
+  .fire-text span {
+    display: inline-block;
+    animation: flameMobile 1.5s infinite alternate;
+    margin-right: 1px; /* khoảng cách nhỏ hơn */
+  }
 
 /* Chữ lập lòe không đều nhau */
 .fire-text span:nth-child(odd) {
@@ -578,9 +578,10 @@ footer {
 }
 
 /* "Lửa" rung lắc và sáng tối nhẹ */
-@keyframes flame {
-  0% { transform: translateY(0px) rotate(0deg); opacity: 0.9; }
-  50% { transform: translateY(-2px) rotate(1deg); opacity: 1; }
-  100% { transform: translateY(1px) rotate(-1deg); opacity: 0.8; }
+ @keyframes flameMobile {
+    0%   { transform: translateY(0px) rotate(0deg); opacity: 0.9; }
+    50%  { transform: translateY(-1px) rotate(0.5deg); opacity: 1; }
+    100% { transform: translateY(1px) rotate(-0.5deg); opacity: 0.8; }
+  }
 }
 
