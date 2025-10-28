@@ -259,21 +259,24 @@ main {
 /* Nút tròn mở chat */
 .chat-floating-btn {
   position: fixed;
-  bottom: 90px;
+  bottom: 20px;
   right: 20px;
   width: 60px;
   height: 60px;
+  border-radius: 50%;
   background: #1e3d7b;
   color: white;
   border: none;
-  border-radius: 50%;
-  font-size: 28px;
+  font-size: 26px;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   z-index: 3000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s;
+}
+
+.chat-floating-btn:hover {
+  background: #355ac9;
+  transform: scale(1.1);
 }
 
 /* Khung chat ẩn mặc định */
