@@ -126,3 +126,22 @@ function addEmoji(emoji) {
   chatInputBox.value += emoji + " ";
   chatInputBox.focus();
 }
+
+// ===== FOOTER SHOW / HIDE =====
+window.addEventListener("scroll", showFooter);
+window.addEventListener("load", showFooter);
+
+function showFooter() {
+  const footer = document.querySelector("footer");
+  if (!footer) return;
+
+  const atBottom =
+    window.innerHeight + window.scrollY >= document.body.offsetHeight - 10 ||
+    document.body.offsetHeight <= window.innerHeight + 50;
+
+  if (atBottom) {
+    footer.classList.add("show");
+  } else {
+    footer.classList.remove("show");
+  }
+}

@@ -408,35 +408,24 @@ footer {
   text-align: center;
   padding: 10px 0;
   font-size: 14px;
- position: static;
+  position: relative;
   bottom: 0;
   left: 0;
   width: 100%;
   border-top: 2px solid #a93226;
-  margin-top: 50px;       /* ✅ tạo khoảng cách nhẹ với nội dung trên */
-  z-index: 1000;
-  transition: all 0.3s ease;
+  margin-top: 50px;
+  z-index: 100;
+  opacity: 1; /* luôn hiện footer */
+  transform: translateY(20px);
+  transition: all 0.4s ease;
 }
 
-   footer {
-    font-size: 13px;
-    margin-top: 60px;
-    position: static;
-  }
-footer {
-  display: none; /* Ẩn mặc định */
-}
-
+/* Khi hiện ra (JS thêm class .show) */
 footer.show {
-  display: block; /* Hiện khi JS thêm class này */
+  opacity: 1;
+  transform: translateY(0);
 }
 
-
-  /* Khi chat mở lớn -> ẩn footer để không đè */
-  .chatbox.open ~ footer {
-    display: none;
-  }
-}
 
 /* ===== MENU MOBILE ===== */
 @media (max-width: 768px) {
