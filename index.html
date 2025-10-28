@@ -237,6 +237,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+window.addEventListener("scroll", () => {
+  const footer = document.querySelector("footer");
+  const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
+
+  if (atBottom) {
+    footer.classList.add("show");
+  } else {
+    footer.classList.remove("show");
+  }
+});
+</script>
+
+
 </body>
 </html>
 

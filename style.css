@@ -456,6 +456,14 @@ footer {
     margin-top: 60px;
     position: static;
   }
+footer {
+  display: none; /* Ẩn mặc định */
+}
+
+footer.show {
+  display: block; /* Hiện khi JS thêm class này */
+}
+
 
   /* Khi chat mở lớn -> ẩn footer để không đè */
   .chatbox.open ~ footer {
