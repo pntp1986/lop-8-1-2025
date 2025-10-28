@@ -23,7 +23,7 @@ header {
   width: 100px;
   height: 100px;
   object-fit: contain;
-  margin-right: 15px;
+  margin-left: 2px;
 }
 
 .header-container h1 {
