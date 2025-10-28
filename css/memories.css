@@ -144,69 +144,55 @@ header h1 {
   background: #f39c12;
 }
 
-/* ======= Trên web: nút Next/Prev sát hai bên ảnh ======= */
-@media (min-width: 601px) {
-  .lightbox {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+/* ===== Nút điều hướng trong lightbox ===== */
+.lightbox .prev,
+.lightbox .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #1e3d7b;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  text-shadow: 0 0 5px rgba(255,255,255,0.8);
+  transition: transform 0.2s, color 0.2s;
+  z-index: 3100;
+}
 
+.lightbox .prev:hover,
+.lightbox .next:hover {
+  color: #f39c12;
+  transform: translateY(-50%) scale(1.2);
+}
+
+/* ===== Trên WEB: nút sát hai bên ảnh ===== */
+@media (min-width: 601px) {
   .lightbox img {
     max-width: 80%;
-    height: auto;
   }
-
-  .lightbox .prev,
-  .lightbox .next {
-    top: 50%;
-    transform: translateY(-50%);
-    position: absolute;
-    color: #1e3d7b;
-    font-size: 38px;
-    cursor: pointer;
-    user-select: none;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-  }
-
   .lightbox .prev {
-    left: calc(10% + 20px); /* ngay cạnh hình bên trái */
+    left: 8%;
   }
-
   .lightbox .next {
-    right: calc(10% + 20px); /* ngay cạnh hình bên phải */
-  }
-
-  .lightbox .prev:hover,
-  .lightbox .next:hover {
-    color: #f39c12;
-    transform: translateY(-50%) scale(1.2);
+    right: 8%;
   }
 }
 
-/* ================= MOBILE ================= */
+/* ===== Trên MOBILE: mỗi nút nằm 1 bên ===== */
 @media (max-width: 600px) {
-  header h1.header-title { 
-    font-size: 1rem; 
-    margin-top: 10px; 
+  .lightbox img {
+    max-width: 95%;
+    max-height: 65vh;
   }
 
-  .event { width: 45%; }
-
-  .lightbox img { 
-    max-width: 95%; 
-    max-height: 60vh; 
+  .lightbox .prev {
+    left: 5%;
+    font-size: 30px;
   }
 
-  /* Đặt nút Prev và Next xa nhau hơn, dễ bấm */
-  .lightbox .prev { 
-    left: 10px; 
-    font-size: 32px; 
-  }
-
-  .lightbox .next { 
-    right: 10px; 
-    font-size: 32px; 
+  .lightbox .next {
+    right: 5%;
+    font-size: 30px;
   }
 }
