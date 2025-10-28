@@ -670,7 +670,7 @@ footer.show {
 }
 
 @media (max-width: 768px) {
-  /* Hiện nút tròn 💬 trên mobile */
+   /* Nút tròn 💬 */
   .chat-floating-btn {
     display: flex;
     align-items: center;
@@ -690,13 +690,20 @@ footer.show {
     z-index: 3000;
   }
 
-  /* Ẩn khung chat mặc định */
+  /* Chatbox mặc định ẩn ra ngoài khung nhìn */
   .chatbox {
-    display: none !important;
+    position: fixed;
+    bottom: -100%;
+    right: 5%;
+    width: 90%;
+    height: 60%;
+    transition: bottom 0.3s ease;
+    z-index: 4000;
   }
 
-  /* Khi mở thì hiện khung chat */
+  /* Khi mở thì trượt lên */
   .chatbox.show {
+    bottom: 100px; /* xuất hiện phía trên nút tròn */
     display: flex !important;
     flex-direction: column;
   }
