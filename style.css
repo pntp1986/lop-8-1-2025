@@ -15,6 +15,9 @@ header {
 .header-container {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* logo trái, nút nhạc phải */
+  position: relative;
+  padding: 10px 20px;
 }
 .logo {
   width: 60px;
@@ -25,6 +28,18 @@ header {
 .header-container h1 {
   font-size: 1.5rem;
   margin: 0;
+}
+.title-container {
+  text-align: center;
+  flex: 1; /* chiếm khoảng trống giữa logo và nút */
+}
+/* 🔹 Dòng phụ màu tím đậm, nổi bật */
+.sub-title {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #b19cd9; /* tím nhạt */
+  text-shadow: 0 0 8px #a020f0, 0 0 10px #ffffff; /* hiệu ứng sáng nhẹ */
 }
 
 /* CSS cho mobile */
@@ -40,16 +55,10 @@ header {
 
 /* ========== Nút Phát nhạc bên phải tiêu đề ========== */
 #playMusicBtn {
-  margin-left: 10px;
-  background: #2c58c0;
-  color: white;
+  background: none;
   border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 1.1rem;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  font-size: 24px;
 }
 #playMusicBtn:hover {
   background: #1a3b8b;
