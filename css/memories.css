@@ -144,10 +144,69 @@ header h1 {
   background: #f39c12;
 }
 
+/* ======= Trên web: nút Next/Prev sát hai bên ảnh ======= */
+@media (min-width: 601px) {
+  .lightbox {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox img {
+    max-width: 80%;
+    height: auto;
+  }
+
+  .lightbox .prev,
+  .lightbox .next {
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    color: #1e3d7b;
+    font-size: 38px;
+    cursor: pointer;
+    user-select: none;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  }
+
+  .lightbox .prev {
+    left: calc(10% + 20px); /* ngay cạnh hình bên trái */
+  }
+
+  .lightbox .next {
+    right: calc(10% + 20px); /* ngay cạnh hình bên phải */
+  }
+
+  .lightbox .prev:hover,
+  .lightbox .next:hover {
+    color: #f39c12;
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+
 /* ================= MOBILE ================= */
 @media (max-width: 600px) {
-  header h1.header-title { font-size: 1rem; margin-top: 10px; }
+  header h1.header-title { 
+    font-size: 1rem; 
+    margin-top: 10px; 
+  }
+
   .event { width: 45%; }
-  .lightbox img { max-width: 95%; max-height: 60vh; }
-  .lightbox .prev, .lightbox .next { font-size: 28px; left: 3px; right: 3px; }
+
+  .lightbox img { 
+    max-width: 95%; 
+    max-height: 60vh; 
+  }
+
+  /* Đặt nút Prev và Next xa nhau hơn, dễ bấm */
+  .lightbox .prev { 
+    left: 10px; 
+    font-size: 32px; 
+  }
+
+  .lightbox .next { 
+    right: 10px; 
+    font-size: 32px; 
+  }
 }
