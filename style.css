@@ -54,6 +54,8 @@ header {
 @media (max-width: 600px) {
   .header-container h1 {
     font-size: 1rem; /* giảm cỡ chữ */
+    padding-left: 2px;  /* hoặc 0px để sát hoàn toàn */
+    padding-right: 10px; /* giữ phải hoặc giảm tùy ý */
   }
   .logo {
     width: 60px;  /* nếu muốn logo nhỏ hơn trên mobile */
