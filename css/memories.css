@@ -133,10 +133,17 @@ header h1 {
 
 /* ================= MOBILE ================= */
 @media (max-width: 600px) {
-  /* Ẩn nút next/prev trên điện thoại */
+  /* Ẩn hoàn toàn nút next/prev trên mobile */
   .lightbox .prev,
   .lightbox .next {
     display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .lightbox img {
+    max-width: 95%;
+    max-height: 65vh;
   }
 }
 
