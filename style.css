@@ -552,8 +552,7 @@ footer {
     font-size: 1rem !important;  /* giảm cỡ chữ */
     letter-spacing: 1px;
     white-space: nowrap;         /* giữ nguyên 1 dòng */
-    overflow: hidden;            /* tránh tràn */
-    text-overflow: ellipsis;     /* nếu quá dài hiển thị ... */
+      text-overflow: ellipsis;     /* nếu quá dài hiển thị ... */
   }
 }
 
