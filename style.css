@@ -37,16 +37,17 @@ header {
 
 /* 🔹 Dòng phụ màu tím đậm, nổi bật */
 .sub-title {
-  margin-top: 10px;
   font-size: 18px;
   font-weight: bold;
-  color: #b19cd9; /* tím nhạt */
-  text-shadow: 0 0 8px #a020f0, 0 0 10px #ffffff; /* hiệu ứng sáng nhẹ */
+  color: #d08cff; /* tím sáng nổi bật */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  margin: 4px 0;
+  white-space: nowrap; /* 🔹 giữ trên 1 hàng */
 }
-/* Căn giữa khối 3 dòng giữa logo và nút nhạc */
+/* Căn giữa toàn bộ 3 dòng */
 .center-block {
-  text-align: center;
   flex: 1;
+  text-align: center;
 }
 
 /* CSS cho mobile */
@@ -59,6 +60,9 @@ header {
     height: 50px;
   }
 }
+.sub-title {
+    font-size: 16px;
+  }
 
 /* ========== Nút Phát nhạc bên phải tiêu đề ========== */
 #playMusicBtn {
