@@ -664,50 +664,49 @@ footer.show {
   }
 }
 
-/* ===== NÚT CHAT TRÒN (Mobile) ===== */
-.chat-floating-btn {
-  display: none; /* Ẩn mặc định trên PC */
-}
-
+/* ==== CHAT BOX MOBILE FIX GỌN ==== */
 @media (max-width: 768px) {
+  #chatBox {
+    display: none;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.3s ease;
+  }
+
+  #chatBox.open {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .chat-floating-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
-    bottom: 100px;
+    bottom: 90px;
     right: 20px;
     width: 60px;
     height: 60px;
+    font-size: 28px;
     background: linear-gradient(135deg, #1e3d7b, #3f76ff);
     color: white;
-    font-size: 28px;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
     cursor: pointer;
     z-index: 3000;
     animation: pulseChat 2s infinite;
-    transition: transform 0.2s, background 0.3s;
+    transition: transform 0.2s ease, background 0.3s ease;
   }
 
   .chat-floating-btn:hover {
     transform: scale(1.1);
-    background: linear-gradient(135deg, #16306b, #5a8dff);
   }
 
   @keyframes pulseChat {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(30,61,123,0.6); }
-    50% { box-shadow: 0 0 0 15px rgba(30,61,123,0); }
-  }
-
-  /* Ẩn chatbox mặc định khi chưa mở */
-  .chatbox {
-    display: none;
-  }
-
-  /* Khi mở thì hiển thị khung chat */
-  .chatbox.open {
-    display: block;
+    0%, 100% { box-shadow: 0 0 0 0 rgba(63,118,255,0.6); }
+    50% { box-shadow: 0 0 0 15px rgba(63,118,255,0); }
   }
 }
+
