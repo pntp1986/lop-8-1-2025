@@ -100,29 +100,81 @@ header h1 {
   text-align: center;
 }
 
-/* Nút chỉ hiện khi lightbox mở */
+/* ===== NAV BUTTONS (thay thế hoàn toàn phần cũ) ===== */
 .lightbox .close,
 .lightbox .prev,
 .lightbox .next {
-  display: none; 
+  /* cho hiển thị mặc định (sẽ ẩn cùng lightbox khi .lightbox {display:none}) */
+  display: block;
   position: absolute;
   color: #1e3d7b;
-  font-size: 36px;
   font-weight: bold;
   cursor: pointer;
   user-select: none;
-  text-shadow: 0 0 5px rgba(255,255,255,0.7);
+  text-shadow: 0 0 5px rgba(255,255,255,0.8);
+  transition: transform 0.15s ease, color 0.15s ease;
+  z-index: 3100;
 }
 
-.lightbox .close { top: 20px; right: 30px; }
-.lightbox .prev { top: 50%; left: 5px; transform: translateY(-50%); font-size: 30px; }
-.lightbox .next { top: 50%; right: 5px; transform: translateY(-50%); font-size: 30px; }
+/* Close */
+.lightbox .close {
+  top: 18px;
+  right: 24px;
+  font-size: 34px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 6px;
+  padding: 4px 8px;
+}
 
+/* Vị trí chung cho Prev/Next (căn dọc giữa) */
+.lightbox .prev,
+.lightbox .next {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  width: 54px;
+  height: 54px;
+  line-height: 54px;
+  text-align: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.75);
+}
+
+/* Trên màn hình lớn: đặt sát ảnh (ảnh dùng max-width:80%) */
+@media (min-width: 601px) {
+  .lightbox img { max-width: 80%; }
+
+  .lightbox .prev { left: calc(10% - 36px); } /* hơi ngoài mép ảnh, sát ảnh */
+  .lightbox .next { right: calc(10% - 36px); } /* tương tự bên phải */
+}
+
+/* Trên mobile: đặt sát 2 mép của ảnh (5% từ mép) */
+@media (max-width: 600px) {
+  .lightbox img { max-width: 95%; max-height: 65vh; }
+
+  .lightbox .prev {
+    left: 5%;
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+  }
+
+  .lightbox .next {
+    right: 5%;
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+  }
+}
+
+/* Hover effect */
 .lightbox .prev:hover,
 .lightbox .next:hover,
 .lightbox .close:hover {
   color: #f39c12;
-  transform: scale(1.1);
+  transform: translateY(-50%) scale(1.12);
 }
 
 /* ================= NHẠC ================= */
@@ -144,55 +196,3 @@ header h1 {
   background: #f39c12;
 }
 
-/* ===== Nút điều hướng trong lightbox ===== */
-.lightbox .prev,
-.lightbox .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #1e3d7b;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-  user-select: none;
-  text-shadow: 0 0 5px rgba(255,255,255,0.8);
-  transition: transform 0.2s, color 0.2s;
-  z-index: 3100;
-}
-
-.lightbox .prev:hover,
-.lightbox .next:hover {
-  color: #f39c12;
-  transform: translateY(-50%) scale(1.2);
-}
-
-/* ===== Trên WEB: nút sát hai bên ảnh ===== */
-@media (min-width: 601px) {
-  .lightbox img {
-    max-width: 80%;
-  }
-  .lightbox .prev {
-    left: 8%;
-  }
-  .lightbox .next {
-    right: 8%;
-  }
-}
-
-/* ===== Trên MOBILE: mỗi nút nằm 1 bên ===== */
-@media (max-width: 600px) {
-  .lightbox img {
-    max-width: 95%;
-    max-height: 65vh;
-  }
-
-  .lightbox .prev {
-    left: 5%;
-    font-size: 30px;
-  }
-
-  .lightbox .next {
-    right: 5%;
-    font-size: 30px;
-  }
-}
