@@ -179,7 +179,7 @@
   </footer>
 
  <!-- 🎵 Nhạc nền ẩn, phát khi người dùng bấm nút -->
-<audio id="bgMusic" loop></audio>
+<audio id="bgMusic" loop preload="none"></audio>
 
 <script>
 const btn = document.getElementById("playMusicBtn");
@@ -187,9 +187,7 @@ const music = document.getElementById("bgMusic");
 
 // 🔹 Danh sách nhạc
 const playlist = [
-  "music/tbdk.mp3",
-  "music/song2.mp3",
-  "music/song3.mp3"
+  "music/tbdk.mp3"
 ];
 let currentTrack = 0;
 
