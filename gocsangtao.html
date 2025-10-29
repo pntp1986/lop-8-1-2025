@@ -16,36 +16,57 @@
 
  <main style="text-align:center; margin-top:30px;">
   <h2>🎬 Clip kỷ niệm</h2>
+
+  <!-- Nút tải video -->
   <button id="loadClipBtn" style="
       background:#f48fb1;
       color:white;
       border:none;
-      padding:10px 20px;
+      padding:10px 18px;
       font-size:16px;
-      border-radius:8px;
+      border-radius:10px;
       cursor:pointer;
-  ">▶️ Xem clip</button>
+      transition:0.3s;
+  " onmouseover="this.style.background='#ec407a'" onmouseout="this.style.background='#f48fb1'">
+    ▶️ Xem clip
+  </button>
 
-  <div id="videoContainer" style="margin-top:20px;"></div>
+  <!-- Khung video -->
+  <div id="videoContainer" style="
+      margin:25px auto;
+      width:90%;
+      max-width:720px;
+      aspect-ratio:16/9;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+      border-radius:12px;
+      box-shadow:0 0 12px rgba(0,0,0,0.2);
+      background:#000;
+  "></div>
 
   <script>
-    document.getElementById("loadClipBtn").addEventListener("click", () => {
-      const container = document.getElementById("videoContainer");
+    const btn = document.getElementById("loadClipBtn");
+    const container = document.getElementById("videoContainer");
 
-      // Tạo thẻ video khi người dùng bấm nút
+    btn.addEventListener("click", () => {
       const video = document.createElement("video");
-      video.width = 640;
+      video.src = "videos/demo.mp4";  // 🔹 đường dẫn tới file clip của bạn
       video.controls = true;
       video.autoplay = true;
+      video.style.width = "100%";
+      video.style.height = "100%";
+      video.style.objectFit = "cover"; // giữ video nằm gọn trong khung
+      video.style.borderRadius = "12px";
+      video.style.opacity = 0;
+      video.style.transition = "opacity 0.6s";
 
-      // Đường dẫn tới file clip của bạn
-      video.src = "videos/demo.mp4";
-
-      // Ẩn nút sau khi bấm
-      document.getElementById("loadClipBtn").style.display = "none";
-
-      // Thêm video vào trang
+      btn.style.display = "none"; // ẩn nút sau khi bấm
       container.appendChild(video);
+
+      // Hiệu ứng fade-in
+      requestAnimationFrame(() => (video.style.opacity = 1));
     });
   </script>
 </main>
