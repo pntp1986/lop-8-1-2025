@@ -85,13 +85,18 @@ header h1 {
   justify-content: center;
 }
 
+.lightbox.active {
+  display: flex;
+}
+
 .lightbox img {
   max-width: 80%;
-  max-height: 85vh;
+  max-height: 75vh;
   border-radius: 12px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.4);
 }
 
+/* Caption */
 #lightboxCaption {
   color: #1e3d7b;
   margin-top: 12px;
@@ -100,52 +105,72 @@ header h1 {
 }
 
 /* ================= NÚT CLOSE / NEXT / PREV ================= */
-.lightbox .close,
-.lightbox .prev,
-.lightbox .next {
-  display: none; /* ẩn hoàn toàn lúc đầu */
+.lightbox .close {
   position: absolute;
+  top: 20px;
+  right: 30px;
   color: #1e3d7b;
   font-size: 36px;
   font-weight: bold;
   cursor: pointer;
-  user-select: none;
   text-shadow: 0 0 5px rgba(255,255,255,0.7);
 }
 
-/* Khi lightbox mở thì bật nút lên */
-.lightbox.active .close,
-.lightbox.active .prev,
-.lightbox.active .next {
-  display: block;
+/* Hai nút mũi tên dưới ảnh */
+.lightbox .controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  margin-top: 18px;
 }
 
-.lightbox .close { top: 20px; right: 30px; }
-.lightbox .prev { top: 50%; left: 5%; transform: translateY(-50%); font-size: 30px; }
-.lightbox .next { top: 50%; right: 5%; transform: translateY(-50%); font-size: 30px; }
+.lightbox .prev,
+.lightbox .next {
+  color: #1e3d7b;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+  text-shadow: 0 0 5px rgba(255,255,255,0.7);
+}
 
 .lightbox .prev:hover,
-.lightbox .next:hover,
-.lightbox .close:hover {
+.lightbox .next:hover {
   color: #f39c12;
-  transform: scale(1.1);
+  transform: scale(1.25);
 }
 
 /* ================= MOBILE ================= */
 @media (max-width: 600px) {
-  /* Ẩn hoàn toàn nút next/prev trên mobile */
-  .lightbox .prev,
-  .lightbox .next {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
-
   .lightbox img {
     max-width: 95%;
-    max-height: 65vh;
+    max-height: 60vh;
+  }
+
+  #lightboxCaption {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  .lightbox .controls {
+    gap: 45px;
+    margin-top: 12px;
+  }
+
+  .lightbox .prev,
+  .lightbox .next {
+    font-size: 40px;
+  }
+
+  .lightbox .close {
+    font-size: 32px;
+    top: 15px;
+    right: 20px;
   }
 }
+
 
 
 /* ================= NHẠC ================= */
