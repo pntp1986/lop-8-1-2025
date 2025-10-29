@@ -14,6 +14,41 @@
     <h1 class="fire-text">🌸 Tranh vẽ, thiệp điện tử, bài hát, clip... 🌸</h1>
   </header>
 
+ <main style="text-align:center; margin-top:30px;">
+  <h2>🎬 Clip kỷ niệm</h2>
+  <button id="loadClipBtn" style="
+      background:#f48fb1;
+      color:white;
+      border:none;
+      padding:10px 20px;
+      font-size:16px;
+      border-radius:8px;
+      cursor:pointer;
+  ">▶️ Xem clip</button>
+
+  <div id="videoContainer" style="margin-top:20px;"></div>
+
+  <script>
+    document.getElementById("loadClipBtn").addEventListener("click", () => {
+      const container = document.getElementById("videoContainer");
+
+      // Tạo thẻ video khi người dùng bấm nút
+      const video = document.createElement("video");
+      video.width = 640;
+      video.controls = true;
+      video.autoplay = true;
+
+      // Đường dẫn tới file clip của bạn
+      video.src = "videos/demo.mp4";
+
+      // Ẩn nút sau khi bấm
+      document.getElementById("loadClipBtn").style.display = "none";
+
+      // Thêm video vào trang
+      container.appendChild(video);
+    });
+  </script>
+</main>
 
   <!-- Nút nhạc -->
   <button id="musicToggle" class="music-btn">🔊 Nhạc nền</button>
