@@ -90,6 +90,19 @@ header {
     font-size: 1rem;
   }
 }
+/* Biểu tượng nốt nhạc 🎶 phát sáng vàng */
+.music-icon {
+  color: #ffd700; /* vàng tươi */
+  text-shadow: 0 0 8px #ffea00, 0 0 15px #ffd700, 0 0 25px #ffcc00;
+  animation: glowPulse 1.5s infinite ease-in-out;
+}
+
+/* Hiệu ứng phát sáng nhịp nhàng */
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 6px #ffea00, 0 0 12px #ffd700; transform: scale(1); }
+  50% { text-shadow: 0 0 20px #fff799, 0 0 35px #ffea00; transform: scale(1.2); }
+  100% { text-shadow: 0 0 6px #ffea00, 0 0 12px #ffd700; transform: scale(1); }
+}
 
 /* ========== Menu ========== */
 .navbar {
