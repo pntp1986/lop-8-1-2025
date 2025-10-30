@@ -258,38 +258,6 @@ window.addEventListener("scroll", () => {
 });
 </script>
 
-  <link rel="stylesheet" href="style.css">
-
-<!-- ========== KẾT NỐI FIREBASE ========== -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-  import { getDatabase, ref, push, onChildAdded } 
-    from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
-
-  // 🔧 Cấu hình Firebase của bạn (lấy trong Project Settings > General)
-  const firebaseConfig = {
-    apiKey: "AIzaSyBzAGsqCusrg_2L0Lw2YiOgcmdBJa0ZGCM",
-  authDomain: "lop-8-1-chat.firebaseapp.com",
-  databaseURL: "https://lop-8-1-chat-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "lop-8-1-chat",
-  storageBucket: "lop-8-1-chat.firebasestorage.app",
-  messagingSenderId: "512094801159",
-  appId: "1:512094801159:web:d775b5e653d9f2db53c9a2",
-  measurementId: "G-R7PV1C79JT"
-  };
-
-  // 🚀 Khởi tạo Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-
-  // Gắn vào window để script.js dùng được
-  window.db = db;
-  window.ref = ref;
-  window.push = push;
-  window.onChildAdded = onChildAdded;
-</script>
-
-
   <script src="script.js" defer></script>
 </head>
 <body>
