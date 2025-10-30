@@ -1,0 +1,36 @@
+/* ========== PHONG CÁCH TRANG LƯU BÚT ========== */
+
+.main-content {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Nút xem clip */
+.clip-btn {
+  background: #f48fb1;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.clip-btn:hover {
+  background: #ec407a;
+}
+
+/* Khung video */
+.video-container {
+  margin: 25px auto;
+  width: 90%;
+  max-width: 720px;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  background: #000;
+}
