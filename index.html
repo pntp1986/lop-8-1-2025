@@ -4,6 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Nơi lưu trữ kỷ niệm - THCS Nguyễn Thị Minh Khai</title>
+  <!-- 🔒 Giới hạn truy cập bằng mật khẩu -->
+  <script>
+    const correctPassword = "lop81"; // 👉 đổi mật khẩu ở đây
+    let entered = localStorage.getItem("accessOK");
+
+    if (!entered) {
+      const pass = prompt("🔑 Nhập mật khẩu để truy cập:");
+      if (pass === correctPassword) {
+        localStorage.setItem("accessOK", "yes");
+        alert("✅ Đăng nhập thành công!");
+      } else {
+        alert("❌ Sai mật khẩu!");
+        window.location.href = "https://google.com"; // hoặc link trang khác bạn muốn
+      }
+    }
+  </script>
+  
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Nơi lưu trữ kỷ niệm - THCS Nguyễn Thị Minh Khai</title>
+
+  
   <link rel="stylesheet" href="style.css">
 
 <!-- ========== KẾT NỐI FIREBASE ========== -->
@@ -107,7 +132,260 @@
   </main>
 
   <!-- ===== NÚT ZALO =====
-  <a href="https://zalo.me/0388932725" class="zalo-button" target="_blank" title="Liên hệ qua Zalo">
+  <a href="https://zalo.me/xxx" class="zalo-button" target="_blank" title="Liên hệ qua Zalo">
+    <img src="images/style/iconzalo.png" alt="Zalo">
+  </a> -->
+
+  
+  
+  <!-- CHAT BOX -->
+   <button class="chat-floating-btn" id="chatToggleBtn">💬</button> 
+<div id="chatBox" class="chatbox">
+  <div id="chatHeader" class="chatbox-header" onclick="toggleChat()">
+    💬 <b>Chat cùng nhau</b>
+  </div>
+
+  <div id="chatBody" class="chatbox-body">
+    <div id="chatMessages" class="messages"></div>
+    <div class="chat-input">
+  <input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
+  <button type="button" id="emojiBtn">😄</button>
+  <button onclick="sendMessage()">Gửi</button>
+</div>
+
+<!-- Bảng emoji ẩn/hiện -->
+<div id="emojiPanel" class="emoji-panel">
+  <span onclick="addEmoji('😀')">😀</span>
+  <span onclick="addEmoji('😁')">😁</span>
+  <span onclick="addEmoji('😂')">😂</span>
+  <span onclick="addEmoji('🤣')">🤣</span>
+  <span onclick="addEmoji('😊')">😊</span>
+  <span onclick="addEmoji('😍')">😍</span>
+  <span onclick="addEmoji('😘')">😘</span>
+  <span onclick="addEmoji('😎')">😎</span>
+  <span onclick="addEmoji('😢')">😢</span>
+  <span onclick="addEmoji('😭')">😭</span>
+  <span onclick="addEmoji('😡')">😡</span>
+  <span onclick="addEmoji('😱')">😱</span>
+  <span onclick="addEmoji('🤩')">🤩</span>
+  <span onclick="addEmoji('🥳')">🥳</span>
+  <span onclick="addEmoji('👍')">👍</span>
+  <span onclick="addEmoji('👎')">👎</span>
+  <span onclick="addEmoji('🙏')">🙏</span>
+  <span onclick="addEmoji('🎉')">🎉</span>
+  <span onclick="addEmoji('💗')">💗</span>
+  <span onclick="addEmoji('🔥')">🔥</span>
+</div>
+
+  </div>
+</div>
+
+<!-- ===== Ô NHẬP TÊN NGƯỜI DÙNG (chỉ hiện khi cần) ===== -->
+<div id="namePrompt" style="
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 3000;
+">
+  <div style="
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    max-width: 300px;
+  ">
+    <h3>Nhập tên của bạn</h3>
+    <input type="text" id="usernameInput" placeholder="VD: Hieu, Lan..." style="width: 100%; padding: 8px; margin-top: 10px;">
+    <button onclick="saveUsername()" style="margin-top: 10px; padding: 8px 15px; background:#1e3d7b; color:white; border:none; border-radius:5px; cursor:pointer;">Lưu tên</button>
+  </div>
+</div>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; 2025 Lớp 8/1 - GV chủ nhiệm cô Phạm Nguyễn Thanh Phương</p>
+  </footer>
+
+ <!-- 🎵 Nhạc nền ẩn, phát khi người dùng bấm nút -->
+<audio id="bgMusic" loop preload="none"></audio>
+
+<script>
+const btn = document.getElementById("playMusicBtn");
+const music = document.getElementById("bgMusic");
+
+// 🔹 Danh sách nhạc
+const playlist = [
+  "music/tbdk.mp3"
+];
+let currentTrack = 0;
+
+function fadeInMusic() {
+  let vol = 0;
+  music.volume = 0;
+  const fade = setInterval(() => {
+    if (vol < 1) {
+      vol += 0.05;
+      music.volume = Math.min(vol, 1);
+    } else clearInterval(fade);
+  }, 100);
+}
+
+function playTrack(index) {
+  currentTrack = index;
+  music.src = playlist[currentTrack];
+  music.play()
+    .then(() => fadeInMusic())
+    .catch(err => console.log("Autoplay bị chặn:", err));
+}
+
+// 🔹 Khi nhạc kết thúc → qua bài kế (vòng lại nếu hết)
+music.addEventListener("ended", () => {
+  currentTrack = (currentTrack + 1) % playlist.length;
+  playTrack(currentTrack);
+});
+
+// 🔹 Khi người dùng bấm nút
+btn.addEventListener("click", () => {
+  playTrack(currentTrack);
+  btn.disabled = true;
+  btn.style.opacity = 0.7;
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const fireText = document.querySelector(".fire-text");
+  const letters = fireText.textContent.split("");
+  fireText.textContent = "";
+  letters.forEach(ch => {
+    const span = document.createElement("span");
+    span.textContent = ch;
+    fireText.appendChild(span);
+  });
+});
+</script>
+
+<script>
+window.addEventListener("scroll", () => {
+  const footer = document.querySelector("footer");
+  const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
+
+  if (atBottom) {
+    footer.classList.add("show");
+  } else {
+    footer.classList.remove("show");
+  }
+});
+</script>
+
+  <link rel="stylesheet" href="style.css">
+
+<!-- ========== KẾT NỐI FIREBASE ========== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { getDatabase, ref, push, onChildAdded } 
+    from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+  // 🔧 Cấu hình Firebase của bạn (lấy trong Project Settings > General)
+  const firebaseConfig = {
+    apiKey: "AIzaSyBzAGsqCusrg_2L0Lw2YiOgcmdBJa0ZGCM",
+  authDomain: "lop-8-1-chat.firebaseapp.com",
+  databaseURL: "https://lop-8-1-chat-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "lop-8-1-chat",
+  storageBucket: "lop-8-1-chat.firebasestorage.app",
+  messagingSenderId: "512094801159",
+  appId: "1:512094801159:web:d775b5e653d9f2db53c9a2",
+  measurementId: "G-R7PV1C79JT"
+  };
+
+  // 🚀 Khởi tạo Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // Gắn vào window để script.js dùng được
+  window.db = db;
+  window.ref = ref;
+  window.push = push;
+  window.onChildAdded = onChildAdded;
+</script>
+
+
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+ <header>
+  <div class="header-container">
+    <!-- Logo trái -->
+    <img src="images/style/logo.jpg" alt="Logo lớp 8/1" class="logo">
+
+  <div class="center-block">
+      <div class="sub-title">Báo điện tử</div>
+      <p></p>
+      <div class="title-container">
+        <h1 class="fire-text"><span>Tập thể Lớp 8/1</span></h1>
+      </div>
+      <div class="sub-title">Khẩu hiệu???</div>
+    </div>
+    
+    <!-- Nút nhạc góc phải -->
+    <button id="playMusicBtn" title="Bấm để nghe nhạc 🎵">
+      <span class="music-icon">🎶</span>
+      <span class="finger">👈</span>
+    </button>
+
+  </div>
+</header>
+     
+  <!-- ===== MENU HÀNG NGANG ===== -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="memories.html" class="sparkle-text">Góc hình ảnh</a></li>
+    <li><a href="loingo.html" class="sparkle-text">Lời ngỏ/Thư tri ân</a></li>
+    <li><a href="gocsangtao.html" class="sparkle-text">Góc sáng tạo học sinh</a></li>
+      <li>
+  <a href="luubut.html" class="sparkle-text luubut">
+    <span class="text">Lưu bút</span>
+    <span class="butterfly">🦋</span>
+  </a>
+</li>
+    </ul>
+  </nav>
+
+  <!-- ===== NỘI DUNG CHÍNH ===== -->
+  <main>
+    <section class="intro">
+    <h2>💗 Nơi lưu giữ kỷ niệm, tình cảm của học sinh về thầy cô, bạn bè và mái trường THCS Nguyễn Thị Minh Khai-X.Hóc Môn 💗</h2>
+    <p></p>
+    </section>
+
+    <section class="grid-gallery">
+  <a href="memories.html" class="card">
+    <img src="images/kyniemdangnho.jpg" alt="">
+    <p>Kỷ niệm đáng nhớ</p>
+  </a>
+  <a href="loingo.html" class="card">
+    <img src="images/2010.jpg" alt="">
+    <p>Lời ngỏ/Thư tri ân</p>
+  </a>
+  <a href="gocsangtao.html" class="card">
+    <img src="images/totnghiep.jpg" alt="">
+    <p>Góc sáng tạo</p>
+  </a>
+  <a href="luubut.html" class="card">
+    <img src="images/luubut.jpg" alt="">
+    <p>Lưu bút</p>
+  </a>
+</section>
+
+  </main>
+
+  <!-- ===== NÚT ZALO =====
+  <a href="https://zalo.me/xxx" class="zalo-button" target="_blank" title="Liên hệ qua Zalo">
     <img src="images/style/iconzalo.png" alt="Zalo">
   </a> -->
 
