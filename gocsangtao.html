@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lưu bút</title>
+  <title>Góc sáng tạo</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="css/gocsangtao.css">
 </head>
@@ -15,65 +15,14 @@
   </header>
 
  <main style="text-align:center; margin-top:30px;">
-  <h2>🎬 Clip kỷ niệm</h2>
-
-  <!-- Nút tải video -->
-  <button id="loadClipBtn" style="
-      background:#f48fb1;
-      color:white;
-      border:none;
-      padding:10px 18px;
-      font-size:16px;
-      border-radius:10px;
-      cursor:pointer;
-      transition:0.3s;
-  " onmouseover="this.style.background='#ec407a'" onmouseout="this.style.background='#f48fb1'">
-    ▶️ Xem clip
-  </button>
-
-  <!-- Khung video -->
-  <div id="videoContainer" style="
-      margin:25px auto;
-      width:90%;
-      max-width:720px;
-      aspect-ratio:16/9;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      overflow:hidden;
-      border-radius:12px;
-      box-shadow:0 0 12px rgba(0,0,0,0.2);
-      background:#000;
-  "></div>
-
-  <script>
-    const btn = document.getElementById("loadClipBtn");
-    const container = document.getElementById("videoContainer");
-
-    btn.addEventListener("click", () => {
-      const video = document.createElement("video");
-      video.src = "videos/demo.mp4";  // 🔹 đường dẫn tới file clip của bạn
-      video.controls = true;
-      video.autoplay = true;
-      video.style.width = "100%";
-      video.style.height = "100%";
-      video.style.objectFit = "cover"; // giữ video nằm gọn trong khung
-      video.style.borderRadius = "12px";
-      video.style.opacity = 0;
-      video.style.transition = "opacity 0.6s";
-
-      btn.style.display = "none"; // ẩn nút sau khi bấm
-      container.appendChild(video);
-
-      // Hiệu ứng fade-in
-      requestAnimationFrame(() => (video.style.opacity = 1));
-    });
-  </script>
-</main>
-
+  <h2>🎬 Clip vui nhộn</h2>
+<button id="loadClipBtn" class="clip-btn">▶️ Xem clip</button>
+    <div id="videoContainer" class="video-container"></div>
+  </main>
+  
   <!-- Nút nhạc -->
-  <button id="musicToggle" class="music-btn">🔊 Nhạc nền</button>
+  <button id="musicToggle" class="music-btn">🎵 Nhạc nền</button>
   <audio id="bgMusic" src="music/ymtht.mp3" loop></audio>
-  <script src="js/luubut.js"></script>
+  <script src="js/gocsangtao.js"></script>
 </body>
 </html>
