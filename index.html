@@ -5,21 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Nơi lưu trữ kỷ niệm - THCS Nguyễn Thị Minh Khai</title>
   <!-- 🔒 Giới hạn truy cập bằng mật khẩu -->
-  <script>
-    const correctPassword = "22122023"; // 👉 đổi mật khẩu ở đây
-    let entered = localStorage.getItem("accessOK");
-
-    if (!entered) {
-      const pass = prompt("🔑 Nhập mật khẩu để truy cập:");
-      if (pass === correctPassword) {
-        localStorage.setItem("accessOK", "yes");
-        alert("✅ Đăng nhập thành công!");
-      } else {
-        alert("❌ Sai mật khẩu!");
-        window.location.href = "https://google.com"; // hoặc link trang khác bạn muốn
-      }
-    }
-  </script>
   
 <!DOCTYPE html>
 <html lang="vi">
