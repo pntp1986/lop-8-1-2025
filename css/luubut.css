@@ -30,3 +30,42 @@ header h1 {
 .back-btn:hover {
   text-decoration: underline;
 }
+
+/* ================= GALLERY ================= */
+.memory-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 35px;
+  padding: 30px;
+}
+
+.event {
+  width: 280px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.event img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.25);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event:hover {
+  transform: scale(1.05);
+}
+
+.event:hover img {
+  box-shadow: 0 0 18px rgba(0,0,0,0.35);
+}
+
+.event h2 {
+  margin-top: 12px;
+  font-size: 1.2rem;
+  color: #1e3d7b;
+}
