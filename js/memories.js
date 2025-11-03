@@ -5,12 +5,17 @@ const lightboxEl = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 const lightboxCaption = document.getElementById("lightboxCaption");
 
-const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicToggle");
-let isMusicOn = false;
 
 // ===== Sự kiện =====
 const events = [
+  {
+    name: "Hình tập thể Lớp 8/1",
+    images: [
+      { src: "images/memories/tapthe1.jpg", caption: "Những năm tháng thanh xuân rực rỡ dưới mái trường! Cùng nhau đứng dưới bầu trời này, khoảnh khắc này sẽ mãi là một trang ký ức đẹp đẽ nhất của tuổi học trò" },
+      { src: "images/memories/tapthe2.jpg", caption: "Khoảnh khắc đáng nhớ của thầy và trò - nơi tri thức được vun đắp và tình cảm thầy trò luôn đong đầy. Mỗi nụ cười rạng rỡ đều là minh chứng cho một hành trình học tập đầy ý nghĩa!" },
+      
+    ]
+  },
   {
     name: "Trung thu 2025",
     images: [
@@ -102,6 +107,10 @@ lightboxEl.querySelector('.prev').addEventListener('click', prevImage);
 lightboxEl.querySelector('.close').addEventListener('click', closeLightbox);
 
 // ===== NHẠC NỀN 1 BÀI =====
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicToggle");
+let isMusicOn = false;
+
 musicBtn.addEventListener('click', () => {
   if (isMusicOn) { 
     music.pause(); 
