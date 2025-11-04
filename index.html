@@ -69,7 +69,18 @@
   <nav class="navbar">
     <ul>
       <li><a href="memories.html" class="sparkle-text">Góc hình ảnh</a></li>
-<li><a href="loingo.html" class="sparkle-text" onclick="localStorage.setItem('autoPlayLoingo', 'true')">Lời ngỏ</a></li>
+      
+<li>
+  <a href="#" class="sparkle-text" onclick="goToLoingo()">Lời ngỏ</a>
+</li>
+
+<script>
+function goToLoingo() {
+  localStorage.setItem("autoPlayLoingo", "true");
+  window.location.href = "loingo.html"; // chuyển trang
+}
+</script>
+
     <li><a href="gocsangtao.html" class="sparkle-text">Góc sáng tạo</a></li>
       <li>
   <a href="luubut.html" class="sparkle-text luubut">
