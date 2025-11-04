@@ -22,6 +22,7 @@ header h1 {
   font-size: 1.5rem;
   text-align: center;
   width: 100%;
+  pointer-events: none;  /* 🧠 quan trọng: không chặn click */
 }
 
 .back-btn {
@@ -31,9 +32,16 @@ header h1 {
   color: white;
   text-decoration: none;
   font-size: 16px;
+
+  /* ➕ thêm các dòng này */
+  background: rgba(30, 61, 123, 0.7);
+  padding: 6px 10px;
+  border-radius: 8px;
+  z-index: 2000; /* luôn nằm trên h1 */
 }
 .back-btn:hover {
   text-decoration: underline;
+  background: rgba(243, 156, 18, 0.8);
 }
 
 /* ================= GALLERY ================= */
@@ -205,7 +213,7 @@ header h1 {
 
 /* ========== Hiệu ứng chữ bốc lửa ========== */
 .fire-text {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 2px;
   color: #ffcc70;
