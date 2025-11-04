@@ -15,18 +15,32 @@
   </header>
 
  <main style="text-align:center; margin-top:30px;">
-  <h2>💖 Clip vui nhộn</h2>
-<button id="loadClipBtn" class="clip-btn">▶️ Xem clip</button>
-    <div id="videoContainer" class="video-container"></div>
+ <h2>💖 Clip vui nhộn</h2>
+<div id="videoContainer" class="video-frame">
+  <!-- Ảnh poster -->
+  <img id="funPoster" src="images/vuinhon.jpg" alt="Clip vui nhộn" />
+  <!-- Nút xem -->
+  <button id="loadClipBtn" class="clip-btn" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:3;">
+    ▶️ Xem clip
+  </button>
+</div>
  <h2>💖 Âm nhạc trẻ trung</h2>
-    <button id="clip1Btn" class="clip-btn">▶️ Clip 1</button>
-<div id="clip1Container" class="video-container"></div>
 
-<button id="clip2Btn" class="clip-btn">▶️ Clip 2</button>
-<div id="clip2Container" class="video-container"></div>
+<div class="video-slider">
+  <button id="prevVideo" class="arrow-btn">⬅️</button>
 
-<button id="clip3Btn" class="clip-btn">▶️ Clip 3</button>
-<div id="clip3Container" class="video-container"></div>
+  <div class="video-frame">
+    <img id="videoPoster" src="images/kyniemdangnho.jpg" alt="Poster" />
+    <video id="mainVideo" controls>
+      <source src="videos/nguocdong.mp4" type="video/mp4">
+    </video>
+    <p id="videoTitle">À contre-courant – Đi ngược dòng chảy</p>
+  </div>
+
+  <button id="nextVideo" class="arrow-btn">➡️</button>
+</div>
+
+
   </main>
   
   <!-- Nút nhạc
