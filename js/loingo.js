@@ -1,17 +1,10 @@
-// ===== NHẠC NỀN 1 BÀI =====
+// ===== TỰ ĐỘNG PHÁT NHẠC =====
 const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicToggle");
-let isMusicOn = false;
 
-musicBtn.addEventListener('click', () => {
-  if (isMusicOn) { 
-    music.pause(); 
-    isMusicOn = false; 
-    musicBtn.textContent = "🔊 Nhạc nền"; 
-  }
-  else { 
-    music.play(); 
-    isMusicOn = true; 
-    musicBtn.textContent = "🔇"; 
+// 🔹 Khi trang được mở, kiểm tra nếu vừa bấm từ menu chính
+window.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("autoPlayLoingo") === "true") {
+    localStorage.removeItem("autoPlayLoingo"); // Xóa cờ sau khi dùng
+    music.play().catch(err => console.log("Autoplay bị chặn:", err));
   }
 });

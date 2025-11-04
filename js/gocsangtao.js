@@ -1,43 +1,105 @@
-// ================== XỬ LÝ VIDEO CLIP ==================
-
-// 🔹 Hàm dùng chung để tạo và hiển thị clip
-function loadClip(buttonId, containerId, videoSrc) {
+// ================== XỬ LÝ VIDEO CLIP (có poster) ==================
+function loadClip(buttonId, containerId, videoSrc, posterId) {
   const btn = document.getElementById(buttonId);
   const container = document.getElementById(containerId);
+  const poster = posterId ? document.getElementById(posterId) : null;
 
-  // Nếu không tìm thấy phần tử thì bỏ qua (tránh lỗi)
   if (!btn || !container) return;
 
   btn.addEventListener("click", () => {
     const video = document.createElement("video");
-    video.src = videoSrc;         // 🔸 Đường dẫn clip của bạn
+    video.src = videoSrc;
     video.controls = true;
     video.autoplay = true;
     video.loop = true;
     video.style.width = "100%";
     video.style.height = "100%";
+    video.style.borderRadius = "12px";
     video.style.objectFit = "contain";
     video.style.backgroundColor = "#000";
-    video.style.borderRadius = "12px";
     video.style.opacity = 0;
     video.style.transition = "opacity 0.6s";
 
-    // Ẩn nút, chèn clip, và tạo hiệu ứng fade-in
+    // Ẩn poster và nút
     btn.style.display = "none";
+    if (poster) poster.classList.add("hidden");
+
     container.appendChild(video);
     requestAnimationFrame(() => (video.style.opacity = 1));
   });
 }
 
-// ================== GỌI HÀM CHO TỪNG NHÓM CLIP ==================
+loadClip("loadClipBtn", "videoContainer", "videos/demo.mp4", "funPoster");
 
-// 💖 Clip vui nhộn
-loadClip("loadClipBtn", "videoContainer", "videos/demo.mp4");
 
-// 💖 Âm nhạc trẻ trung
-loadClip("clip1Btn", "clip1Container", "https://www.youtube.com/watch?v=-1PkaJwJ1yA&list=RD-1PkaJwJ1yA&index=1");
-loadClip("clip2Btn", "clip2Container", "https://www.youtube.com/watch?v=gRaRdAYO9II&list=RD-1PkaJwJ1yA&index=5");
-loadClip("clip3Btn", "clip3Container", "https://www.youtube.com/watch?v=H3Ioxh3OTSU&list=RDH3Ioxh3OTSU&start_radio=1");
+// ================== ÂM NHẠC TRẺ TRUNG ==================
+const videoList = [
+  {
+    url: "videos/chuatron20.mp4",
+    title: "J'ai Pas Vingt Ans – Tôi chưa tròn hai mươi",
+    poster: "images/kyniemdangnho.jpg"
+  },
+  {
+    url: "videos/Nothing_s_Gonna_Change_My_Love_for_You.mp4",
+    title: "Tình yêu anh mãi không đổi thay",
+    poster: "images/kyniemdangnho.jpg"
+  },
+  {
+    url: "videos/congioAlize.mp4",
+    title: "L'Alizé – Cơn gió Alizé",
+    poster: "images/kyniemdangnho.jpg"
+  },
+  {
+    url: "videos/nguocdong.mp4",
+    title: "À contre-courant – Đi ngược dòng chảy",
+    poster: "images/kyniemdangnho.jpg"
+  }
+];
+
+let current = 0;
+const mainVideo = document.getElementById("mainVideo");
+const titleEl = document.getElementById("videoTitle");
+const prevVideo = document.getElementById("prevVideo");
+const nextVideo = document.getElementById("nextVideo");
+const posterEl = document.getElementById("videoPoster");
+
+// Hiện video
+function showVideo(index) {
+  if (index < 0) index = videoList.length - 1;
+  if (index >= videoList.length) index = 0;
+  current = index;
+
+  const { url, title, poster } = videoList[current];
+  const frameBox = mainVideo.parentElement;
+  frameBox.style.opacity = 0;
+
+  setTimeout(() => {
+    mainVideo.src = url;
+    posterEl.src = poster || "";
+    mainVideo.load();
+    mainVideo.pause();
+    titleEl.textContent = title;
+    posterEl.classList.remove("hidden");
+    frameBox.style.opacity = 1;
+  }, 400);
+}
+
+prevVideo.addEventListener("click", () => showVideo(current - 1));
+nextVideo.addEventListener("click", () => showVideo(current + 1));
+
+// Khi click poster → play video
+posterEl.addEventListener("click", () => {
+  posterEl.classList.add("hidden");
+  mainVideo.play();
+});
+
+// Nếu người dùng dừng video ở đầu → hiện lại poster
+mainVideo.addEventListener("pause", () => {
+  if (mainVideo.currentTime === 0) {
+    posterEl.classList.remove("hidden");
+  }
+});
+
 
 // 🆕 Nếu bạn muốn thêm nhóm khác, chỉ cần gọi thêm:
 // loadClip("id_nut", "id_noidung", "videos/tenfile.mp4");
@@ -59,3 +121,4 @@ loadClip("clip3Btn", "clip3Container", "https://www.youtube.com/watch?v=H3Ioxh3O
 //   }
 //   musicPlaying = !musicPlaying;
 // });
+
