@@ -105,6 +105,7 @@ header h1 {
 }
 
 /* ================= NÚT CLOSE / NEXT / PREV ================= */
+/* ================= NÚT CLOSE / NEXT / PREV ================= */
 .lightbox .close {
   position: absolute;
   top: 20px;
@@ -116,24 +117,31 @@ header h1 {
   text-shadow: 0 0 5px rgba(255,255,255,0.7);
 }
 
-/* Hai nút mũi tên dưới ảnh */
+/* ✅ Hai nút mũi tên hai bên ảnh */
 .lightbox .controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 35px;
-  margin-top: 18px;
+  transform: translateY(-50%);
+  padding: 0 40px;
+  pointer-events: none; /* để click qua phần trống vẫn trúng ảnh */
+  z-index: 3500;
 }
 
 .lightbox .prev,
 .lightbox .next {
   color: #1e3d7b;
-  font-size: 32px;
+  font-size: 48px;
   font-weight: bold;
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s ease, color 0.2s ease;
-  text-shadow: 0 0 5px rgba(255,255,255,0.7);
+  text-shadow: 0 0 8px rgba(255,255,255,0.8);
+  pointer-events: auto; /* cho phép click được */
 }
 
 .lightbox .prev:hover,
