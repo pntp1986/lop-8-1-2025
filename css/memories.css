@@ -9,14 +9,19 @@ body {
 header {
   background: #1e3d7b;
   color: white;
-  padding: 20px 15px 10px;
-  text-align: center;
+  padding: 10px 20px;
+}
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
 }
-
 header h1 {
   margin-top: 10px;
   font-size: 1.5rem;
+  text-align: center;
+  width: 100%;
 }
 
 .back-btn {
@@ -119,29 +124,28 @@ header h1 {
 
 /* ✅ Hai nút mũi tên hai bên ảnh */
 .lightbox .controls {
-  position: absolute;
-  top: 50%;
-  left: 0;
+  position: relative;       /* 🔹 nằm ngay trong flow dưới ảnh */
   width: 100%;
+  max-width: 800px;         /* vừa khung ảnh */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  transform: translateY(-50%);
-  padding: 0 40px;
-  pointer-events: none; /* để click qua phần trống vẫn trúng ảnh */
+  gap: 60px;                /* khoảng cách giữa 2 nút */
+  margin-top: 15px;         /* 🔹 nằm ngay dưới ảnh */
+  pointer-events: auto;
   z-index: 3500;
 }
+
 
 .lightbox .prev,
 .lightbox .next {
   color: #1e3d7b;
-  font-size: 48px;
+  font-size: 42px;
   font-weight: bold;
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s ease, color 0.2s ease;
   text-shadow: 0 0 8px rgba(255,255,255,0.8);
-  pointer-events: auto; /* cho phép click được */
 }
 
 .lightbox .prev:hover,
@@ -149,6 +153,7 @@ header h1 {
   color: #f39c12;
   transform: scale(1.25);
 }
+
 
 /* ================= MOBILE ================= */
 @media (max-width: 600px) {
@@ -198,3 +203,122 @@ header h1 {
   background: #f39c12;
 }
 
+/* ========== Hiệu ứng chữ bốc lửa ========== */
+.fire-text {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #ffcc70;
+  display: inline-block;
+  text-shadow:
+    0 0 15px #ff6600,
+    0 0 30px #ff3300,
+    0 0 45px #ff0000,
+    0 0 60px #ff9900;
+  animation: flickerMax 0.8s infinite alternate;
+  position: relative;
+}
+
+.fire-text span {
+  display: inline-block;
+  margin-right: 2px;
+  animation: flameMax 1.5s infinite;
+  position: relative;
+}
+
+/* Tổng thể nhấp nháy cực mạnh */
+@keyframes flickerMax {
+  0%   { text-shadow: 0 0 15px #ff6600, 0 0 30px #ff3300, 0 0 45px #ff0000, 0 0 60px #ff9900; }
+  25%  { text-shadow: 0 0 25px #ffaa33, 0 0 50px #ff6600, 0 0 80px #ff3300, 0 0 100px #ff9900; }
+  50%  { text-shadow: 0 0 30px #ffcc33, 0 0 60px #ff6600, 0 0 90px #ff3300, 0 0 120px #ff6600; }
+  75%  { text-shadow: 0 0 35px #ff9900, 0 0 70px #ff3300, 0 0 110px #ff6600, 0 0 140px #ff9900; }
+  100% { text-shadow: 0 0 40px #ff6600, 0 0 80px #ff3300, 0 0 120px #ff0000, 0 0 160px #ffcc33; }
+}
+
+/* Ký tự lập lòe mạnh + scale + translate */
+@keyframes flameMax {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.8; }
+  10%  { transform: translateY(-5px) rotate(3deg) scale(1.12); opacity: 1; }
+  20%  { transform: translateY(4px) rotate(-2deg) scale(1.1); opacity: 0.85; }
+  30%  { transform: translateY(-3px) rotate(2deg) scale(1.08); opacity: 1; }
+  40%  { transform: translateY(5px) rotate(-3deg) scale(1.15); opacity: 0.9; }
+  50%  { transform: translateY(-4px) rotate(3deg) scale(1.12); opacity: 1; }
+  60%  { transform: translateY(3px) rotate(-2deg) scale(1.1); opacity: 0.85; }
+  70%  { transform: translateY(-5px) rotate(2deg) scale(1.13); opacity: 1; }
+  80%  { transform: translateY(4px) rotate(-3deg) scale(1.15); opacity: 0.9; }
+  90%  { transform: translateY(-3px) rotate(3deg) scale(1.12); opacity: 1; }
+  100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.8; }
+}
+
+/* Khói/bụi lửa bay */
+.fire-text span::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(255,200,0,0.7) 0%, rgba(255,0,0,0) 70%);
+  border-radius: 50%;
+  transform: translateX(-50%) scale(0);
+  opacity: 0;
+  animation: fireSmokeMax 2s infinite;
+}
+
+/* Tia lửa bắn ra xung quanh chữ */
+.fire-text span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(255,255,200,0.8) 0%, rgba(255,0,0,0) 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  animation: sparkFly 1.2s infinite;
+}
+
+@keyframes fireSmokeMax {
+  0%   { transform: translateX(-50%) translateY(0) scale(0); opacity: 0; }
+  25%  { transform: translateX(-50%) translateY(-5px) scale(0.3); opacity: 0.5; }
+  50%  { transform: translateX(-50%) translateY(-10px) scale(0.5); opacity: 0.8; }
+  75%  { transform: translateX(-50%) translateY(-15px) scale(0.7); opacity: 0.4; }
+  100% { transform: translateX(-50%) translateY(-20px) scale(0); opacity: 0; }
+}
+
+@keyframes sparkFly {
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  25%  { transform: translate(calc(-50% + 5px), calc(-50% - 5px)) scale(0.3); opacity: 0.6; }
+  50%  { transform: translate(calc(-50% + 10px), calc(-50% - 10px)) scale(0.5); opacity: 0.9; }
+  75%  { transform: translate(calc(-50% - 8px), calc(-50% - 12px)) scale(0.7); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  .fire-text {
+    font-size: 1.3rem !important;
+    white-space: normal;
+    overflow: visible;
+  }
+
+  .fire-text span {
+    animation: flameMaxMobile 1.5s infinite;
+  }
+
+  @keyframes flameMaxMobile {
+    0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.85; }
+    10%  { transform: translateY(-3px) rotate(2deg) scale(1.08); opacity: 1; }
+    20%  { transform: translateY(2px) rotate(-1deg) scale(1.06); opacity: 0.9; }
+    30%  { transform: translateY(-2px) rotate(1deg) scale(1.07); opacity: 1; }
+    40%  { transform: translateY(3px) rotate(-2deg) scale(1.1); opacity: 0.95; }
+    50%  { transform: translateY(-3px) rotate(2deg) scale(1.08); opacity: 1; }
+    60%  { transform: translateY(2px) rotate(-1deg) scale(1.06); opacity: 0.9; }
+    70%  { transform: translateY(-2px) rotate(1deg) scale(1.08); opacity: 1; }
+    80%  { transform: translateY(3px) rotate(-2deg) scale(1.1); opacity: 0.95; }
+    90%  { transform: translateY(-3px) rotate(2deg) scale(1.08); opacity: 1; }
+    100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.85; }
+  }
+}
