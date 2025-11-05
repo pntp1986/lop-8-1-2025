@@ -266,10 +266,71 @@ window.addEventListener("scroll", () => {
   }
 });
 </script>
+
+<!-- 🔹 Nút mở thống kê truy cập -->
+<div id="stats-toggle">></div>
+
+<!-- 🔹 Khung thống kê truy cập -->
+<div id="stats-panel">
+  <h3>THỐNG KÊ TRUY CẬP</h3>
+  <p>👤 Đang online: <span id="online">1</span></p>
+  <p>📅 Hôm nay: <span id="today">41</span></p>
+  <p>📆 Hôm qua: <span id="yesterday">125</span></p>
+  <p>📈 Tuần này: <span id="thisweek">381</span></p>
+  <p>📊 Tuần trước: <span id="lastweek">599</span></p>
+  <p>🗓️ Tháng này: <span id="thismonth">537</span></p>
+  <p>📅 Tháng trước: <span id="lastmonth">3,521</span></p>
+</div>
+
+<script>
+  const toggleBtn = document.getElementById("stats-toggle");
+  const statsPanel = document.getElementById("stats-panel");
+
+  toggleBtn.addEventListener("click", () => {
+    toggleBtn.classList.toggle("open");
+    statsPanel.classList.toggle("open");
+    toggleBtn.textContent = statsPanel.classList.contains("open") ? "<" : ">";
+  });
+</script>
+
+
  <!-- ===== FOOTER ===== -->
   <footer>
     <p>&copy; 2025 Lớp 8/1 - GV chủ nhiệm cô Phạm Nguyễn Thanh Phương</p>
   </footer>
+<!-- 🔹 THỐNG KÊ TRUY CẬP (Firebase Realtime) -->
+<script type="module">
+  import { get, set, onValue, onDisconnect } 
+    from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+  const today = new Date();
+  const todayKey = today.toLocaleDateString("vi-VN");
+  const onlineRef = window.ref(window.db, "visitors/onlineUsers");
+  const todayRef = window.ref(window.db, "visitors/" + todayKey);
+
+  // 🔹 Tăng lượt truy cập hôm nay
+  get(todayRef).then(snapshot => {
+    const current = snapshot.exists() ? snapshot.val() : 0;
+    set(todayRef, current + 1);
+    document.getElementById("today").textContent = current + 1;
+  });
+
+  // 🔹 Thêm người đang online
+  const userKey = window.push(onlineRef).key;
+  set(window.ref(window.db, "visitors/onlineUsers/" + userKey), true);
+
+  // 🔹 Khi rời trang → xóa khỏi danh sách online
+  onDisconnect(window.ref(window.db, "visitors/onlineUsers/" + userKey)).remove();
+
+  // 🔹 Theo dõi realtime số người online
+  onValue(onlineRef, (snapshot) => {
+    const data = snapshot.val();
+    const count = data ? Object.keys(data).length : 0;
+    document.getElementById("online").textContent = count;
+  });
+</script>
+
+
 <body>
   
  </html>
