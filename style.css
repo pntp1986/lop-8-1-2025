@@ -1,9 +1,16 @@
-/* ========== Tổng thể ========== */
-body {
-  font-family: Arial, sans-serif;
+html, body {
+  height: 100%;
   margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
   background: #f8f8ff;
   color: #333;
+}
+/* ========== Tổng thể ========== */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* ========== Header ========== */
@@ -158,51 +165,61 @@ header {
 }
 
 /* ========== Nội dung chính ========== */
+
 main {
+  flex: 1;
   padding: 20px;
   text-align: center;
 }
+/* ===== GRID GALLERY ===== */
 .grid-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* tự co giãn vừa khung */
-  gap: 15px;
-  margin-top: 30px;
-  padding: 0 10px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 40px 20px;
+  justify-items: center;
+  align-items: stretch;
 }
-.card {
- display: block; /* Thêm để thẻ <a> nhận full block */
-  text-decoration: none; /* Bỏ gạch chân nếu có */
-  color: inherit; /* Giữ màu chữ */
-  background: white;
+
+.grid-gallery .card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: #fff;
   border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
   overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  cursor: pointer;
-  max-width: 3000px;
-  margin: 0 auto;
-}
-.card img {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s;
   width: 100%;
-  height: 400px;        /* Chiều cao đồng nhất */
+  max-width: 300px;
+  height: 100%;
+}
+
+.grid-gallery .card img {
+  width: 100%;
+  height: 200px;
   object-fit: cover;
-  transition: transform 0.3s ease;
-}
-.card p {
-  padding: 10px;
-  font-weight: bold;
-  color: #1e3d7b;
-  font-size: 0.85rem;
+  display: block;
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+.grid-gallery .card p {
+  padding: 15px 10px;
+  font-size: 1rem;
+  color: #333;
+  background: #f9f9f9;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
 }
 
-.card:hover img {
-  transform: scale(1.08);
+.grid-gallery .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
+
 
 /* ========== Nút Zalo ========== */
 .zalo-button {
@@ -449,16 +466,13 @@ footer {
   text-align: center;
   padding: 10px 0;
   font-size: 14px;
-  position: relative;
-  bottom: 0;
-  left: 0;
   width: 100%;
   border-top: 2px solid #a93226;
-  margin-top: 50px;
   z-index: 100;
-  opacity: 1; /* luôn hiện footer */
+  opacity: 1;
   transform: translateY(20px);
   transition: all 0.4s ease;
+  margin-top: auto; /* 👈 Đây là điểm quan trọng để footer dính đáy */
 }
 
 /* Khi hiện ra (JS thêm class .show) */
@@ -466,7 +480,6 @@ footer.show {
   opacity: 1;
   transform: translateY(0);
 }
-
 
 /* ===== MENU MOBILE ===== */
 @media (max-width: 768px) {
