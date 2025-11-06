@@ -7,6 +7,12 @@ function loadClip(buttonId, containerId, videoSrc, posterId) {
   if (!btn || !container) return;
 
   btn.addEventListener("click", () => {
+    // Dừng tất cả video khác trước khi phát clip mới
+document.querySelectorAll("video").forEach(v => {
+  v.pause();
+  v.currentTime = 0;
+});
+
     const video = document.createElement("video");
     video.src = videoSrc;
     video.controls = true;
@@ -26,6 +32,16 @@ function loadClip(buttonId, containerId, videoSrc, posterId) {
 
     container.appendChild(video);
     requestAnimationFrame(() => (video.style.opacity = 1));
+    // 🔹 Khi clip được phát lại → dừng các video khác
+video.addEventListener("play", () => {
+  document.querySelectorAll("video").forEach(v => {
+    if (v !== video) {
+      v.pause();
+      v.currentTime = 0;
+    }
+  });
+});
+
   });
 }
 
@@ -74,6 +90,12 @@ function showVideo(index) {
   frameBox.style.opacity = 0;
 
   setTimeout(() => {
+    // Dừng tất cả video khác
+document.querySelectorAll("video").forEach(v => {
+  v.pause();
+  v.currentTime = 0;
+});
+
     mainVideo.src = url;
     posterEl.src = poster || "";
     mainVideo.load();
@@ -89,6 +111,12 @@ nextVideo.addEventListener("click", () => showVideo(current + 1));
 
 // Khi click poster → play video
 posterEl.addEventListener("click", () => {
+  // Dừng tất cả video khác trước khi phát
+document.querySelectorAll("video").forEach(v => {
+  v.pause();
+  v.currentTime = 0;
+});
+
   posterEl.classList.add("hidden");
   mainVideo.play();
 });
