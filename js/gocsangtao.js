@@ -51,6 +51,11 @@ loadClip("loadClipBtn", "videoContainer", "videos/demo.mp4", "funPoster");
 // ================== ÂM NHẠC TRẺ TRUNG ==================
 const videoList = [
   {
+    url: "videos/lop81.mp4",
+    title: "ỘT ĐƯỜNG NỞ HOA (一路生花)",
+    poster: "images/poster/luubut.jpg"
+  },
+  {
     url: "videos/chuatron20.mp4",
     title: "J'ai Pas Vingt Ans – Tôi chưa tròn hai mươi",
     poster: "images/poster/not20.png"
