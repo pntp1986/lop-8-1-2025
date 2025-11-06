@@ -17,6 +17,20 @@ const events = [
     ]
   },
   {
+    name: "Tuyên truyền pháp luật",
+    images: [
+      { src: "images/memories/pl1.jpg", caption: "Tham gia tuyên truyền pháp luật - Ảnh 1" },
+      { src: "images/memories/pl2.jpg", caption: "Tham gia tuyên truyền pháp luật - Ảnh 2" }
+    ]
+  },
+  {
+    name: "Hội thi lồng đèn",
+    images: [
+      { src: "images/memories/longden1.jpg", caption: "Hội thi lồng đèn - Ảnh 1" },
+      { src: "images/memories/longden2.jpg", caption: "Hội thi lồng đèn - Ảnh 2" }
+    ]
+  },
+  {
     name: "Trung thu 2025",
     images: [
       { src: "images/memories/kn1.jpg", caption: "Trung thu 2025 - Ảnh 1" },
