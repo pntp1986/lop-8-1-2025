@@ -105,15 +105,18 @@ lightboxEl.addEventListener("click", e => {
   if (e.target === e.currentTarget) closeLightbox();
 });
 
-// ===== GẮN THUMB CLICK =====
-document.querySelectorAll('.event-thumb').forEach((thumb, i) => {
-  thumb.addEventListener('click', () => openEventGallery(i));
-});
+// ===== GẮN SỰ KIỆN SAU KHI DOM LOAD =====
+document.addEventListener("DOMContentLoaded", () => {
+  // Gắn sự kiện khi click vào từng ảnh sự kiện
+  document.querySelectorAll('.event-thumb').forEach((thumb, i) => {
+    thumb.addEventListener('click', () => openEventGallery(i));
+  });
 
-// ===== GẮN NÚT NEXT / PREV / CLOSE =====
-lightboxEl.querySelector('.next').addEventListener('click', nextImage);
-lightboxEl.querySelector('.prev').addEventListener('click', prevImage);
-lightboxEl.querySelector('.close').addEventListener('click', closeLightbox);
+  // Gắn nút điều hướng trong lightbox
+  lightboxEl.querySelector('.next').addEventListener('click', nextImage);
+  lightboxEl.querySelector('.prev').addEventListener('click', prevImage);
+  lightboxEl.querySelector('.close').addEventListener('click', closeLightbox);
+});
 
 // ===== NHẠC NỀN 1 BÀI =====
 const music = document.getElementById("bgMusic");
