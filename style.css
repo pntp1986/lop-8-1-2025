@@ -90,11 +90,20 @@ header {
   background: #1a3b8b;
   transform: scale(1.1);
 }
-@media (max-width: 768px) {
+/* 🔹 Nổi nút nhạc lên góc phải trên cùng trên mobile */
+@media (max-width: 600px) {
   #playMusicBtn {
-    width: 32px;
-    height: 32px;
-    font-size: 1rem;
+    position: absolute;
+    top: 8px;      /* khoảng cách từ trên */
+    right: 8px;    /* khoảng cách từ phải */
+    width: 50px;   /* nhỏ hơn để vừa */
+    height: 50px;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(45deg, #ff00cc, #3333ff, #00ffcc);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255,255,255,0.6);
   }
 }
 /* Biểu tượng nốt nhạc 🎶 phát sáng vàng */
@@ -568,6 +577,11 @@ footer.show {
     0 0 60px #ff9900;
   animation: flickerMax 0.8s infinite alternate;
   position: relative;
+}
+.fire-text.small-text {
+  font-size: 20px;        /* nhỏ hơn chữ trên */
+  margin-top: 10px;       /* cách chữ trên 10px, bạn có thể chỉnh số này */
+  display: inline-block;  /* đảm bảo margin-top hoạt động tốt */
 }
 
 .fire-text span {
