@@ -8,22 +8,26 @@
   
   <link rel="stylesheet" href="style.css">
 
-<!-- ========== KẾT NỐI FIREBASE ========== -->
+<!-- ========== KẾT NỐI FIREBASE + THỐNG KÊ TRUY CẬP ========== -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-  import { getDatabase, ref, push, onChildAdded } 
-    from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+  import { 
+    initializeApp 
+  } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { 
+    getDatabase, ref, push, onChildAdded,
+    get, set, update, onValue, onDisconnect 
+  } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 
-  // 🔧 Cấu hình Firebase của bạn (lấy trong Project Settings > General)
+  // 🔧 Cấu hình Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyBzAGsqCusrg_2L0Lw2YiOgcmdBJa0ZGCM",
-  authDomain: "lop-8-1-chat.firebaseapp.com",
-  databaseURL: "https://lop-8-1-chat-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "lop-8-1-chat",
-  storageBucket: "lop-8-1-chat.firebasestorage.app",
-  messagingSenderId: "512094801159",
-  appId: "1:512094801159:web:d775b5e653d9f2db53c9a2",
-  measurementId: "G-R7PV1C79JT"
+    authDomain: "lop-8-1-chat.firebaseapp.com",
+    databaseURL: "https://lop-8-1-chat-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "lop-8-1-chat",
+    storageBucket: "lop-8-1-chat.appspot.com",
+    messagingSenderId: "512094801159",
+    appId: "1:512094801159:web:d775b5e653d9f2db53c9a2",
+    measurementId: "G-R7PV1C79JT"
   };
 
   // 🚀 Khởi tạo Firebase
@@ -35,8 +39,56 @@
   window.ref = ref;
   window.push = push;
   window.onChildAdded = onChildAdded;
-</script>
+  window.onValue = onValue;
 
+  // ==============================
+  // 🔹 THỐNG KÊ TRUY CẬP REALTIME
+  // ==============================
+  const now = new Date();
+  const todayKey = now.toISOString().slice(0, 10);
+  const yesterdayKey = new Date(now - 86400000).toISOString().slice(0, 10);
+
+  const todayRef = ref(db, "visitors/days/" + todayKey);
+  get(todayRef).then(snap => set(todayRef, (snap.exists() ? snap.val() : 0) + 1));
+
+  const userId = Date.now().toString(36) + Math.random().toString(36).slice(2);
+  set(ref(db, "visitors/online/" + userId), true);
+  onDisconnect(ref(db, "visitors/online/" + userId)).remove();
+
+  onValue(ref(db, "visitors/online"), snap => {
+    const val = snap.val();
+    document.getElementById("online").textContent = val ? Object.keys(val).length : 0;
+  });
+
+  onValue(ref(db, "visitors/days"), snap => {
+    const data = snap.val() || {};
+    const days = Object.keys(data).sort();
+    const today = data[todayKey] || 0;
+    const yesterday = data[yesterdayKey] || 0;
+
+    const startOfWeek = new Date(now);
+    startOfWeek.setDate(now.getDate() - now.getDay() + 1);
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
+    let thisWeek = 0, lastWeek = 0, thisMonth = 0, lastMonth = 0;
+    for (let [day, count] of Object.entries(data)) {
+      const d = new Date(day);
+      const weekDiff = Math.floor((now - d) / 604800000);
+      const monthDiff = now.getMonth() - d.getMonth() + 12 * (now.getFullYear() - d.getFullYear());
+      if (d >= startOfWeek) thisWeek += count;
+      else if (weekDiff === 1) lastWeek += count;
+      if (d >= startOfMonth) thisMonth += count;
+      else if (monthDiff === 1) lastMonth += count;
+    }
+
+    document.getElementById("today").textContent = today;
+    document.getElementById("yesterday").textContent = yesterday;
+    document.getElementById("thisweek").textContent = thisWeek;
+    document.getElementById("lastweek").textContent = lastWeek;
+    document.getElementById("thismonth").textContent = thisMonth;
+    document.getElementById("lastmonth").textContent = lastMonth;
+  });
+</script>
 
   <script src="script.js" defer></script>
 </head>
@@ -273,13 +325,14 @@ window.addEventListener("scroll", () => {
 <!-- 🔹 Khung thống kê truy cập -->
 <div id="stats-panel">
   <h3>THỐNG KÊ TRUY CẬP</h3>
-  <p>👤 Đang online: <span id="online">1</span></p>
-  <p>📅 Hôm nay: <span id="today">41</span></p>
-  <p>📆 Hôm qua: <span id="yesterday">125</span></p>
-  <p>📈 Tuần này: <span id="thisweek">381</span></p>
-  <p>📊 Tuần trước: <span id="lastweek">599</span></p>
-  <p>🗓️ Tháng này: <span id="thismonth">537</span></p>
-  <p>📅 Tháng trước: <span id="lastmonth">3,521</span></p>
+ <p>👤 Đang online: <span id="online">0</span></p>
+<p>📅 Hôm nay: <span id="today">0</span></p>
+<p>📆 Hôm qua: <span id="yesterday">0</span></p>
+<p>📈 Tuần này: <span id="thisweek">0</span></p>
+<p>📊 Tuần trước: <span id="lastweek">0</span></p>
+<p>🗓️ Tháng này: <span id="thismonth">0</span></p>
+<p>📅 Tháng trước: <span id="lastmonth">0</span></p>
+
 </div>
 
 <script>
@@ -298,38 +351,6 @@ window.addEventListener("scroll", () => {
   <footer>
     <p>&copy; 2025 Lớp 8/1 - GV chủ nhiệm cô Phạm Nguyễn Thanh Phương</p>
   </footer>
-<!-- 🔹 THỐNG KÊ TRUY CẬP (Firebase Realtime) -->
-<script type="module">
-  import { get, set, onValue, onDisconnect } 
-    from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
-
-  const today = new Date();
-  const todayKey = today.toLocaleDateString("vi-VN");
-  const onlineRef = window.ref(window.db, "visitors/onlineUsers");
-  const todayRef = window.ref(window.db, "visitors/" + todayKey);
-
-  // 🔹 Tăng lượt truy cập hôm nay
-  get(todayRef).then(snapshot => {
-    const current = snapshot.exists() ? snapshot.val() : 0;
-    set(todayRef, current + 1);
-    document.getElementById("today").textContent = current + 1;
-  });
-
-  // 🔹 Thêm người đang online
-  const userKey = window.push(onlineRef).key;
-  set(window.ref(window.db, "visitors/onlineUsers/" + userKey), true);
-
-  // 🔹 Khi rời trang → xóa khỏi danh sách online
-  onDisconnect(window.ref(window.db, "visitors/onlineUsers/" + userKey)).remove();
-
-  // 🔹 Theo dõi realtime số người online
-  onValue(onlineRef, (snapshot) => {
-    const data = snapshot.val();
-    const count = data ? Object.keys(data).length : 0;
-    document.getElementById("online").textContent = count;
-  });
-</script>
-
 
 <body>
   
