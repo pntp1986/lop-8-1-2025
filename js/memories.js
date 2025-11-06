@@ -24,15 +24,10 @@ const events = [
     ]
   },
   {
-    name: "Hội thi lồng đèn",
-    images: [
-      { src: "images/memories/longden1.jpg", caption: "Hội thi lồng đèn - Ảnh 1" },
-      { src: "images/memories/longden2.jpg", caption: "Hội thi lồng đèn - Ảnh 2" }
-    ]
-  },
-  {
     name: "Trung thu 2025",
     images: [
+       { src: "images/memories/longden1.jpg", caption: "Hội thi lồng đèn - Ảnh 1" },
+      { src: "images/memories/longden2.jpg", caption: "Hội thi lồng đèn - Ảnh 2" },
       { src: "images/memories/kn1.jpg", caption: "Trung thu 2025 - Ảnh 1" },
       { src: "images/memories/kn2.jpg", caption: "Trung thu 2025 - Ảnh 2" },
       { src: "images/memories/kn3.jpg", caption: "Trung thu 2025 - Ảnh 3" },
