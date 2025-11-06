@@ -354,6 +354,28 @@ window.addEventListener("scroll", () => {
 
 <body>
   
+  <script>
+// ===== TẮT NHẠC NỀN KHI RỜI TRANG =====
+window.addEventListener("beforeunload", () => {
+  const music = document.getElementById("bgMusic");
+  if (music) {
+    music.pause();
+    music.currentTime = 0; // tua về đầu
+  }
+});
+
+// ===== TẮT NHẠC KHI BẤM LINK SANG TRANG KHÁC =====
+document.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    const music = document.getElementById("bgMusic");
+    if (music) {
+      music.pause();
+      music.currentTime = 0;
+    }
+  });
+});
+</script>
+
  </html>
 
 
