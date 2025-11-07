@@ -203,7 +203,7 @@ function timeToSeconds(t) {
 playBtn.addEventListener("click", async () => {
   // Nếu chưa có audio thì tạo
   if (!audioPlayer) {
-    audioPlayer = new Audio("music/mdnh.mp3");
+    audioPlayer = new Audio("music/mdnh2.mp3");
     audioPlayer.controls = true;
     audioPlayer.style.width = "100%";
     container1.appendChild(audioPlayer);
