@@ -305,3 +305,9 @@ audioPlayer.addEventListener("ended", () => {
 
 });
 
+// 💫 Nhấn vào khung để phóng to / thu nhỏ
+document.querySelectorAll('.video-frame').forEach(frame => {
+  frame.addEventListener('click', () => {
+    frame.classList.toggle('enlarged');
+  });
+});
