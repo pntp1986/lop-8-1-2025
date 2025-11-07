@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Góc sáng tạo</title>
   <link rel="stylesheet" href="css/gocsangtao.css">
+  <!-- 🔹 thêm defer để script chờ HTML load xong -->
+<script src="js/fakevideo.js" defer></script>
+<script src="js/gocsangtao.js" defer></script>
 </head>
 <body>
 
@@ -15,6 +18,16 @@
   </header>
 
  <main style="text-align:center; margin-top:30px;">
+
+<h2>💖 Lớp 8/1 ~ âm nhạc không biên giới</h2>
+<div id="videoContainer" class="video-frame">
+<!-- 🔹 Clip mô phỏng từ ảnh + mp3 + phụ đề -->
+<fake-video 
+    img="music/tapthe2.png" 
+    audio="music/mdnh.mp3" 
+    subs="music/loibaihat.ass">
+</fake-video>
+</div>
 
  <h2>💖 Clip vui nhộn</h2>
 <div id="videoContainer" class="video-frame">
@@ -26,15 +39,15 @@
   </button>
 </div>
 
- <h2>💖 Âm nhạc không biên giới</h2>
+ <h2>💖 Âm nhạc ~ không biên giới</h2>
 
 <div class="video-slider">
   <div class="video-frame">
-    <img id="videoPoster" src="images/kyniemdangnho.jpg" alt="Poster" />
+    <img id="videoPoster" src="images/poster/not20.jpg" alt="Poster" />
     <video id="mainVideo" controls>
-      <source src="videos/lop81.mp4" type="video/mp4">
+      <source src="videos/not20.mp4" type="video/mp4">
     </video>
-    <p id="videoTitle">MỘT ĐƯỜNG NỞ HOA (一路生花)</p>
+    <p id="videoTitle">J'ai Pas Vingt Ans – Tôi chưa tròn hai mươi</p>
   </div>
 
   <!-- ⬇️ Đặt hai nút xuống dưới video -->
@@ -51,7 +64,8 @@
   <!-- Nút nhạc
   <button id="musicToggle" class="music-btn">🎵 Nhạc nền</button>
   <audio id="bgMusic" src="music/ymtht.mp3" loop></audio>-->
-  <script src="js/gocsangtao.js"></script> 
-  
+<link rel="stylesheet" href="css/fakevideo.css">
+
+
 </body>
 </html>
