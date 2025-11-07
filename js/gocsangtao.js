@@ -45,16 +45,11 @@ video.addEventListener("play", () => {
   });
 }
 
-loadClip("loadClipBtn", "videoContainer", "videos/demo.mp4", "funPoster");
+loadClip("loadClipBtn", "videoContainer2", "videos/demo.mp4", "funPoster");
 
 
 // ================== ÂM NHẠC TRẺ TRUNG ==================
 const videoList = [
-  {
-    url: "videos/lop81.mp4",
-    title: "ỘT ĐƯỜNG NỞ HOA (一路生花)",
-    poster: "images/poster/luubut.jpg"
-  },
   {
     url: "videos/chuatron20.mp4",
     title: "J'ai Pas Vingt Ans – Tôi chưa tròn hai mươi",
@@ -154,4 +149,92 @@ mainVideo.addEventListener("pause", () => {
 //   }
 //   musicPlaying = !musicPlaying;
 // });
+
+// ================== PHÁT NHẠC + HIỆN LỜI BÀI HÁT ==================
+const playBtn = document.getElementById("playMusicBtn");
+const container1 = document.getElementById("videoContainer1");
+const lyricsDisplay = document.getElementById("lyricsDisplay");
+
+let audioPlayer = null;
+let lyricsData = [];
+
+async function loadLyrics(url) {
+  const res = await fetch(url);
+  const text = await res.text();
+  const lines = text.split(/\r?\n/);
+
+  const lyrics = [];
+
+  for (let line of lines) {
+    if (line.startsWith("Dialogue:")) {
+  const parts = line.split(",");
+  const start = timeToSeconds(parts[1]);
+  const end = timeToSeconds(parts[2]);
+  const textPart = parts.slice(9).join(","); // ✅ cắt chuẩn
+  const textClean = textPart
+    .replace(/{.*?}/g, "")   // bỏ mã màu và style
+    .replace(/\\N/g, "\n")   // xuống dòng
+    .trim();
+
+  lyrics.push({ start, end, text: textClean });
+}
+
+  }
+  return lyrics;
+}
+
+
+function timeToSeconds(t) {
+  const [h, m, s] = t.split(":");
+  const [sec, ms] = s.split(".");
+  return parseInt(h) * 3600 + parseInt(m) * 60 + parseInt(sec) + (parseInt(ms || 0) / 100);
+}
+
+playBtn.addEventListener("click", async () => {
+  // Nếu chưa có audio thì tạo
+  if (!audioPlayer) {
+    audioPlayer = new Audio("music/mdnh.mp3");
+    audioPlayer.controls = true;
+    audioPlayer.style.width = "100%";
+    container1.appendChild(audioPlayer);
+    lyricsData = await loadLyrics("music/loibaihat.ass");
+  }
+
+  // Ẩn nút, hiện vùng lời
+  playBtn.style.display = "none";
+  lyricsDisplay.style.display = "block";
+
+  audioPlayer.play();
+
+  // Cập nhật lời
+  audioPlayer.addEventListener("timeupdate", () => {
+  const t = audioPlayer.currentTime;
+  const current = lyricsData.find(l => t >= l.start && t <= l.end);
+
+  if (current) {
+    // Tách dòng lời ra (nếu có nhiều dòng)
+    const lines = current.text.split("\n");
+    lyricsDisplay.innerHTML = lines
+  .map((line, i) => `<div class="lyric-line" data-line="${i + 1}">${line}</div>`)
+  .join("");
+
+const linesEls = lyricsDisplay.querySelectorAll(".lyric-line");
+
+linesEls.forEach((el, i) => {
+  el.classList.remove("lyric-active", "highlight-run");
+  setTimeout(() => {
+    el.classList.add("lyric-active");
+    // 🔥 Nếu là dòng thứ 3 → chạy sáng lan ngang
+    if (i === 2) {
+      el.classList.add("highlight-run");
+    }
+  }, i * 300);
+});
+
+  } else {
+    lyricsDisplay.innerHTML = "";
+  }
+});
+
+});
 
