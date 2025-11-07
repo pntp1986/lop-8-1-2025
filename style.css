@@ -751,11 +751,11 @@ footer.show {
   }
 
   .fire-text.small-text {
-  font-size: clamp(0.85rem, 4vw, 1.1rem);
-  white-space: nowrap;     /* giữ 1 dòng */
-  overflow: hidden;        /* cắt nếu quá dài */
-  text-overflow: ellipsis; /* hiển thị ... nếu cần */
-}
+  font-size: 0.9rem !important; /* giảm cỡ chữ để vừa 1 dòng */
+    white-space: nowrap;          /* giữ trên 1 dòng */
+    overflow: hidden;             /* cắt nếu quá dài */
+    text-overflow: ellipsis;      /* nếu vẫn quá dài sẽ hiện ... */
+  }
 
   .fire-text span {
     animation: flameMaxMobile 1.5s infinite;
