@@ -32,6 +32,45 @@ header {
   object-fit: contain;
   margin-left: 2px;
 }
+.header-container .logo {
+  position: absolute;   /* nổi lên trên các phần tử khác */
+  top: 0;               /* góc trên cùng */
+  left: 0;              /* góc trái */
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  z-index: 10;          /* nổi trên center-block */
+  border-radius: 50%;   /* nếu muốn bo tròn */
+  box-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 30px #ffcc70;
+  animation: logoGlow 2s infinite alternate;
+  margin: 0;            /* loại bỏ margin cũ */
+}
+
+/* Hiệu ứng glow cho logo */
+@keyframes logoGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(255,255,255,0.5), 0 0 20px #ffcc70;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 25px #fff, 0 0 40px #ffcc70;
+    transform: scale(1.1);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255,255,255,0.5), 0 0 20px #ffcc70;
+    transform: scale(1);
+  }
+}
+
+/* 🔹 Mobile: giữ logo góc trái */
+@media (max-width: 600px) {
+  .header-container .logo {
+    width: 80px;
+    height: 80px;
+    top: 0;
+    left: 0;
+  }
+}
 
 .header-container h1 {
   font-size: 1.5rem;
@@ -579,9 +618,42 @@ footer.show {
   position: relative;
 }
 .fire-text.small-text {
-  font-size: 20px;        /* nhỏ hơn chữ trên */
-  margin-top: 10px;       /* cách chữ trên 10px, bạn có thể chỉnh số này */
-  display: inline-block;  /* đảm bảo margin-top hoạt động tốt */
+  font-size: 20px;
+  margin-top: 10px;
+  display: inline-block;
+  position: relative; /* để ::after đặt đúng */
+  color: #ffcc70;     /* giữ màu chữ lửa */
+  text-shadow:
+    0 0 10px #ff6600,
+    0 0 20px #ff3300,
+    0 0 30px #ff0000,
+    0 0 40px #ff9900;
+}
+
+/* Vạch ngang glow chạy qua chữ nhỏ */
+.fire-text.small-text::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -50%;
+  width: 50%;  /* độ dài vạch */
+  height: 3px; /* độ dày vạch */
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+  box-shadow: 0 0 8px #fff, 0 0 15px #ffcc70, 0 0 20px #ff6600;
+  transform: translateY(-50%);
+  animation: sweepGlow 5s linear infinite;
+}
+
+@keyframes sweepGlow {
+  0% {
+    left: -50%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: -50%;
+  }
 }
 
 .fire-text span {
