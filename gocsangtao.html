@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Góc sáng tạo</title>
   <link rel="stylesheet" href="css/gocsangtao.css">
-  <!-- 🔹 thêm defer để script chờ HTML load xong -->
-<script src="js/fakevideo.js" defer></script>
-<script src="js/gocsangtao.js" defer></script>
+  <script src="js/gocsangtao.js" defer></script>
 </head>
 <body>
 
@@ -20,17 +18,27 @@
  <main style="text-align:center; margin-top:30px;">
 
 <h2>💖 Lớp 8/1 ~ âm nhạc không biên giới</h2>
-<div id="videoContainer" class="video-frame">
-<!-- 🔹 Clip mô phỏng từ ảnh + mp3 + phụ đề -->
-<fake-video 
-    img="music/tapthe2.png" 
-    audio="music/mdnh.mp3" 
-    subs="music/loibaihat.ass">
-</fake-video>
+<div id="videoContainer1" class="video-frame" style="position:relative; display:inline-block;">
+  <img src="music/tapthe2.png" alt="Lớp 8/1" style="width:100%; display:block;">
+  <button id="playMusicBtn" class="playBtn" data-type="audio" data-src="music/mdnh.mp3" data-subs="music/loibaihat.ass"
+          style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); z-index:3; padding:10px 20px; font-size:16px; cursor:pointer;">
+    ▶️ Phát nhạc
+  </button>
+
+  <!-- 👇 Thêm vùng hiển thị lời -->
+  <div id="lyricsDisplay" style="
+  display:none;
+  margin-top:15px;
+  font-size:18px;
+  color:#d63384;
+  font-weight:bold;
+  white-space:pre-line;
+"></div>
+
 </div>
 
- <h2>💖 Clip vui nhộn</h2>
-<div id="videoContainer" class="video-frame">
+<h2>💖 Clip vui nhộn</h2>
+<div id="videoContainer2" class="video-frame">
   <!-- Ảnh poster -->
   <img id="funPoster" src="images/vuinhon.jpg" alt="Clip vui nhộn" />
   <!-- Nút xem -->
@@ -43,9 +51,9 @@
 
 <div class="video-slider">
   <div class="video-frame">
-    <img id="videoPoster" src="images/poster/not20.jpg" alt="Poster" />
+    <img id="videoPoster" src="images/poster/not20.png" alt="Poster" />
     <video id="mainVideo" controls>
-      <source src="videos/not20.mp4" type="video/mp4">
+      <source src="videos/chuatron20.mp4" type="video/mp4">
     </video>
     <p id="videoTitle">J'ai Pas Vingt Ans – Tôi chưa tròn hai mươi</p>
   </div>
@@ -64,8 +72,6 @@
   <!-- Nút nhạc
   <button id="musicToggle" class="music-btn">🎵 Nhạc nền</button>
   <audio id="bgMusic" src="music/ymtht.mp3" loop></audio>-->
-<link rel="stylesheet" href="css/fakevideo.css">
-
 
 </body>
 </html>
