@@ -25,7 +25,7 @@ Style: Default,Arial,48,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:00:25.08,Default,,0,0,0,,{\3c&HD957D8&\b1}🎶 Lyrics:\N海上的晚霞像年少的画\NHǎi shàng de wǎn xiá xiàng nián shǎo de huà\NÁnh chiều tà ngã bóng trên biển như bức tranh thời niên thiếu{\4c&H202099&}
+Dialogue: 0,0:00:20.00,0:00:25.08,Default,,0,0,0,,{\3c&HD957D8&\b1}🎶 N海上的晚霞像年少的画\NHǎi shàng de wǎn xiá xiàng nián shǎo de huà\NÁnh chiều tà ngã bóng trên biển như bức tranh thời niên thiếu{\4c&H202099&}
 Dialogue: 0,0:00:25.08,0:00:30.08,Default,,0,0,0,,铺在天空等海鸥衔走它\NPū zài tiān kōng děng hǎi ōu xián zǒu tā\NTrải trên bầu trời đợi hải âu đến mang đi
 Dialogue: 0,0:00:30.08,0:00:35.08,Default,,0,0,0,,遥远的帆任风浪拍打\NYáo yuǎn de fān rèn fēng làng pāi dǎ\NCánh buồm ngoài khơi mặc cho sóng gió vùi dập
 Dialogue: 0,0:00:35.08,0:00:40.08,Default,,0,0,0,,为梦再痛也不会害怕\NWéi mèng zài tòng yě bù huì hài pà\NGiấc mơ này dù đau đớn thế nào ta cũng chẳng ngại
