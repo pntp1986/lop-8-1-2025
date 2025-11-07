@@ -392,3 +392,18 @@ header h1 {
 .video-frame::before {
   text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff69b4, 0 0 30px #ff1493;
 }
+
+.video-frame {
+  cursor: zoom-in;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.video-frame.enlarged {
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 999;
+  box-shadow: 0 0 50px rgba(255,105,180,0.8);
+  cursor: zoom-out;
+}
