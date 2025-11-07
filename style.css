@@ -750,6 +750,12 @@ footer.show {
     overflow: visible;
   }
 
+  .fire-text.small-text {
+    font-size: 1.1rem !important;
+    white-space: normal;
+    overflow: visible;
+  }
+
   .fire-text span {
     animation: flameMaxMobile 1.5s infinite;
   }
