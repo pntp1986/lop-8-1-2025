@@ -751,9 +751,10 @@ footer.show {
   }
 
   .fire-text.small-text {
-    font-size: 1.1rem !important;
-    white-space: normal;
-    overflow: visible;
+  font-size: 1rem !important; /* giảm cỡ chữ để vừa 1 dòng */
+    white-space: nowrap;          /* giữ trên 1 dòng */
+    overflow: hidden;             /* cắt nếu quá dài */
+    text-overflow: ellipsis;      /* nếu vẫn quá dài sẽ hiện ... */
   }
 
   .fire-text span {
