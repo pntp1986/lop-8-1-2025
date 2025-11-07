@@ -158,6 +158,16 @@ const lyricsDisplay = document.getElementById("lyricsDisplay");
 let audioPlayer = null;
 let lyricsData = [];
 
+let lastLyricKey = null;   // theo dõi đoạn lyrics hiện tại
+let charTimers = [];       // lưu các timer chạy từng chữ
+function clearCharTimers() {
+  if (charTimers.length) {
+    charTimers.forEach(id => clearTimeout(id));
+    charTimers = [];
+  }
+}
+
+
 async function loadLyrics(url) {
   const res = await fetch(url);
   const text = await res.text();
@@ -211,29 +221,86 @@ playBtn.addEventListener("click", async () => {
   const t = audioPlayer.currentTime;
   const current = lyricsData.find(l => t >= l.start && t <= l.end);
 
+  // Tạo một key duy nhất cho đoạn hiện tại (để phát animation chỉ khi mới đổi đoạn)
+  const key = current ? `${current.start}-${current.end}-${current.text}` : null;
+
+  // Nếu vẫn cùng đoạn với lần trước -> không khởi animation lại
+  if (key && key === lastLyricKey) {
+    return;
+  }
+
+  // Nếu đổi đoạn (hoặc không còn đoạn) → reset mọi thứ trước khi render
+  lastLyricKey = key;
+
+  // Clear mọi timer cũ
+  if (charTimers.length) {
+    charTimers.forEach(id => clearTimeout(id));
+    charTimers = [];
+  }
+
+  // Nếu có đoạn lyrics hiện tại -> render
   if (current) {
-    // Tách dòng lời ra (nếu có nhiều dòng)
     const lines = current.text.split("\n");
+
     lyricsDisplay.innerHTML = lines
-  .map((line, i) => `<div class="lyric-line" data-line="${i + 1}">${line}</div>`)
-  .join("");
+      .map((line, i) => {
+        if (i === 1) { // dòng thứ 3 -> tách ký tự
+          // escape HTML minimal: thay < và > để tránh lỗi nếu có tag
+          const safe = line.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+          return `<div class="lyric-line lyric-second" data-line="${i + 1}">
+            ${[...safe].map(ch => `<span class="char">${ch === " " ? "&nbsp;" : ch}</span>`).join("")}
+          </div>`;
+        } else {
+          const safe = line.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+          return `<div class="lyric-line" data-line="${i + 1}">${safe}</div>`;
+        }
+      })
+      .join("");
 
-const linesEls = lyricsDisplay.querySelectorAll(".lyric-line");
+    // Áp effect cho từng dòng (như trước)
+    const linesEls = lyricsDisplay.querySelectorAll(".lyric-line");
+    linesEls.forEach((el, i) => {
+      el.classList.remove("lyric-active", "highlight-run");
+      setTimeout(() => el.classList.add("lyric-active"), i * 300);
+    });
 
-linesEls.forEach((el, i) => {
-  el.classList.remove("lyric-active", "highlight-run");
-  setTimeout(() => {
-    el.classList.add("lyric-active");
-    // 🔥 Nếu là dòng thứ 3 → chạy sáng lan ngang
-    if (i === 2) {
-      el.classList.add("highlight-run");
+    // Bắt đầu animation chữ cho dòng 3: reset class rồi bật visible từng ký tự
+    const secondLine = lyricsDisplay.querySelector(".lyric-second");
+if (secondLine) {
+  const chars = secondLine.querySelectorAll(".char");
+
+      chars.forEach((ch, idx) => {
+        ch.classList.remove("visible");
+        // tạo timer và lưu để có thể clear khi đổi đoạn
+        const timer = setTimeout(() => {
+          ch.classList.add("visible");
+        }, idx * 80); // 80ms mỗi chữ => chỉnh tùy ý
+        charTimers.push(timer);
+      });
     }
-  }, i * 300);
-});
 
   } else {
+    // Không có đoạn nào đang phát -> ẩn vùng lời
     lyricsDisplay.innerHTML = "";
+    // reset lastKey để khi sau này xuất hiện đoạn mới sẽ khởi animation
+    lastLyricKey = null;
   }
+});
+
+
+// ví dụ khi dừng / tua / ended:
+audioPlayer.addEventListener("pause", () => {
+  // tuỳ ý: nếu pause ở đầu thì hiện poster... (giữ như cũ)
+  clearCharTimers();
+});
+
+audioPlayer.addEventListener("ended", () => {
+  clearCharTimers();
+  playBtn.style.display = "inline-block";
+  lyricsDisplay.style.display = "none";
+  lyricsDisplay.innerHTML = "";
+  audioPlayer.currentTime = 0;
+  lastLyricKey = null;
 });
 
 });
