@@ -32,16 +32,9 @@ header h1 {
   color: white;
   text-decoration: none;
   font-size: 16px;
-
-  /* ➕ thêm các dòng này */
-  background: rgba(30, 61, 123, 0.7);
-  padding: 6px 10px;
-  border-radius: 8px;
-  z-index: 2000; /* luôn nằm trên h1 */
 }
 .back-btn:hover {
   text-decoration: underline;
-  background: rgba(243, 156, 18, 0.8);
 }
 
 /* ================= GALLERY ================= */
