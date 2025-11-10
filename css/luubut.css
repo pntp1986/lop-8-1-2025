@@ -41,34 +41,57 @@ header h1 {
 }
 
 .event {
-  width: 280px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  align-items: stretch; /* 🔹 key fix chiều cao sub-event */
+}
+
+.sub-event {
+  flex: 1 1 280px;       /* co giãn nhưng tối thiểu 280px */
+  max-width: 300px;      /* tối đa 300px */
   text-align: center;
-  cursor: pointer;
-  transition: transform 0.3s;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+
+  display: flex;          /* xếp dọc nội dung */
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.event img {
+.event-thumb {
   width: 100%;
-  height: 500px;
-  object-fit: cover;
-  border-radius: 15px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.25);
-  transition: transform 0.3s, box-shadow 0.3s;
+  height: 500px;          /* cố định chiều cao */
+  overflow: hidden;       /* tránh ảnh tràn */
+  border-radius: 8px;
 }
 
-.event:hover {
-  transform: scale(1.05);
+.event-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* ảnh lấp đầy khung, không méo */
+  border-radius: 8px;
 }
 
-.event:hover img {
-  box-shadow: 0 0 18px rgba(0,0,0,0.35);
+
+/* 🔽 Mobile: hiển thị 1 cột */
+@media (max-width: 600px) {
+  .event {
+    flex-direction: column; 
+    align-items: center;
+  }
+
+  .sub-event {
+    width: 90%;
+    max-width: none;
+  }
 }
 
-.event h2 {
-  margin-top: 12px;
-  font-size: 1.2rem;
-  color: #1e3d7b;
-}
 
 /* ========== Hiệu ứng chữ bốc lửa ========== */
 .fire-text {
@@ -188,4 +211,129 @@ header h1 {
     90%  { transform: translateY(-3px) rotate(2deg) scale(1.08); opacity: 1; }
     100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.85; }
   }
+}
+
+/* ==========================================
+   BƯỚM BAY QUANH MỖI SUB-EVENT
+========================================== */
+.sub-event {
+  position: relative;  /* bắt buộc để bướm định vị theo sub-event */
+  overflow: visible;
+}
+
+/* Bướm */
+.butterfly {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  animation: flap 0.6s infinite alternate ease-in-out, fadeFly 6s infinite ease-in-out;
+  z-index: 10;
+}
+
+/* Đập cánh */
+@keyframes flap {
+  0%   { transform: scale(1) rotateY(0deg); }
+  100% { transform: scale(1.05) rotateY(180deg); }
+}
+
+/* Thoát ẩn – hiện */
+@keyframes fadeFly {
+  0%, 20%, 100% { opacity: 0; }
+  10%, 50% { opacity: 1; }
+  30%, 70% { opacity: 0.7; }
+}
+
+
+/* 4 con bướm với quỹ đạo khác nhau */
+.b1 { background-image: url('../images/butterfly1.png'); animation: flap 0.6s infinite alternate, orbit1 12s linear infinite; }
+.b2 { background-image: url('../images/butterfly2.png'); animation: flap 0.65s infinite alternate, orbit2 14s linear infinite; }
+.b3 { background-image: url('../images/butterfly3.png'); animation: flap 0.55s infinite alternate, orbit3 16s linear infinite; }
+.b4 { background-image: url('../images/butterfly4.png'); animation: flap 0.7s infinite alternate, orbit4 18s linear infinite; }
+
+/* Quỹ đạo bay quanh sub-event */
+@keyframes orbit1 { 0%{top:-20px; left:0;} 25%{top:-15px; left:100%;} 50%{top:100%; left:100%;} 75%{top:90%; left:0;} 100%{top:-20px; left:0;} }
+@keyframes orbit2 { 0%{top:0; left:-25px;} 25%{top:10%; left:100%;} 50%{top:100%; left:100%;} 75%{top:100%; left:-25px;} 100%{top:0; left:-25px;} }
+@keyframes orbit3 { 0%{top:-25px; left:25%;} 25%{top:0%; left:75%;} 50%{top:100%; left:75%;} 75%{top:85%; left:25%;} 100%{top:-25px; left:25%;} }
+@keyframes orbit4 { 0%{top:10%; left:10%;} 25%{top:0%; left:90%;} 50%{top:90%; left:90%;} 75%{top:100%; left:10%;} 100%{top:10%; left:10%;} }
+
+/* Mobile: thu nhỏ bướm */
+@media (max-width: 600px){
+  .butterfly { width:28px; height:28px; }
+}
+
+/* ==========================================
+   TRÁI TIM & HOA NHẤP NHÁY
+========================================== */
+.heart, .flower {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0;
+  animation: appearDisappear 3s infinite ease-in-out;
+}
+
+.heart { top: 10%; left: 20%; }
+.flower { top: 70%; left: 60%; }
+
+@keyframes appearDisappear {
+  0%, 20%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+  10%, 50% { opacity: 1; transform: scale(1) rotate(10deg); }
+  30%, 70% { opacity: 0.7; transform: scale(0.8) rotate(-10deg); }
+}
+
+
+
+
+/* Modal hiển thị toàn màn hình */
+.modal {
+  display: none; /* Ẩn mặc định */
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+/* Ảnh bên trong modal */
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+
+/* Dòng mô tả ảnh */
+#caption {
+  text-align: center;
+  color: #ccc;
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+/* Nút đóng (X) */
+.close {
+  position: absolute;
+  top: 30px;
+  right: 45px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Ảnh có thể click */
+.clickable {
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.clickable:hover {
+  transform: scale(1.05);
 }
