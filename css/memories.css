@@ -307,7 +307,7 @@ header h1 {
 /* ===== MOBILE ===== */
 @media (max-width: 600px) {
   .fire-text {
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
     white-space: normal;
     overflow: visible;
   }
