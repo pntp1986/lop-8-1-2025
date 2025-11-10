@@ -202,13 +202,16 @@ function timeToSeconds(t) {
 
 playBtn.addEventListener("click", async () => {
   // Nếu chưa có audio thì tạo
-  if (!audioPlayer) {
-    audioPlayer = new Audio("music/mdnh2.mp3");
-    audioPlayer.controls = true;
-    audioPlayer.style.width = "100%";
-    container1.appendChild(audioPlayer);
-    lyricsData = await loadLyrics("music/loibaihat.ass");
-  }
+ if (!audioPlayer) {
+  const audioSrc = playBtn.dataset.src; // lấy đúng bài từ HTML
+  audioPlayer = new Audio(audioSrc);
+  audioPlayer.controls = true;
+  audioPlayer.style.width = "100%";
+  container1.appendChild(audioPlayer);
+
+  lyricsData = await loadLyrics("music/loibaihat.ass");
+}
+
 
   // Ẩn nút, hiện vùng lời
   playBtn.style.display = "none";
