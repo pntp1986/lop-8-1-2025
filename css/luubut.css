@@ -95,11 +95,11 @@ header h1 {
 
 /* ========== Hiệu ứng chữ bốc lửa ========== */
 .fire-text {
-  font-size: 1.5rem;
+  display: block;
+  text-align: center;             
   font-weight: bold;
   letter-spacing: 2px;
   color: #ffcc70;
-  display: inline-block;
   text-shadow:
     0 0 15px #ff6600,
     0 0 30px #ff3300,
@@ -107,7 +107,11 @@ header h1 {
     0 0 60px #ff9900;
   animation: flickerMax 0.8s infinite alternate;
   position: relative;
+
+  white-space: nowrap;   /* chữ 1 dòng */
+  transform-origin: center;  /* co chữ từ giữa */
 }
+
 
 .fire-text span {
   display: inline-block;
@@ -216,12 +220,15 @@ header h1 {
 /* ==========================================
    BƯỚM BAY QUANH MỖI SUB-EVENT
 ========================================== */
+/* ==========================================
+   BƯỚM BAY QUANH MỖI SUB-EVENT
+========================================== */
 .sub-event {
-  position: relative;  /* bắt buộc để bướm định vị theo sub-event */
+  position: relative;  /* để bướm định vị theo sub-event */
   overflow: visible;
 }
 
-/* Bướm */
+/* Mặc định cho tất cả bướm */
 .butterfly {
   position: absolute;
   width: 40px;
@@ -229,40 +236,54 @@ header h1 {
   background-size: contain;
   background-repeat: no-repeat;
   pointer-events: none;
-  animation: flap 0.6s infinite alternate ease-in-out, fadeFly 6s infinite ease-in-out;
   z-index: 10;
 }
 
-/* Đập cánh */
+/* 🦋 Bướm chính bay quanh ảnh */
+.b1 {
+  background-image: url('../images/butterfly1.png');
+  animation: flap 0.6s infinite alternate ease-in-out,
+             orbit1 14s linear infinite;
+}
+
+/* 🦋 3 con còn lại chỉ ẩn hiện ngẫu nhiên (như ❤️ 🌸) */
+.b2, .b3, .b4 {
+  opacity: 0;
+  animation: appearDisappear 6s infinite ease-in-out;
+}
+
+/* Vị trí cố định của 3 con bướm ẩn/hiện */
+.b2 { top: 15%; left: 75%; background-image: url('../images/butterfly2.png'); }
+.b3 { top: 60%; left: 20%; background-image: url('../images/butterfly3.png'); }
+.b4 { top: 80%; left: 65%; background-image: url('../images/butterfly4.png'); }
+
+/* Cánh đập nhẹ */
 @keyframes flap {
   0%   { transform: scale(1) rotateY(0deg); }
   100% { transform: scale(1.05) rotateY(180deg); }
 }
 
-/* Thoát ẩn – hiện */
-@keyframes fadeFly {
-  0%, 20%, 100% { opacity: 0; }
-  10%, 50% { opacity: 1; }
-  30%, 70% { opacity: 0.7; }
+/* Bay quanh quỹ đạo */
+@keyframes orbit1 {
+  0%   { top: -20px; left: 0; }
+  25%  { top: -10px; left: 100%; }
+  50%  { top: 100%; left: 100%; }
+  75%  { top: 90%; left: 0; }
+  100% { top: -20px; left: 0; }
 }
 
-
-/* 4 con bướm với quỹ đạo khác nhau */
-.b1 { background-image: url('../images/butterfly1.png'); animation: flap 0.6s infinite alternate, orbit1 12s linear infinite; }
-.b2 { background-image: url('../images/butterfly2.png'); animation: flap 0.65s infinite alternate, orbit2 14s linear infinite; }
-.b3 { background-image: url('../images/butterfly3.png'); animation: flap 0.55s infinite alternate, orbit3 16s linear infinite; }
-.b4 { background-image: url('../images/butterfly4.png'); animation: flap 0.7s infinite alternate, orbit4 18s linear infinite; }
-
-/* Quỹ đạo bay quanh sub-event */
-@keyframes orbit1 { 0%{top:-20px; left:0;} 25%{top:-15px; left:100%;} 50%{top:100%; left:100%;} 75%{top:90%; left:0;} 100%{top:-20px; left:0;} }
-@keyframes orbit2 { 0%{top:0; left:-25px;} 25%{top:10%; left:100%;} 50%{top:100%; left:100%;} 75%{top:100%; left:-25px;} 100%{top:0; left:-25px;} }
-@keyframes orbit3 { 0%{top:-25px; left:25%;} 25%{top:0%; left:75%;} 50%{top:100%; left:75%;} 75%{top:85%; left:25%;} 100%{top:-25px; left:25%;} }
-@keyframes orbit4 { 0%{top:10%; left:10%;} 25%{top:0%; left:90%;} 50%{top:90%; left:90%;} 75%{top:100%; left:10%;} 100%{top:10%; left:10%;} }
+/* Ẩn hiện nhẹ nhàng */
+@keyframes appearDisappear {
+  0%, 20%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+  10%, 50%      { opacity: 1; transform: scale(1) rotate(10deg); }
+  30%, 70%      { opacity: 0.7; transform: scale(0.8) rotate(-10deg); }
+}
 
 /* Mobile: thu nhỏ bướm */
-@media (max-width: 600px){
-  .butterfly { width:28px; height:28px; }
+@media (max-width: 600px) {
+  .butterfly { width: 28px; height: 28px; }
 }
+
 
 /* ==========================================
    TRÁI TIM & HOA NHẤP NHÁY
@@ -337,3 +358,58 @@ header h1 {
 .clickable:hover {
   transform: scale(1.05);
 }
+
+/* Truyện */
+.story-text {
+  width: 100%;
+  height: 500px;                  /* giữ khung cao như ảnh trước */
+  padding: 20px;                  /* khoảng cách bên trong */
+  box-sizing: border-box;
+  overflow-y: auto;               /* nếu truyện dài sẽ xuất hiện scroll */
+  background: rgba(255,255,255,0.05); 
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.6;               /* khoảng cách giữa các dòng */
+  color: #333;
+
+  /* 🔹 Canh lề text */
+  text-align: justify;            /* canh đều 2 bên */
+  text-indent: 2em;               /* thụt đầu dòng đoạn đầu */
+  cursor: zoom-in;                /* giống clickable ảnh */
+  transition: transform 0.3s ease;
+}
+
+.story-text:hover {
+  transform: scale(1.02);         /* hover nhấn nhẹ giống ảnh */
+}
+
+/* Modal vẫn dùng #imageModal */
+#imageModal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding: 40px 20px;      /* khoảng cách xung quanh */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;         /* scroll nếu nội dung dài */
+  background-color: rgba(0,0,0,0.95);  /* nền mờ tối */
+  box-sizing: border-box;
+}
+
+/* Khung hiển thị text */
+#caption {
+  display: block;
+  max-width: 800px;
+  margin: 0 auto;           /* căn giữa màn hình */
+  background: rgba(255,255,255,0.1);
+  padding: 25px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;      /* canh đều 2 bên */
+  text-indent: 2em;         /* thụt đầu dòng đoạn đầu */
+}
+
