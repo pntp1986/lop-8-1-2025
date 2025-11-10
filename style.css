@@ -893,3 +893,72 @@ footer.show {
 #stats-toggle.open {
   left: 250px;
 }
+
+/* --- Hiệu ứng viền cầu vồng chạy quanh ảnh --- */
+.img-border {
+  position: relative;
+  display: inline-block;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 3px; /* độ dày viền */
+  background: linear-gradient(270deg,
+    red, orange, yellow, green, cyan, blue, violet, red);
+  background-size: 400% 400%;
+  animation: rainbow-spin 6s linear infinite;
+}
+
+.img-border img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Animation chuyển động gradient */
+@keyframes rainbow-spin {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- Chữ cầu vồng đổ bóng (nếu muốn) --- */
+.rainbow-text {
+  margin-top: 10px;
+  font-weight: bold;
+  background: linear-gradient(to right,
+    red, orange, yellow, green, cyan, blue, violet);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow:
+    2px 2px 4px red,
+    -2px -2px 4px orange,
+    2px -2px 4px yellow,
+    -2px 2px 4px green,
+    0 0 10px cyan,
+    0 0 15px blue,
+    0 0 20px violet;
+}
+
+
+@keyframes rainbow-glow {
+  0%,100% {
+    text-shadow:
+      0 0 5px red,
+      0 0 10px orange,
+      0 0 15px yellow,
+      0 0 20px green,
+      0 0 25px cyan,
+      0 0 30px blue,
+      0 0 35px violet;
+  }
+  50% {
+    text-shadow:
+      0 0 10px violet,
+      0 0 15px blue,
+      0 0 20px cyan,
+      0 0 25px green,
+      0 0 30px yellow,
+      0 0 35px orange,
+      0 0 40px red;
+  }
+}
