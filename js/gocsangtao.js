@@ -51,7 +51,7 @@ loadClip("loadClipBtn", "videoContainer2", "videos/cliptruyen.mp4", "funPoster")
 // ================== ÂM NHẠC TRẺ TRUNG ==================
 const videoList = [
  {
-    url: "videos/coi-oi.mp4",
+    url: "videos/co-oi.mp4",
     title: "Cô ơi - Candy Ngọc Hà",
     poster: "images/poster/co-oi.png"
   }
