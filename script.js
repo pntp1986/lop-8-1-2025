@@ -100,14 +100,25 @@ function addMessage(name, msg, time) {
   div.className = 'chat-message';
 
   const date = new Date(time);
+  const dd = date.getDate().toString().padStart(2, '0');
+  const mm = (date.getMonth() + 1).toString().padStart(2, '0');
+  const yyyy = date.getFullYear();
   const hh = date.getHours().toString().padStart(2, '0');
-  const mm = date.getMinutes().toString().padStart(2, '0');
-  const timeStr = `${hh}:${mm}`;
+  const min = date.getMinutes().toString().padStart(2, '0');
 
-  div.innerHTML = `<b>${name}</b> <small style="color:#777;">(${timeStr})</small><br>${msg}`;
+  // 👇 Dòng thời gian đầy đủ
+  const timeStr = `${hh}:${min} - ${dd}/${mm}/${yyyy}`;
+
+  div.innerHTML = `
+    <b>${name}</b> 
+    <small style="color:#777;">(${timeStr})</small><br>
+    ${msg}
+  `;
+
   chatMessages.appendChild(div);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
 
 // ===== GỬI BẰNG PHÍM ENTER =====
 chatInput.addEventListener('keydown', e => {
