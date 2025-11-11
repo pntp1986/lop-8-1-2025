@@ -45,30 +45,15 @@ video.addEventListener("play", () => {
   });
 }
 
-loadClip("loadClipBtn", "videoContainer2", "videos/demo.mp4", "funPoster");
+loadClip("loadClipBtn", "videoContainer2", "videos/cliptruyen.mp4", "funPoster");
 
 
 // ================== ÂM NHẠC TRẺ TRUNG ==================
 const videoList = [
-  {
-    url: "videos/chuatron20.mp4",
-    title: "J'ai Pas Vingt Ans – Tôi chưa tròn hai mươi",
-    poster: "images/poster/not20.png"
-  },
-  {
-    url: "videos/Nothing_s_Gonna_Change_My_Love_for_You.mp4",
-    title: "Tình yêu anh mãi không đổi thay",
-    poster: "images/poster/nothings.png"
-  },
-  {
-    url: "videos/congioAlize.mp4",
-    title: "L'Alizé – Cơn gió Alizé",
-    poster: "images/poster/alizee.png"
-  },
-  {
-    url: "videos/nguocdong.mp4",
-    title: "À contre-courant – Đi ngược dòng chảy",
-    poster: "images/poster/nguocdong.png"
+ {
+    url: "videos/coi-oi.mp4",
+    title: "Cô ơi - Candy Ngọc Hà",
+    poster: "images/poster/co-oi.png"
   }
 ];
 
