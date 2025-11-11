@@ -299,3 +299,34 @@ document.querySelectorAll('.video-frame').forEach(frame => {
     frame.classList.toggle('enlarged');
   });
 });
+
+
+// ================== XEM THIỆP 20/11 ==================
+const thiepPoster = document.getElementById("thiepPoster");
+const prevThiep = document.getElementById("prevThiep");
+const nextThiep = document.getElementById("nextThiep");
+
+const thiepImages = [
+  "images/memories/thiep1.jpg",
+  "images/memories/thiep2.jpg"
+];
+
+let thiepIndex = 0;
+
+function showThiep(index) {
+  thiepIndex = (index + thiepImages.length) % thiepImages.length; // vòng lặp
+  thiepPoster.src = thiepImages[thiepIndex];
+}
+
+// Nút Prev
+prevThiep.addEventListener("click", (e) => {
+  e.stopPropagation();
+  showThiep(thiepIndex - 1);
+});
+
+// Nút Next
+nextThiep.addEventListener("click", (e) => {
+  e.stopPropagation();
+  showThiep(thiepIndex + 1);
+});
+
