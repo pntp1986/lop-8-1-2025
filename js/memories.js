@@ -19,11 +19,9 @@ const events = [
   {
     name: "Tham gia thiết kế sản phẩm stem",
     images: [
-      { src: "images/memories/stem1.jpg", caption: "Sản phầm để đời :)" },
-      { src: "images/memories/stem2.jpg", caption: "Sản phầm để đời :)" },
-      { src: "images/memories/stem3.jpg", caption: "Những cánh thiệp gửi thầy cô nhân ngày 20/11" },
-      { src: "images/memories/stem4.jpg", caption: "Những cánh thiệp gửi thầy cô nhân ngày 20/11" },
-      { src: "images/memories/stem5.jpg", caption: "Những cánh thiệp gửi thầy cô nhân ngày 20/11" },
+          { src: "images/memories/stem3.jpg", caption: "Sản phầm để đời :)" },
+      { src: "images/memories/stem4.jpg", caption: "Sản phầm để đời :)" },
+      { src: "images/memories/stem5.jpg", caption: "Sản phầm để đời :)" },
       { src: "images/memories/stem6.jpg", caption: "Lớp cùng vui và mệt với stem" }
     ]
   },
