@@ -23,6 +23,13 @@
       </div>
     </div>
 
+    <div class="event" id="Đồng diễn Vovinam">
+      <h2>Đồng diễn Vovinam</h2>
+      <div class="event-thumb rainbow-wrapper">
+        <img src="videos/vovinam1.jpg" alt="Đồng diễn Vovinam">
+      </div>
+    </div>
+
     <div class="event" id="Thiết kế sản phẩm stem">
       <h2>Thiết kế sản phẩm stem</h2>
       <div class="event-thumb rainbow-wrapper">
@@ -53,16 +60,25 @@
   </main>
 
   <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <span class="close">&times;</span>
-    <img id="lightboxImg" src="">
-    <div id="lightboxCaption"></div>
-    
-    <div class="controls">
-  <span class="prev">⬅️</span>
-  <span class="next">➡️</span>
-</div>
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  
+  <!-- Ảnh -->
+  <img id="lightboxImg" src="">
+  
+  <!-- Video -->
+  <video id="lightboxVideo" controls style="display:none; max-width:90%; max-height:80vh;"></video>
+  
+  <!-- Caption -->
+  <div id="lightboxCaption"></div>
+  
+  <!-- Nút điều hướng -->
+  <div class="controls">
+    <span class="prev">⬅️</span>
+    <span class="next">➡️</span>
   </div>
+</div>
+
 
   <!-- Nút nhạc -->
   <button id="musicToggle" class="music-btn">🎵 Nhạc nền</button>
