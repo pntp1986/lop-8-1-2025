@@ -17,11 +17,11 @@ const events = [
     ]
   },
   {
-    name: "Đồng diễn Vovinam",
+    name: "Hình tập văn nghệ",
     images: [
-          { src: "videos/vovinam1.jpg", caption: "Đồng diễn Vovinam" },
-      { src: "videos/vovinam2.jpg", caption: "Đồng diễn Vovinam" },
-      { src: "videos/vovinam.mp4", caption: "Đồng diễn Vovinam" }
+          { src: "images/memories/vannghe1.jpg", caption: "Hình tập văn nghệ" },
+      { src: "images/memories/vannghe2.jpg", caption: "Hình tập văn nghệ" },
+      { src: "images/memories/vannghe3.jpg", caption: "Hình tập văn nghệ" }
     ]
   },
   {
