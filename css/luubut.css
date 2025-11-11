@@ -69,6 +69,7 @@ header h1 {
   height: 500px;          /* cố định chiều cao */
   overflow: hidden;       /* tránh ảnh tràn */
   border-radius: 8px;
+   position: relative;
 }
 
 .event-thumb img {
@@ -95,10 +96,9 @@ header h1 {
 
 /* ========== Hiệu ứng chữ bốc lửa ========== */
 .fire-text {
-  display: block;
-  text-align: center;             
+  display: inline-block;         /* inline-block để scale đúng */
   font-weight: bold;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   color: #ffcc70;
   text-shadow:
     0 0 15px #ff6600,
@@ -106,10 +106,12 @@ header h1 {
     0 0 45px #ff0000,
     0 0 60px #ff9900;
   animation: flickerMax 0.8s infinite alternate;
-  position: relative;
 
-  white-space: nowrap;   /* chữ 1 dòng */
-  transform-origin: center;  /* co chữ từ giữa */
+  white-space: nowrap;           /* 1 dòng */
+  overflow: visible;             /* hiển thị đủ chữ */
+  transform-origin: left center; /* co từ trái sang phải */
+  max-width: 100%;               /* không vượt khung cha */
+  font-size: 1.4rem;             /* font mặc định */
 }
 
 
@@ -118,7 +120,9 @@ header h1 {
   margin-right: 2px;
   animation: flameMax 1.5s infinite;
   position: relative;
+  transform: none; /* thêm dòng này */
 }
+
 
 /* Tổng thể nhấp nháy cực mạnh */
 @keyframes flickerMax {
@@ -217,9 +221,7 @@ header h1 {
   }
 }
 
-/* ==========================================
-   BƯỚM BAY QUANH MỖI SUB-EVENT
-========================================== */
+/
 /* ==========================================
    BƯỚM BAY QUANH MỖI SUB-EVENT
 ========================================== */
@@ -305,40 +307,50 @@ header h1 {
 }
 
 
-
-
-/* Modal hiển thị toàn màn hình */
+/* Modal full màn hình */
 .modal {
-  display: none; /* Ẩn mặc định */
+  display: none;
   position: fixed;
-  z-index: 1000;
-  padding-top: 60px;
+  z-index: 9999;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.9);
+  background-color: rgba(0,0,0,0.95);
+  overflow-y: auto;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-/* Ảnh bên trong modal */
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .modal-content {
-  margin: auto;
-  display: block;
   max-width: 90%;
   max-height: 80vh;
   border-radius: 10px;
+  margin-bottom: 20px;
 }
 
-/* Dòng mô tả ảnh */
 #caption {
-  text-align: center;
-  color: #ccc;
-  margin-top: 10px;
-  font-size: 1.1em;
+  max-width: 800px;
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;
+  text-indent: 2em;
+  background: rgba(255,255,255,0.1);
+  padding: 25px;
+  border-radius: 10px;
 }
 
-/* Nút đóng (X) */
+/* Close button */
 .close {
   position: absolute;
   top: 30px;
@@ -349,7 +361,7 @@ header h1 {
   cursor: pointer;
 }
 
-/* Ảnh có thể click */
+/* Clickable */
 .clickable {
   cursor: zoom-in;
   transition: transform 0.3s ease;
@@ -358,58 +370,3 @@ header h1 {
 .clickable:hover {
   transform: scale(1.05);
 }
-
-/* Truyện */
-.story-text {
-  width: 100%;
-  height: 500px;                  /* giữ khung cao như ảnh trước */
-  padding: 20px;                  /* khoảng cách bên trong */
-  box-sizing: border-box;
-  overflow-y: auto;               /* nếu truyện dài sẽ xuất hiện scroll */
-  background: rgba(255,255,255,0.05); 
-  border-radius: 8px;
-  font-size: 1rem;
-  line-height: 1.6;               /* khoảng cách giữa các dòng */
-  color: #333;
-
-  /* 🔹 Canh lề text */
-  text-align: justify;            /* canh đều 2 bên */
-  text-indent: 2em;               /* thụt đầu dòng đoạn đầu */
-  cursor: zoom-in;                /* giống clickable ảnh */
-  transition: transform 0.3s ease;
-}
-
-.story-text:hover {
-  transform: scale(1.02);         /* hover nhấn nhẹ giống ảnh */
-}
-
-/* Modal vẫn dùng #imageModal */
-#imageModal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  padding: 40px 20px;      /* khoảng cách xung quanh */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;         /* scroll nếu nội dung dài */
-  background-color: rgba(0,0,0,0.95);  /* nền mờ tối */
-  box-sizing: border-box;
-}
-
-/* Khung hiển thị text */
-#caption {
-  display: block;
-  max-width: 800px;
-  margin: 0 auto;           /* căn giữa màn hình */
-  background: rgba(255,255,255,0.1);
-  padding: 25px;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  text-align: justify;      /* canh đều 2 bên */
-  text-indent: 2em;         /* thụt đầu dòng đoạn đầu */
-}
-
