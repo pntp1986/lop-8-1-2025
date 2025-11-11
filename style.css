@@ -642,7 +642,7 @@ footer.show {
   box-shadow: 0 0 8px #fff, 0 0 15px #ffcc70, 0 0 20px #ff6600;
   transform: translateY(-50%);
   opacity: 0;           /* ẩn mặc định */
-  animation: sweepOnce 10s linear infinite; /* 5s delay + 5s sweep */
+  animation: sweepOnce 6s linear infinite; /* 5s delay + 5s sweep */
 }
 
 @keyframes sweepOnce {
