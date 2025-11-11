@@ -17,6 +17,14 @@ const events = [
     ]
   },
   {
+    name: "Đồng diễn Vovinam",
+    images: [
+          { src: "videos/vovinam1.jpg", caption: "Đồng diễn Vovinam" },
+      { src: "videos/vovinam2.jpg", caption: "Đồng diễn Vovinam" },
+      { src: "videos/vovinam.mp4", caption: "Đồng diễn Vovinam" }
+    ]
+  },
+  {
     name: "Tham gia thiết kế sản phẩm stem",
     images: [
           { src: "images/memories/stem3.jpg", caption: "Sản phầm để đời :)" },
@@ -80,13 +88,30 @@ function closeLightbox() {
 // ===== UPDATE IMAGE =====
 function updateLightbox() {
   const imgData = galleryImages[currentIndex];
+
+  const lightboxVideo = document.getElementById("lightboxVideo");
+
+  // Ẩn cả 2 trước khi cập nhật
+  lightboxImg.style.display = 'none';
   lightboxImg.style.opacity = 0;
-  setTimeout(() => {
+  lightboxVideo.style.display = 'none';
+  lightboxVideo.pause();
+
+  // Caption luôn cập nhật
+  lightboxCaption.textContent = imgData.caption;
+
+  // Hiển thị video hoặc ảnh
+  if (imgData.src.endsWith('.mp4')) {
+    lightboxVideo.src = imgData.src;
+    lightboxVideo.style.display = 'block';
+    lightboxVideo.play();
+  } else {
     lightboxImg.src = imgData.src;
-    lightboxCaption.textContent = imgData.caption;
-    lightboxImg.style.opacity = 1;
-  }, 150);
+    lightboxImg.style.display = 'block';
+    setTimeout(() => lightboxImg.style.opacity = 1, 50);
+  }
 }
+
 
 function nextImage() {
   currentIndex = (currentIndex + 1) % galleryImages.length;
