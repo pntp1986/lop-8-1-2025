@@ -1,32 +1,57 @@
-// ===== NHẠC NỀN 1 BÀI =====
 const music = document.getElementById("bgMusic");
 const overlay = document.getElementById("loadingOverlay");
 
-// Hàm bật nhạc
+// Bật nhạc khi click/tap
 function startMusic() {
   music.play().catch(err => console.log("Autoplay bị chặn:", err));
-  overlay.style.display = "none"; // ẩn overlay
-  localStorage.removeItem("autoPlayLoingo"); // xóa key
+  overlay.style.display = "none";
+  localStorage.removeItem("autoPlayLoingo");
 }
-
-// 1️⃣ Nếu người dùng tap vào bất kỳ đâu trên màn hình
 document.addEventListener("click", startMusic, { once: true });
 document.addEventListener("touchstart", startMusic, { once: true });
 
-// 2️⃣ Nếu localStorage có key, tự động chờ 5 giây rồi bật nhạc
-if (localStorage.getItem("autoPlayLoingo") === "true") {
-  setTimeout(() => {
-    startMusic();
-  }, 5000);
-}
+// Modal
+const modal = document.getElementById('imageModal');
+const modalContent = document.getElementById('fullImage');
+const caption = document.getElementById('caption');
+const closeBtn = document.querySelector('.close');
 
+// Mở modal ảnh
+document.querySelectorAll('.event-thumb img.clickable').forEach(img => {
+  img.addEventListener('click', e => {
+    e.stopPropagation();
+    modalContent.style.display = 'block';
+    modalContent.src = img.src;
+    caption.style.display = 'none';
+    modal.style.display = 'flex';
+  });
+});
 
-// 🔹 Tự co chữ .fire-text vừa khung cha
+// Mở modal text
+document.querySelectorAll('.story-text.clickable').forEach(text => {
+  text.addEventListener('click', e => {
+    e.stopPropagation();
+    modalContent.style.display = 'none';
+    caption.style.display = 'block';
+    caption.innerHTML = text.innerHTML;
+    modal.scrollTop = 0;
+    modal.style.display = 'flex';
+  });
+});
+
+// Đóng modal
+closeBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+modal.addEventListener('click', e => {
+  if (e.target === modal) modal.style.display = 'none';
+});
+
 function scaleFireText() {
   document.querySelectorAll('.fire-text').forEach(el => {
-    let parentWidth = el.parentElement.clientWidth;   // chiều rộng khung cha
-    let textWidth = el.scrollWidth;                  // chiều rộng chữ thật
-    let scale = Math.min(1, parentWidth / textWidth); // tỷ lệ co
+    const parentWidth = el.parentElement.clientWidth - 20; // trừ padding
+    const textWidth = el.scrollWidth;
+    const scale = Math.min(1, parentWidth / textWidth);
     el.style.transform = `scale(${scale})`;
   });
 }
@@ -34,40 +59,6 @@ function scaleFireText() {
 // Chạy lần đầu
 scaleFireText();
 
-// Chạy lại khi resize màn hình
+// Khi resize
 window.addEventListener('resize', scaleFireText);
-
-// Chọn tất cả các .clickable
-document.querySelectorAll('.clickable').forEach(el => {
-  el.addEventListener('click', () => {
-    const modal = document.getElementById('imageModal');
-    const modalContent = document.getElementById('fullImage');
-    const caption = document.getElementById('caption');
-
-    if (el.classList.contains('story-text')) {
-      // Hiển thị nội dung văn bản
-      modalContent.style.display = 'none';
-      caption.style.display = 'block';
-      caption.innerHTML = el.innerHTML;  // đưa truyện vào modal
-    } else {
-      // Hiển thị ảnh
-      modalContent.style.display = 'block';
-      modalContent.src = el.src;
-      caption.style.display = 'none';
-    }
-
-    modal.style.display = 'block';
-  });
-});
-
-// Đóng modal
-document.querySelector('.close').addEventListener('click', () => {
-  document.getElementById('imageModal').style.display = 'none';
-});
-
-// Bấm ra ngoài cũng đóng modal
-const modal = document.getElementById('imageModal');
-modal.addEventListener('click', (e) => {
-  if (e.target === modal) modal.style.display = 'none';
-});
 
