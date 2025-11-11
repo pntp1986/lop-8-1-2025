@@ -308,7 +308,8 @@ const nextThiep = document.getElementById("nextThiep");
 
 const thiepImages = [
   "images/memories/thiep1.jpg",
-  "images/memories/thiep2.jpg"
+  "images/memories/thiep2.jpg",
+  "images/memories/thiep3.jpg"
 ];
 
 let thiepIndex = 0;
