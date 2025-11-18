@@ -16,6 +16,16 @@ const events = [
       
     ]
   },
+   {
+    name: "Kỷ niệm 20/11",
+    images: [
+      { src: "images/memories/thiep2011.jpg", caption: "Yêu mãi lớp 8/1" },
+      { src: "images/memories/giaykhen.jpg", caption: "Giấy khen" },
+      { src: "videos/tangqua.mp4", caption: "Bất giờ dành cho cô" },
+      { src: "videos/congboketqua.mp4", caption: "Tổng kết" }
+      
+    ]
+  },
   {
     name: "Hình tập văn nghệ",
     images: [
