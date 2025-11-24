@@ -58,6 +58,17 @@ function sendMessage() {
   const msg = chatInput.value.trim();
   if (!msg) return;
 
+    // ===== Giới hạn độ dài =====
+  if(username.length > 30){
+    alert("❌ Tên không được quá 30 ký tự!");
+    return;
+  }
+
+  if(msg.length > 1000){
+    alert("❌ Tin nhắn không được quá 1000 ký tự!");
+    return;
+  }
+  
   const now = Date.now();
   if (now - lastChatTime < 5000) {
     alert("⏳ Uốn lưỡi 7 lần trước khi chat :)");
@@ -91,33 +102,34 @@ function saveUsername() {
 // ===== NHẬN TIN NHẮN REALTIME =====
 window.onChildAdded(window.ref(window.db, 'messages'), (snapshot) => {
   const data = snapshot.val();
-  addMessage(data.name, data.text, data.time);
+  const msgId = snapshot.key; // lấy id để xóa
+  addMessage(data.name, data.text, data.time, msgId);
 });
 
+
 // ===== HIỂN THỊ TIN NHẮN =====
-function addMessage(name, msg, time) {
+function addMessage(name, msg, time, msgId) {
   const div = document.createElement('div');
   div.className = 'chat-message';
 
   const date = new Date(time);
-  const dd = date.getDate().toString().padStart(2, '0');
-  const mm = (date.getMonth() + 1).toString().padStart(2, '0');
+  const hh = date.getHours().toString().padStart(2,'0');
+  const min = date.getMinutes().toString().padStart(2,'0');
+  const dd = date.getDate().toString().padStart(2,'0');
+  const mm = (date.getMonth()+1).toString().padStart(2,'0');
   const yyyy = date.getFullYear();
-  const hh = date.getHours().toString().padStart(2, '0');
-  const min = date.getMinutes().toString().padStart(2, '0');
-
-  // 👇 Dòng thời gian đầy đủ
   const timeStr = `${hh}:${min} - ${dd}/${mm}/${yyyy}`;
 
   div.innerHTML = `
-    <b>${name}</b> 
-    <small style="color:#777;">(${timeStr})</small><br>
+    <b>${name}</b> <small style="color:#777;">(${timeStr})</small><br>
     ${msg}
+    <button onclick="deleteMessage('${msgId}')" style="margin-left:5px;">🗑 Xóa</button>
   `;
 
   chatMessages.appendChild(div);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
 
 
 // ===== GỬI BẰNG PHÍM ENTER =====
@@ -137,6 +149,24 @@ function addEmoji(emoji) {
   chatInputBox.value += emoji + " ";
   chatInputBox.focus();
 }
+
+function deleteMessage(msgId) {
+  const adminKey = prompt("Nhập mật khẩu admin để xóa tin nhắn:");
+
+  if (!adminKey) return;
+
+  // Cập nhật adminKey tạm thời để rule kiểm tra
+  const updates = {};
+  updates['messages/' + msgId] = null;
+
+  window.update(window.ref(window.db, 'messages/' + msgId), updates, {
+    adminKey: adminKey
+  }).catch(err => {
+    alert("❌ Xóa thất bại. Mật khẩu sai hoặc lỗi rules.");
+    console.error(err);
+  });
+}
+
 
 // ===== FOOTER SHOW / HIDE =====
 window.addEventListener("scroll", showFooter);
